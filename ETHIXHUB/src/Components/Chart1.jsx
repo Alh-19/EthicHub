@@ -14,14 +14,16 @@ const Chart1 = () => {
     }
 
     const bonds = data.query1Data.bonds;
-    const maturityMonths = bonds.map((bond) => bond.maturity);
     const bondCounts = {
-      '3 Months': 7776000,
-      '6 Months': 15552000,
-      '12 Months': 31536000,
+      '3 Months': 0,
+      '6 Months': 0,
+      '12 Months': 0,
     };
 
-    maturityMonths.forEach((months) => {
+    bonds.forEach((bond) => {
+      const seconds = bond.maturity;
+      const months = secondsToMonths(seconds);
+
       if (months === 3) {
         bondCounts['3 Months']++;
       } else if (months === 6) {
@@ -30,6 +32,8 @@ const Chart1 = () => {
         bondCounts['12 Months']++;
       }
     });
+
+    console.log(bondCounts); 
 
     const labels = Object.keys(bondCounts);
     const dataPoints = Object.values(bondCounts);
@@ -69,6 +73,12 @@ const Chart1 = () => {
     });
   },
    [loading, error, data]);
+
+   const secondsToMonths = (seconds) => {
+    const secondsInAMonth = 2592000; // 30 days assuming each month has 30 days
+    return Math.round(seconds / secondsInAMonth);
+  };
+
 
   return (
     <div>
