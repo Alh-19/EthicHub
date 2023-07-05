@@ -1,11 +1,13 @@
-import React, { useEffect, useRef, useContext } from 'react';
+
+import React, { useEffect, useRef, useContext, useState } from 'react';
 import { Chart } from 'chart.js/auto';
 import { DataContext } from '../Data/DataContextProvider';
 
 const Chart1 = () => {
   const canvasRef = useRef(null);
   const { loading, error, data } = useContext(DataContext);
-  
+  const [chart, setChart] = useState(null); // Estado para realizar seguimiento del gráfico actual
+
   useEffect(() => {
     if (loading) return;
     if (error) {
@@ -33,12 +35,18 @@ const Chart1 = () => {
       }
     });
 
-    console.log(bondCounts); 
+    console.log(bondCounts);
 
     const labels = Object.keys(bondCounts);
     const dataPoints = Object.values(bondCounts);
     const ctx = canvasRef.current.getContext('2d');
-    new Chart(ctx, {
+
+    // Destruir el gráfico existente antes de crear uno nuevo
+    if (chart) {
+      chart.destroy();
+    }
+
+    const newChart = new Chart(ctx, {
       type: 'bar',
       data: {
         labels: labels,
@@ -52,7 +60,6 @@ const Chart1 = () => {
           },
         ],
       },
-
       options: {
         scales: {
           y: {
@@ -71,14 +78,15 @@ const Chart1 = () => {
         },
       },
     });
-  },
-   [loading, error, data]);
 
-   const secondsToMonths = (seconds) => {
+    // Guardar el gráfico actual en el estado
+    setChart(newChart);
+  }, [loading, error, data]);
+
+  const secondsToMonths = (seconds) => {
     const secondsInAMonth = 2592000; // 30 days assuming each month has 30 days
     return Math.round(seconds / secondsInAMonth);
   };
-
 
   return (
     <div>
@@ -87,4 +95,5 @@ const Chart1 = () => {
     </div>
   );
 };
+
 export default Chart1;
