@@ -7,6 +7,7 @@ const Chart1 = () => {
   const canvasRef = useRef(null);
   const { loading, error, data } = useContext(DataContext);
   const [chart, setChart] = useState(null); // Estado para realizar seguimiento del gráfico actual
+console.log(data);
 
   useEffect(() => {
     if (loading) return;
