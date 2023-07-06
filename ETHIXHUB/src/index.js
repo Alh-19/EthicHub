@@ -1,26 +1,50 @@
+
+// import React, { useState } from 'react';
+// import { createRoot } from 'react-dom/client';
+// import { ApolloProvider } from '@apollo/client';
+// import App from './App';
+// import { DataContextProvider } from './Data/DataContextProvider';
+
+// import { client, client2 } from './apolloClient'; // Assuming you have created two Apollo clients
+
+// const rootElement = document.getElementById('root');
+
+// const Root = () => {
+//   const [useClient, setUseClient] = useState(client);
+
+//   const handleToggleClient = () => {
+//     setUseClient((prevClient) => (prevClient === client ? client2 : client));
+//   };
+
+//   return (
+//     <ApolloProvider client={useClient}>
+//       <DataContextProvider>
+//         <App />
+//         <button onClick={handleToggleClient}>Toggle Client</button>
+//       </DataContextProvider>
+//     </ApolloProvider>
+//   );
+// };
+
+// createRoot(rootElement).render(<Root />);
+
+
 import React from 'react';
-import { createRoot } from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import { ApolloProvider } from '@apollo/client';
+import { client, client2,  } from './apolloClient.js';
+import { DataContextProvider } from './Data/DataContextProvider.js';
 import App from './App';
-import { DataContextProvider } from './Data/DataContextProvider';
 
-import { client, client2 } from './apolloClient'; // Assuming you have imported both clients here
-
-const rootElement = document.getElementById('root');
-
-const Root = ({ apolloClient }) => {
-  return (
-    <ApolloProvider client={apolloClient}>
-      <DataContextProvider>
-        <App />
-      </DataContextProvider>
+ReactDOM.render(
+  <ApolloProvider client={client}>
+    <ApolloProvider client={client2}>
+      
+          <DataContextProvider clients={{ client, client2 }}>
+            <App />
+          </DataContextProvider>
+      
     </ApolloProvider>
-  );
-};
-
-createRoot(rootElement).render(
-  <React.Fragment>
-    <Root apolloClient={client} />
-    <Root apolloClient={client2} />
-  </React.Fragment>
+  </ApolloProvider>,
+  document.getElementById('root')
 );

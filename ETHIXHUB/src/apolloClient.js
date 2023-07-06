@@ -1,17 +1,13 @@
 import { ApolloClient, InMemoryCache, ApolloLink, HttpLink } from '@apollo/client';
+import { useState, useEffect } from 'react';
 
-export const subgraph1Link = new HttpLink({
+const subgraph1Link = new HttpLink({
   uri: 'https://api.thegraph.com/subgraphs/name/ethichub/ethichub',
 });
 
-export const subgraph2Link = new HttpLink({
+const subgraph2Link = new HttpLink({
   uri: 'https://api.thegraph.com/subgraphs/name/ethichub/ethichub-celo',
 });
-
-// const client = new ApolloClient({
-//   link: ApolloLink.concat(subgraph1Link, subgraph2Link),
-//   cache: new InMemoryCache(),
-// });
 
 const client = new ApolloClient({
   link: ApolloLink.concat(subgraph1Link),
@@ -23,6 +19,5 @@ const client2 = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-export {client, client2};
+export {client, client2,  subgraph1Link, subgraph2Link};
 
-// export default client;
