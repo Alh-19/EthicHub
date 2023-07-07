@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import Chart1 from "../Components/Chart1";
 import Chart2 from "../Components/Chart2";
+import Chart3 from "../Components/Chart3";
+import Chart4 from "../Components/Chart4";
+import CombinedChart from "../Components/CombinedChart";
 
 const Bonds = () => {
   const [chartComponent, setChartComponent] = useState(1);
@@ -11,6 +14,9 @@ const Bonds = () => {
 
   return (
     <div>
+      <Chart3 />
+      <Chart4 />
+      <CombinedChart />
       <label>
         ETH
         <input
