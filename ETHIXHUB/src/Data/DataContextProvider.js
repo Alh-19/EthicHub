@@ -1,8 +1,7 @@
 
 import React, { createContext } from 'react';
 import { useQuery } from '@apollo/client';
-import { QUERY1, QUERY2 } from './Queries';
-import { ApolloProvider } from '@apollo/client';
+import { QUERY1 } from './Queries';
 
 
 export const DataContext = createContext();
