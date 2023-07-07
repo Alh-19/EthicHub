@@ -96,23 +96,19 @@ const Chart1 = () => {
     return Math.round(seconds / secondsInAMonth);
   };
 
-  const handleToggleChart = () => {
-    setShowFirstChart((prevValue) => !prevValue);
-  };
+
 
   return (
     <div>
       <h2>Graph 1</h2>
-      <button onClick={handleToggleChart}>
-        {showFirstChart ? 'Switch to Chart Celo' : 'Switch to Chart Eth'}
-      </button>
+      
       <canvas ref={canvasRef} />
       
     </div>
   );
 };
 
-export default Chart1;*/
+export default Chart1;
 
 
 
