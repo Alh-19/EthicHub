@@ -39,7 +39,9 @@ const Chart2 = () => {
 
     const labels = Object.keys(bondCounts);
     
-    const moneyDataPoints = Object.values(bondCounts).map((item) => item.principal);
+    const moneyDataPoints = Object.values(bondCounts).map((item) => item.principal) ;
+    
+
 
     const ctx = canvasRef.current.getContext('2d');
 
@@ -54,7 +56,7 @@ const Chart2 = () => {
         datasets: [
           {
             label: 'TOTAL PRINCIPAL',
-            data: moneyDataPoints,
+            data: moneyDataPoints ,
             backgroundColor: 'rgb(6, 47, 79)',
             borderColor: 'rgba(75, 192, 192, 1)',
             borderWidth: 1,
@@ -68,7 +70,7 @@ const Chart2 = () => {
             beginAtZero: true,
             title: {
               display: true,
-              text: '',
+              text: '  ',
             },
             ticks: {
               font: {
@@ -111,12 +113,5 @@ const Chart2 = () => {
 };
 
 export default Chart2;
-
-
-
-
-
-
-
 
 

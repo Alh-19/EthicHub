@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import Chart1 from "../Components/Chart1";
-import Box1 from "../Components/Boxes";
 import Chart2 from "../Components/Chart2";
+import Box1 from "../Components/Boxes";
+// import Header from "../Components/header";
+
+
 
 const Bonds = () => {
   const [chartComponent, setChartComponent] = useState(1);
@@ -12,13 +15,33 @@ const Bonds = () => {
 
   return (
     <div>
-      <Chart1 />
+      {/* <Header /> */}
+    <Box1 />
+
+      <label>
+        ETH
+        <input
+          type="radio"
+          value={1}
+          checked={chartComponent === 1}
+          onChange={handleChartComponentChange}
+        />
+      </label>
+      <label>
+        CELO
+        <input
+          type="radio"
+          value={2}
+          checked={chartComponent === 2}
+          onChange={handleChartComponentChange}
+        />
+      </label>
+      {chartComponent === 1 ? <Chart1 /> : <Chart2 />}
     </div>
   );
 };
 
 export default Bonds;
-
 
 
 

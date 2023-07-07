@@ -20,4 +20,3 @@ const client2 = new ApolloClient({
 });
 
 export {client, client2,  subgraph1Link, subgraph2Link};
-
