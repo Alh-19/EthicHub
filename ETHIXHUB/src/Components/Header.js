@@ -12,9 +12,9 @@ import { Link } from 'react-router-dom';
    return (
     <div className='header-container'>
       <div className='logo-container'>
-        <a href="http://localhost:3000/">
+        <Link to="http://localhost:3000/">
           <img src="logo.png" alt="Logo" style={{width:'250px'}}/>
-        </a>
+        </Link>
       </div>
       <div className='navbar'>
         <ul>

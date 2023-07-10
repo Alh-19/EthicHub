@@ -23,8 +23,8 @@ ul {
   flex-wrap: wrap; 
 }
 li {
-  margin: 20px;
-  padding: 20px 50px;
+  margin: auto;
+  padding: 20px 100px;
   background-color: #87f96e;
   border: 2px solid #062f4f;
   border-radius: 5px;
