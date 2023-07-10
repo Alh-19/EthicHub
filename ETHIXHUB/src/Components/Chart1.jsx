@@ -17,6 +17,7 @@ const Chart1 = () => {
     }
 
     const bonds = data.query1Data.bonds;
+    console.log(bonds);
     const bondCounts = {
       '3 Months': { count: 0, principal: 0 },
       '6 Months': { count: 0, principal: 0 },
