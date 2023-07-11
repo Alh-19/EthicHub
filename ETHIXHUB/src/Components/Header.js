@@ -18,18 +18,26 @@ import { Link } from 'react-router-dom';
       </div>
       <div className='navbar'>
         <ul>
-          <li className={currentPage === 'Ethix' ? 'active' : ''}>
-            <Link to="/Ethix" onClick={() => handlePageChange('Ethix')}>Ethix</Link>
-          </li>
-          <li className={currentPage === 'Stake' ? 'active' : ''}>
-            <Link to= "/Stake" onClick={() => handlePageChange('Stake')}>Stake</Link>
-          </li>
-          <li className={currentPage === 'Bonds' ? 'active' : ''}>
-            <Link to="/Bonds" onClick={() => handlePageChange('Bonds')}>Bonds</Link>
-          </li>
+          
+            <Link to="/Ethix" onClick={() => handlePageChange('Ethix')}>
+            <li className={currentPage === 'Ethix' ? 'active' : ''}>Ethix</li>
+            </Link>
+          
+          
+            <Link to= "/Stake" onClick={() => handlePageChange('Stake')}>
+            <li className={currentPage === 'Stake' ? 'active' : ''}>Stake</li>
+            </Link>
+          
+          
+            <Link to="/Bonds" onClick={() => handlePageChange('Bonds')}>
+            <li className={currentPage === 'Bonds' ? 'active' : ''}>Bonds</li>
+            </Link>
+          
         </ul>
       </div>
     </div>
   );
 };
  export default Header;
+ 
+ 
