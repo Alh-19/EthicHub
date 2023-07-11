@@ -10,7 +10,7 @@ El proyecto debe ser desarrollado en react.js , el objetivo principal se basa en
 Mejorar el UI (el responsive de la aplicación) mejorar la manera en que se muestran los datos.
 A contiuacion mostramos una captura de pantalla de Bonds donde nos recomiendan empezar por esta pagina y mejorarla: 
 
-![]( https://i.ibb.co/ZxTmTTX/Ethic-Hub-Info.png)
+![]( https://i.ibb.co/WtDnB47/Ethic-Hub-Info.png)
 
 ## Tecnologia para el diseño
 - Figma
