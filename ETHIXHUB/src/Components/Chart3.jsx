@@ -82,14 +82,18 @@ const Chart3 = () => {
       bondHolders.forEach((bondHolder) => {
         bondHolder.bonds.forEach((bond) => {
           const mintingDate = new Date(bond.mintingDate * 1000); // Convertir segundos a milisegundos
+          // console.log(mintingDate)
           const monthYear = `${mintingDate.getMonth() + 1}/${mintingDate.getFullYear()}`;
+          // console.log(monthYear)
           if (bondTotals.hasOwnProperty(monthYear)) {
             bondTotals[monthYear] += 1; // Sumar 1 al total existente
           } else {
             bondTotals[monthYear] = 1; // Inicializar el total en 1 para el mes
           }
+          // console.log(bondTotals)
         });
       });
+      // console.log(bondHolders)
 
       const months = Object.keys(bondTotals);
       const totals = Object.values(bondTotals);

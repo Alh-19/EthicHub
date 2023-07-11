@@ -4,7 +4,9 @@ import Chart2 from "../Components/Chart2";
 import Chart3 from "../Components/Chart3";
 import Chart4 from "../Components/Chart4";
 import CombinedChart from "../Components/CombinedChart";
-import Box1 from "../Components/Box1";
+import Box1a from "../Components/Box1a";
+import Box1b from "../Components/Box1b";
+import '../Components/Box.css'
 import Box2 from "../Components/Box2";
 
 const Bonds = () => {
@@ -16,8 +18,18 @@ const Bonds = () => {
 
   return (
     <div>
-      <Box1 />
-      <Box2 />
+      <div className="bondholders">
+        <h1 className="bh">Bond Holders</h1>
+        <div className="box1y2">
+          <Box1a />
+          <Box1b />
+        </div>
+      </div>
+      <div className="bliquidity">
+        <h1 className="bl">Bond Liquidity</h1>
+        <Box2 />
+      </div>
+      
       <Chart3 />
       <Chart4 />
       <CombinedChart />
