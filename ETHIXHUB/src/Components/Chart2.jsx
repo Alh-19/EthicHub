@@ -103,7 +103,7 @@ const Chart2 = () => {
   };
 
   return (
-    <div className="chart1-2">
+    <div className="chart">
       <h2>CELO</h2>
       <canvas ref={canvasRef} />
     </div>

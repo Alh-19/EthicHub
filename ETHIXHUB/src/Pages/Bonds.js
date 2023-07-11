@@ -1,15 +1,40 @@
-import React, { useState } from "react";
-import Chart1 from "../Components/Chart1";
-import Chart2 from "../Components/Chart2";
-import Chart3 from "../Components/Chart3";
-import Chart4 from "../Components/Chart4";
 import CombinedChart from "../Components/CombinedChart";
+import CombinedChart2 from "../Components/CombinedChart2";
+import Chart5 from "../Components/Chart5";
+
+import '../Css/Bonds.css';
 
 const Bonds = () => {
-  const [chartComponent, setChartComponent] = useState(1);
 
-  const handleChartComponentChange = () => {
-    setChartComponent(chartComponent === 1 ? 2 : 1);
+  return (
+    <div className="container">
+      <div className="bonds-minted">
+        <h3>Amount of bonds minted by month</h3>
+        <CombinedChart />
+      </div>
+      <div className="container2">
+      <div className="deposited-principal">
+        <h3>Deposited principal by bond size</h3>
+        <CombinedChart2 />
+      </div>
+      <div className="bond-holders">
+      <h3>Bond holders</h3>
+      <Chart5 />
+      </div>
+      </div>
+    </div>
+  );
+};
+
+export default Bonds;
+
+
+/*const Bonds = () => {
+  const [chartComponent, setChartComponent] = useState("combinedChart2");
+
+  const handleChartComponentChange = (event) => {
+    const selectedChart = event.target.value;
+    setChartComponent(selectedChart);
   };
 
   return (
@@ -18,11 +43,20 @@ const Bonds = () => {
       <Chart4 />
       <CombinedChart />
       <label>
+        ETH-CELO
+        <input
+          type="radio"
+          value="combinedChart2"
+          checked={chartComponent === "combinedChart2"}
+          onChange={handleChartComponentChange}
+        />
+      </label>
+      <label>
         ETH
         <input
           type="radio"
-          value={1}
-          checked={chartComponent === 1}
+          value="chart1"
+          checked={chartComponent === "chart1"}
           onChange={handleChartComponentChange}
         />
       </label>
@@ -30,33 +64,19 @@ const Bonds = () => {
         CELO
         <input
           type="radio"
-          value={2}
-          checked={chartComponent === 2}
+          value="chart2"
+          checked={chartComponent === "chart2"}
           onChange={handleChartComponentChange}
         />
       </label>
-      {chartComponent === 1 ? <Chart1 /> : <Chart2 />}
+      {chartComponent === "combinedChart2" && <CombinedChart2 />}
+      {chartComponent === "chart1" && <Chart1 />}
+      {chartComponent === "chart2" && <Chart2 />}
+      
     </div>
   );
 };
 
-export default Bonds;
+export default Bonds;*/
 
 
-
-
-
-//const [chartcomponent, Setchartcomponent] = useState(1);
-
-// const handleChartomponentChange = () => {
-//    Setchartcomponent(chartcomponent === 1 ? 2 : 1);
-// };
-//return (
-//    <div>
-//      {/* Botón para cambiar de componente */}
-//      <button onClick={handleChartomponentChange}>Cambiar componente</button>
-//
-//      {/* Renderizar el componente correspondiente según el estado actual */}
-//      {chartcomponent === 1 ? <Component1 /> : <Component2 />}
-//    </div>
-//  );

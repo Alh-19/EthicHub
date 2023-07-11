@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef } from 'react';
 import { DataContext } from '../Data/DataContextProvider';
 import { Chart } from 'chart.js/auto';
+import '../Css/Bonds.css';
 
 const CombinedChart = () => {
   const { loading, error, data } = useContext(DataContext);
@@ -26,18 +27,18 @@ const CombinedChart = () => {
 
       const getMonthName = (month) => {
         const monthNames = [
-          'Enero',
-          'Febrero',
-          'Marzo',
-          'Abril',
-          'Mayo',
-          'Junio',
-          'Julio',
-          'Agosto',
-          'Septiembre',
-          'Octubre',
-          'Noviembre',
-          'Diciembre',
+          'January',
+          'February',
+          'March',
+          'April',
+          'May',
+          'June',
+          'July',
+          'August',
+          'September',
+          'October',
+          'November',
+          'December',
         ];
         return monthNames[month - 1];
       };
@@ -63,16 +64,16 @@ const CombinedChart = () => {
           labels: monthYearLabels,
           datasets: [
             {
-              label: 'Total de bonos (Query 3)',
+              label: 'Total ETH Bonds',
               data: totals3,
               backgroundColor: '#87F96E',
-              barPercentage: 1.2, // Ajustar el porcentaje de ancho de la barra
+              barPercentage: 1.2,
             },
             {
-              label: 'Total de bonos (Query 4)',
+              label: 'Total CELO Bonds',
               data: totals4,
               backgroundColor: '#062F4F',
-              barPercentage: 1.2, // Ajustar el porcentaje de ancho de la barra
+              barPercentage: 1.2, 
             },
           ],
         },
@@ -81,13 +82,13 @@ const CombinedChart = () => {
             x: {
               title: {
                 display: true,
-                text: 'Meses',
+                text: 'Months',
               },
             },
             y: {
               title: {
                 display: true,
-                text: 'Cantidad de bonos',
+                text: 'Number of Bonds',
               },
             },
           },
@@ -137,7 +138,11 @@ const CombinedChart = () => {
     return totals;
   };
 
-  return <canvas ref={chartRef}></canvas>;
+  return (
+    <div className="chart">
+      <canvas ref={chartRef}></canvas>
+    </div>
+  );
 };
 
 export default CombinedChart;
