@@ -6,6 +6,8 @@ import Box1b from "../Components/Box1b";
 import '../Components/Box.css'
 import Box2 from "../Components/Box2";
 import '../Css/Bonds.css';
+import Header from "../Components/Header";
+
 
 const Bonds = () => {
 

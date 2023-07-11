@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import Header from './Components/Header.js';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { DataContext } from './Data/DataContextProvider';
 import { css } from '@emotion/react';
@@ -23,6 +24,7 @@ const App = () => {
   }
   return (
     <Router>
+      <Header />
       <Routes>
         <Route exact path="/bonds" element={<Bonds />} />
         <Route exact path="/ethix" element={<Ethix />} />
