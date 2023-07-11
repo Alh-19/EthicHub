@@ -23,7 +23,7 @@
     background-color: #E6EAE5;
     height: 130px;
     display: flex;
-    width: 35%;
+    width: 30%;
     margin-right: 25px;
     margin-left: 25px;
     flex-direction: row;
@@ -67,6 +67,7 @@
     font-family: 'Nunito Sans', sans-serif;
     display: flex;
     flex-direction: column;
+    margin-bottom: 50px;
 }
 
 .bl{
@@ -83,7 +84,7 @@
     background-color: #E6EAE5;
     height: 130px;
     display: flex;
-    width: 35%;
+    width: 30%;
     margin-right: 25px;
     margin-left: 25px;
     flex-direction: column;

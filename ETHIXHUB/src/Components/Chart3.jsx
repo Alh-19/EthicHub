@@ -145,7 +145,11 @@ const Chart3 = () => {
     };
   }, [loading, error, data]);
 
-  return <canvas ref={chartRef}></canvas>;
+  return (
+    <div className="chart">
+      <canvas ref={chartRef}></canvas>
+    </div>
+  );
 };
 
 export default Chart3;
