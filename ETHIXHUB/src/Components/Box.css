@@ -24,6 +24,8 @@
     height: 130px;
     display: flex;
     width: 30%;
+    max-width: 490px;
+    min-width: 490px;
     margin-right: 25px;
     margin-left: 25px;
     flex-direction: row;
@@ -85,6 +87,8 @@
     height: 130px;
     display: flex;
     width: 30%;
+    max-width: 490px;
+    min-width: 490px;
     margin-right: 25px;
     margin-left: 25px;
     flex-direction: column;
@@ -94,7 +98,7 @@
 .titletomature{
     margin: 0;
     margin-top: 15px;
-    margin-left: 15px;
+    margin-left: 25px;
 }
 
 .month{
@@ -102,7 +106,7 @@
     flex-direction: column;
     margin: 0;
     margin-top: 15px;
-    margin-left: 35px;
+    margin-left: 45px;
     color: #062F4F;
 }
 

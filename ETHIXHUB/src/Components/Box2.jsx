@@ -93,15 +93,15 @@ const Box2 = () => {
             <div className="boxmature">
                 <h5 className='titletomature'>Bonds to mature this month:</h5>
                 <div className='month'>
-                    <h3 className='h3s1'>ETH {currentMonthPrincipalEth.toFixed(3)}</h3>
-                    <h3 className='h3s2'>CELO {currentMonthPrincipalCelo.toFixed(3)}</h3>
+                    <h3 className='h3s1'>ETH {currentMonthPrincipalEth.toFixed(3)} DAI</h3>
+                    <h3 className='h3s2'>CELO {currentMonthPrincipalCelo.toFixed(3)} cUSD</h3>
                 </div>
             </div>
             <div className="boxmature">
                 <h5 className='titletomature'>Bonds matured this month:</h5>
                 <div className='month'>
-                    <h3 className='h3s1'>ETH {previousMonthPrincipalEth.toFixed(3)}</h3>
-                    <h3 className='h3s2'>CELO {previousMonthPrincipalCelo.toFixed(3)}</h3>
+                    <h3 className='h3s1'>ETH {previousMonthPrincipalEth.toFixed(3)} DAI</h3>
+                    <h3 className='h3s2'>CELO {previousMonthPrincipalCelo.toFixed(3)} cUSD</h3>
                 </div>
             </div>
             {/* <h1>Bonds Eth este mes: {currentMonthBondEth.length}</h1>
