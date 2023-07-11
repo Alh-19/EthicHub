@@ -3,10 +3,13 @@ import CombinedChart2 from "../Components/CombinedChart2";
 import Chart5 from "../Components/Chart5";
 
 import '../Css/Bonds.css';
+import Header from "../Components/Header";
+
 
 const Bonds = () => {
 
   return (
+    <div>
     <div className="container">
       <div className="bonds-minted">
         <h3>Amount of bonds minted by month</h3>
@@ -22,6 +25,7 @@ const Bonds = () => {
       <Chart5 />
       </div>
       </div>
+    </div>
     </div>
   );
 };
