@@ -29,8 +29,8 @@ const Chart5 = () => {
             const totalBondHoldersEth = calculateTotalBondHoldersEth();
             const totalBondHoldersCelo = calculateTotalBondHoldersCelo();
 
-            console.log("Total bondHolders from Eth:", totalBondHoldersEth);
-            console.log("Total bondHolders from Celo:", totalBondHoldersCelo);
+            // console.log("Total bondHolders from Eth:", totalBondHoldersEth);
+            // console.log("Total bondHolders from Celo:", totalBondHoldersCelo);
 
             const ctx = canvasRef.current.getContext('2d');
 

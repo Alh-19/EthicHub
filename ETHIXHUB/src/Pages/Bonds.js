@@ -6,7 +6,8 @@ import Box1b from "../Components/Box1b";
 import '../Components/Box.css'
 import Box2 from "../Components/Box2";
 import '../Css/Bonds.css';
-import Header from "../Components/Header";
+import DetailBondholder from "../Components/ShowDetailBondholder";
+import DetailBonds from "../Components/ShowDetailBonds";
 
 
 const Bonds = () => {
@@ -22,30 +23,35 @@ const Bonds = () => {
         <Box1b />
       </div>
     </div>
+
     <div className="bliquidity">
       <h3 className="bl">Bond Liquidity</h3>
       <Box2 />
     </div>
 
     <div className="container">
-
       <div className="bonds-minted">
-        <h3>Amount f bonds minted by month</h3>
+        <h3>Amount of bonds minted by month</h3>
         <CombinedChart />
       </div>
 
       <div className="container2">
+
         <div className="deposited-principal">
           <h3>Deposited principal by bond size</h3>
           <CombinedChart2 />
         </div>
-        <div className="bond-holders">
-        <h3>Bond holders</h3>
-        <Chart5 />
-        </div>
-      </div>
 
+        <div className="bond-holders">
+          <div className=""><DetailBondholder /></div>
+          <h3>Bond holders</h3>
+          <Chart5 />
+        </div>
+
+      </div>
     </div>
+
+    <DetailBonds />
 
   </div>
   );
