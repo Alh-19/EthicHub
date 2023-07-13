@@ -7,6 +7,7 @@ import { ClipLoader } from 'react-spinners';
 import Ethix from './Pages/Ethix.js';
 import Stake from './Pages/Stake.js'
 import Bonds from './Pages/Bonds.js';
+import Footer from './Components/Footer.js';
 
 const override = css`
   display: block;
@@ -30,6 +31,7 @@ const App = () => {
         <Route exact path="/ethix" element={<Ethix />} />
         <Route exact path="/stake" element={<Stake />} />
       </Routes>
+      <Footer />
     </Router>
   );
 };
