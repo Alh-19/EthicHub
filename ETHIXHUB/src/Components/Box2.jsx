@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useContext, useState } from 'react';
 import { DataContext } from '../Data/DataContextProvider';
-import './Box.css';
+import Big from 'big.js'; 
+import '../Css/Box.css'
 
 const Box2 = () => {
     const { loading, error, data } = useContext(DataContext);
@@ -8,10 +9,10 @@ const Box2 = () => {
     const [previousMonthBondEth, setPreviousMonthBondEth] = useState([]);
     const [currentMonthBondCelo, setCurrentMonthBondCelo] = useState([]);
     const [previousMonthBondCelo, setPreviousMonthBondCelo] = useState([]);
-    const [currentMonthPrincipalEth, setCurrentMonthPrincipalEth] = useState(0);
-    const [previousMonthPrincipalEth, setPreviousMonthPrincipalEth] = useState(0);
-    const [currentMonthPrincipalCelo, setCurrentMonthPrincipalCelo] = useState(0);
-    const [previousMonthPrincipalCelo, setPreviousMonthPrincipalCelo] = useState(0);
+    const [currentMonthPrincipalEth, setCurrentMonthPrincipalEth] = useState(Big(0)); // Utiliza Big para los estados
+    const [previousMonthPrincipalEth, setPreviousMonthPrincipalEth] = useState(Big(0));
+    const [currentMonthPrincipalCelo, setCurrentMonthPrincipalCelo] = useState(Big(0));
+    const [previousMonthPrincipalCelo, setPreviousMonthPrincipalCelo] = useState(Big(0));
 
     useEffect(() => {
         if (loading) return;
@@ -27,14 +28,14 @@ const Box2 = () => {
         const bondsWithMaturityAndPrincipalEth = bondsEth.map((bond) => ({
             ...bond,
             maturityDate: new Date(bond.maturityDate * 1000),
-            principal: parseFloat(bond.principal),
+            principal: Big(bond.principal), // Utiliza Big para los cálculos de principal
         }));
 
         // Calcular maturityDate y principal de cada bono de Celo
         const bondsWithMaturityAndPrincipalCelo = bondsCelo.map((bond) => ({
             ...bond,
             maturityDate: new Date(bond.maturityDate * 1000),
-            principal: parseFloat(bond.principal),
+            principal: Big(bond.principal), // Utiliza Big para los cálculos de principal
         }));
 
         const currentDate = new Date();
@@ -59,23 +60,23 @@ const Box2 = () => {
         );
 
         const currentMonthPrincipalEth = currentMonthBondEth.reduce(
-            (total, bond) => total + bond.principal,
-            0
+            (total, bond) => total.plus(bond.principal), 
+            Big(0)
         );
 
         const previousMonthPrincipalEth = previousMonthBondEth.reduce(
-            (total, bond) => total + bond.principal,
-            0
+            (total, bond) => total.plus(bond.principal),
+            Big(0)
         );
 
         const currentMonthPrincipalCelo = currentMonthBondCelo.reduce(
-            (total, bond) => total + bond.principal,
-            0
+            (total, bond) => total.plus(bond.principal), 
+            Big(0)
         );
 
         const previousMonthPrincipalCelo = previousMonthBondCelo.reduce(
-            (total, bond) => total + bond.principal,
-            0
+            (total, bond) => total.plus(bond.principal), 
+            Big(0)
         );
 
         setCurrentMonthBondEth(currentMonthBondEth);

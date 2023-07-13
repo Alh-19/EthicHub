@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useContext, useState } from 'react';
 import { DataContext } from '../Data/DataContextProvider';
-import './Box.css'
+import '../Css/Box.css'
 
 const Box1b = () => {
     const { loading, error, data } = useContext(DataContext);
