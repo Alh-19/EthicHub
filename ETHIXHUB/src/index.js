@@ -35,7 +35,6 @@ import { ApolloProvider } from '@apollo/client';
 import { client, client2,  } from './apolloClient.js';
 import { DataContextProvider } from './Data/DataContextProvider.js';
 import App from './App';
-import { DataContextProvider } from './Data/DataContextProvider';
 
 ReactDOM.render(
   <ApolloProvider client={client}>
