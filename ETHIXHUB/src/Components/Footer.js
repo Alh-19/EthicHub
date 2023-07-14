@@ -1,8 +1,6 @@
 import React from 'react'
-import './Footer.css'
+import '../Css/Footer.css'
 import { useState } from 'react';
-
-
 
  const Footer = () => {
   const [currentPage, setCurrentPage] = useState(''); // Estado para mantener la página actual
@@ -12,7 +10,7 @@ import { useState } from 'react';
    return (
 
     <div >    
-        <div className='logo-container'> 
+        <div className='footer-container'> 
 
         <a href="https://www.facebook.com/EthicHubPlatform" className="logo-color">
         <i class="fa-brands fa-square-facebook fa-2xl"></i></a>

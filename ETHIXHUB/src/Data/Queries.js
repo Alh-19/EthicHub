@@ -40,8 +40,6 @@ query BondsHolders {
       principal
       mintingDate
       size
-      redeemDate
-      interest
     }
   }
 }
