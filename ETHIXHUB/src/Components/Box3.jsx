@@ -1,15 +1,11 @@
-
 import React, { useEffect, useContext, useState } from 'react';
 import { DataContext } from '../Data/DataContextProvider';
 import Big from 'big.js';
-import '../Css/Box.css';
 
 const Box3 = () => {
   const { loading, error, data } = useContext(DataContext);
-  const [nextMonthTotalPrincipalEth, setNextMonthTotalPrincipalEth] = useState(Big(0));
-  const [nextMonthTotalPrincipalCelo, setNextMonthTotalPrincipalCelo] = useState(Big(0));
-  const [noBondsNextMonthEth, setNoBondsNextMonthEth] = useState(false);
-  const [noBondsNextMonthCelo, setNoBondsNextMonthCelo] = useState(false);
+  const [totalInterestEth, setTotalInterestEth] = useState(Big(0));
+  const [totalInterestCelo, setTotalInterestCelo] = useState(Big(0));
 
   useEffect(() => {
     if (loading) return;
@@ -21,63 +17,42 @@ const Box3 = () => {
     const bondsEth = data.query1Data.bonds;
     const bondsCelo = data.query2Data.bonds;
 
-    const bondsWithMaturityAndPrincipalEth = bondsEth.map((bond) => ({
-      ...bond,
-      maturityDate: new Date(bond.maturityDate * 1000),
-      principal: Big(bond.principal),
-      interest: Big(bond.interest),
-    }));
+    let totalInterestEth = Big(0);
+    let totalInterestCelo = Big(0);
 
-    const bondsWithMaturityAndPrincipalCelo = bondsCelo.map((bond) => ({
-      ...bond,
-      maturityDate: new Date(bond.maturityDate * 1000),
-      principal: Big(bond.principal),
-      interest: Big(bond.interest),
-    }));
+    bondsEth.forEach((bond) => {
+      const maturityInSeconds = Number(bond.maturity);
+      const interestPerSecond = Number(bond.interest);
 
-    const currentDate = new Date();
-    const currentMonth = currentDate.getMonth() + 1;
-    const nextMonth = currentMonth === 12 ? 1 : currentMonth + 1;
-    const currentYear = currentDate.getFullYear();
+      const interest = Big(maturityInSeconds)
+        .mul(interestPerSecond)
+        .div("1e18");
 
-    const nextMonthBondsEth = bondsWithMaturityAndPrincipalEth.filter((bond) => {
-      const bondMonth = bond.maturityDate.getMonth() + 1;
-      const bondYear = bond.maturityDate.getFullYear();
-      return bondMonth === nextMonth && bondYear === currentYear;
+      totalInterestEth = totalInterestEth.plus(interest);
     });
 
-    const nextMonthBondsCelo = bondsWithMaturityAndPrincipalCelo.filter((bond) => {
-      const bondMonth = bond.maturityDate.getMonth() + 1;
-      const bondYear = bond.maturityDate.getFullYear();
-      return bondMonth === nextMonth && bondYear === currentYear;
+    bondsCelo.forEach((bond) => {
+      const maturityInSeconds = Number(bond.maturity);
+      const interestPerSecond = Number(bond.interest);
+
+      const interest = Big(maturityInSeconds)
+        .mul(interestPerSecond)
+        .div("1e18");
+
+      totalInterestCelo = totalInterestCelo.plus(interest);
     });
 
-    const nextMonthTotalPrincipalEth = nextMonthBondsEth.reduce(
-      (total, bond) => total.plus(bond.principal).plus(bond.interest),
-      Big(0)
-    );
-
-    const nextMonthTotalPrincipalCelo = nextMonthBondsCelo.reduce(
-      (total, bond) => total.plus(bond.principal).plus(bond.interest),
-      Big(0)
-    );
-
-    setNextMonthTotalPrincipalEth(nextMonthTotalPrincipalEth);
-    setNextMonthTotalPrincipalCelo(nextMonthTotalPrincipalCelo);
-    setNoBondsNextMonthEth(nextMonthBondsEth.length === 0);
-    setNoBondsNextMonthCelo(nextMonthBondsCelo.length === 0);
+    setTotalInterestEth(totalInterestEth);
+    setTotalInterestCelo(totalInterestCelo);
   }, [loading, error, data]);
 
   return (
     <div className='boxliquidity'>
       <div className="boxmature">
-        <h5 className='titletomature'>Next month's total principal and interest:</h5>
+        <h5 className='titletomature'>Total interest amount:</h5>
         <div className='month'>
-          {!noBondsNextMonthEth && <h3 className='h3s1'>ETH {nextMonthTotalPrincipalEth.toFixed(3)} DAI</h3>}
-          {noBondsNextMonthEth && <div>No ETH bonds maturing next month.</div>}
-          {!noBondsNextMonthCelo && <h3 className='h3s2'>CELO {nextMonthTotalPrincipalCelo.toFixed(3)} cUSD</h3>}
-          {noBondsNextMonthCelo && <div>No CELO bonds maturing next month.</div>}
-          {noBondsNextMonthEth && noBondsNextMonthCelo && <div>No bonds maturing next month.</div>}
+          <h3 className='h3s1'>ETH: {totalInterestEth.toFixed(3)} DAI</h3>
+          <h3 className='h3s2'>CELO: {totalInterestCelo.toFixed(3)} cUSD</h3>
         </div>
       </div>
     </div>

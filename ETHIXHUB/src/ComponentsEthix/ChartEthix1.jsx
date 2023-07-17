@@ -4,7 +4,7 @@ import { DataContext } from '../Data/DataContextProvider';
 import Big from 'big.js';
 import './Charts.css';
 
-const Chart1 = () => {
+const ChartEhix1= () => {
   const canvasRef = useRef(null);
   const { loading, error, data } = useContext(DataContext);
   const [chart, setChart] = useState(null);
@@ -128,5 +128,4 @@ const Chart1 = () => {
   );
 };
 
-export default Chart1;
-
+export default ChartEhix1;
