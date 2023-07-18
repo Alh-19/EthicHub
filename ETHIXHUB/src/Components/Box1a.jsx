@@ -22,7 +22,7 @@ const Box1a = () => {
             bondHolder.bonds.forEach((bond) => {
                 const mintingDate = new Date(bond.mintingDate * 1000); // Convertir segundos a milisegundos
                 const monthYear = `${mintingDate.getMonth() + 1}/${mintingDate.getFullYear()}`;
-
+                
                 if (bondTotals.hasOwnProperty(monthYear)) {
                     bondTotals[monthYear] += 1; // Sumar 1 al total existente
                 } else {
