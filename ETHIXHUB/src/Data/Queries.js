@@ -58,3 +58,13 @@ query BondsFactory {
   }
 }
 `;
+
+export const QUERY4 = gql`
+  query EthixHoldersDayCount {
+    dayCountEthixHolders(first: 1000, where: { id_gt: 18617 }) {
+      id
+      date
+      count
+    }
+  }
+`;

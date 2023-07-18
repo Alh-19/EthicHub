@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useContext, useState } from 'react';
 import { Chart } from 'chart.js/auto';
 import { DataContext } from '../Data/DataContextProvider';

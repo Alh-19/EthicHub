@@ -41,7 +41,7 @@ const Chart5 = () => {
             const newChart = new Chart(ctx, {
                 type: 'pie',
                 data: {
-                    labels: ['Eth', 'Celo'],
+                    labels: ['ETH', 'CELO'],
                     datasets: [
                         {
                             label: 'Total Bonds',
