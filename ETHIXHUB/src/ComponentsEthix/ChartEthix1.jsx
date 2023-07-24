@@ -2,7 +2,8 @@ import React, { useEffect, useRef, useContext, useState } from 'react';
 import { Chart } from 'chart.js/auto';
 import { DataContext } from '../Data/DataContextProvider';
 import Big from 'big.js';
-import './Charts.css';
+// import './Charts.css';
+
 
 const ChartEhix1= () => {
   const canvasRef = useRef(null);

@@ -250,7 +250,7 @@ const DetailBonds = () => {
                                     <p>{months} months</p>
                                     <p>{interestAnual()}%</p>
                                     <p>{bonds.principal}</p>
-                                    <p>{yieldValor.toFixed()}</p>
+                                    <p>{yieldValor.toFixed(3)}</p>
                                     <p>{withdrawn}</p>
                                     <p>{maturityDate}</p>
                                     <p>{mintingDate}</p>

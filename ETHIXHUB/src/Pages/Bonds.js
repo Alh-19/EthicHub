@@ -36,7 +36,7 @@ const Bonds = () => {
       <div className="container">
 
         <div className="bonds-minted">
-          <h3>Amount f bonds minted by month</h3>
+          <h3>Amount of bonds minted by month</h3>
           <CombinedChart />
         </div>
 
@@ -44,6 +44,7 @@ const Bonds = () => {
           <div className="deposited-principal">
             <h3>Deposited principal by bond size</h3>
             <CombinedChart2 />
+            <DetailBonds />
           </div>
 
           <div className="bond-holders">
@@ -53,7 +54,7 @@ const Bonds = () => {
           </div>
           
         </div>
-        <DetailBonds />
+        
       </div>
 
     </div>
