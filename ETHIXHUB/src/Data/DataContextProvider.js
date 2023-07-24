@@ -1,7 +1,6 @@
-
 import React, { createContext } from 'react';
 import { useQuery } from '@apollo/client';
-import { QUERY1, QUERY2} from './Queries';
+import { QUERY1, QUERY2, QUERY4} from './Queries';
 
 
 export const DataContext = createContext();
@@ -23,13 +22,23 @@ export function DataContextProvider({ children, clients }) {
     client: clients.client2, // Utiliza el cliente client2 para esta consulta
   });
 
-  const loading = loading1 || loading2 || loading3 || loading4;
-  const error = error1 || error2 || error3 || error4;
+  const { loading: loading5, error: error5, data: data5 } = useQuery(QUERY4, {
+    client: clients.client, // Utiliza el cliente client1 para esta consulta
+  });
+
+  const { loading: loading6, error: error6, data: data6 } = useQuery(QUERY4, {
+    client: clients.client2, // Utiliza el cliente client1 para esta consulta
+  });
+
+  const loading = loading1 || loading2 || loading3 || loading4 || loading5 || loading6;
+  const error = error1 || error2 || error3 || error4 || error5 || error6;
   const data = {
     query1Data: data1,
     query2Data: data2,
     query3Data: data3,
     query4Data: data4,
+    query5Data: data5,
+    query6Data: data6,
   };
 
   return (
@@ -38,3 +47,4 @@ export function DataContextProvider({ children, clients }) {
     </DataContext.Provider>
   );
 }
+
