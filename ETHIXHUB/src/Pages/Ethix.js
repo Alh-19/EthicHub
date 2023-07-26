@@ -1,18 +1,14 @@
 import React from "react";
-import '../Css/Bonds.css';
-import DetailBondHoldersEthix from "../ComponentsEthix/ShowDetailBondHoldersEthix";
-import ChartEhix1 from "../ComponentsEthix/ChartEthix1";
-
+import ChartEthix1 from "../ComponentsEthix/ChartEthix1";
+import ChartEthix2 from "../ComponentsEthix/ChartEthix2";
+import DetailBondHoldersEthix from "../ComponentsEthix/ShowDetailHoldersEthix";
 
 const Ethix = () => {
   return (
     <div>
-
-
-      <ChartEhix1 />
-
-      <DetailBondHoldersEthix />
-    
+    <ChartEthix1 />
+    <ChartEthix2 />
+    <DetailBondHoldersEthix />
     </div>
   );
 };

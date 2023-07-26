@@ -7,13 +7,13 @@ import Big from "big.js";
 
 const DetailBondHoldersEthix = () => {
     const { loading, error, data } = useContext(DataContext);
-    const bondHoldersEth = data.query1Data?.bonds || [];//CAMBIAR EL QUERYDATA
-    const bondHoldersCelo = data.query2Data?.bonds || [];//CAMBIAR EL QUERYDATA
+    const ethixHoldersEth = data.query5Data?.dayCountEthixHolders || [];//CAMBIAR EL QUERYDATA
+    const ethixHoldersCelo = data.query6Data?.dayCountEthixHolders || [];//CAMBIAR EL QUERYDATA
     const [showDetail, setShowDetail] = useState(false);
     const [showEth, setShowEth] = useState(true);
 
-    console.log(bondHoldersEth)
-    console.log(bondHoldersCelo)
+    console.log('eth',ethixHoldersEth)
+    console.log('celo',ethixHoldersCelo)
 
     useEffect(() => {
         if (loading) return;
@@ -22,7 +22,7 @@ const DetailBondHoldersEthix = () => {
         return;
         }
 
-    },[loading, error, bondHoldersEth, bondHoldersCelo]);
+    },[loading, error, ethixHoldersEth, ethixHoldersCelo]);
 
     //funcion para ver el detail
     const toggleDetail = () => {
