@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap');
 
+
 .chart {
     width: 1000px;
 }
@@ -50,6 +51,32 @@
     margin-right: 50px;
 }
 
+.img1 {
+  height: 60px;
+  margin-left: 80px;
+  margin-right: 100px;
+}
+
+.img2 {
+  height: 74px;
+}
+
+.img3 {
+  height: 65px;
+  margin-left: 100px;
+}
+
+.img {
+  position: absolute;
+  top: 270px;
+  left: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+
 .bond-holders {
     background: #E6EAE5;
     border-radius: 20px;
@@ -87,8 +114,7 @@
 
 /*Showdetail bondholders*/
 
-.butonshow2{
-    
+.butonshow1{
     padding: 8px 15px;
     color: #2c3e50;
     background-color: #e0e4df;
@@ -101,30 +127,196 @@
     font-size: 14px;
     display: flex;
     align-items: end;
-}
+   }
 
-.butonshow2:hover{
+.butonshow1:hover{
     background-color: #F9FAF8;
     color: #74d7dc;
 }
 
-.detailbh{
-    margin-top: 25px;
-    padding-left: 25px;
-    padding-right: 35px;
-    position: absolute;
-    background-color: #ffffff;
-    width: 97%;
-    left: 0px;
-    top: -20px;
-    padding-top: 20px;
-    z-index: 90;
-    height: 500vh;
+.butonshow2{
+  padding: 8px 15px;
+  color: #2c3e50;
+  background-color: #e0e4df;
+  border: solid 1.5px;
+  border-color: #c8cbd1;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 32px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 14px;
+  display: flex;
+  align-items: end;
+  margin-left: 10vh;
+  font-weight: bold;
+ }
+
+.butonshow2:hover{
+  background-color:  #74d7dc;
+  color: #F9FAF8;
+}
+
+.detailbh {
+  margin-top: 25px;
+  padding-left: 25px;
+  padding-right: 35px;
+  position: absolute;
+  background-color: #ffffff;
+  width: 97%;
+  left: 0px;
+  top: -20px;
+  padding-top: 20px;
+  z-index: 90;
+  height: 500vh;
 }
 
 .bhtable{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    
 }
 
+/*
+  table{
+    width: 100vw;
+    height: 100%;
+    position: absolute;   
+    text-align: center;
+    border-radius: 20px 20px 20px px;
+    background-color: white;
+    
+  }*/
+
+  th, td{
+    padding: 5px 40px;
+  }
+
+  th{
+    font-size: medium;
+    text-transform: uppercase;
+    background-color: #c8cbd1;
+
+    
+  }
+
+  td{
+    border: 0.1px solid #c8cbd1;
+    text-align: center;
+  }
+
+  input[type=checkbox]{
+    height: 0;
+    width: 0;
+    visibility: hidden;
+  }
+  
+  label {
+    cursor: pointer;
+    text-indent: 9999px;
+    width: 75px;
+    height: 30px;
+    background: #409eff;
+    border-radius: 75px;
+    position: relative;
+    margin-right: 5px;
+  }
+  
+  label:after {
+    content: '';
+    position: absolute;
+    top: 1.5px;
+    left: 5px;
+    width: 25px;
+    height: 25px;
+    background: #fff;
+    border-radius: 90px;
+    transition: 0.3s;
+  }
+  
+  input:checked + label {
+    background: #409eff;
+  }
+  
+  input:checked + label:after {
+    left: calc(100% - 5px);
+    transform: translateX(-100%);
+  }
+  
+  label:active:after {
+    width: 25px;
+  }
+  /*
+  // centering
+  body {
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    height: ;
+ }*/
+
+  .el-switch{
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    font-size: 14px;
+    line-height: 20px;
+    height: 32px;
+    vertical-align: middle;
+    margin-bottom: 50px;
+    font-family: 'Nunito Sans', sans-serif;
+ }
+
+  .container-tarjetas{
+    display: flex;
+    justify-content:baseline; 
+    gap: 50px;
+    margin-bottom: 20px;
+  }
+  
+  .total-bondholders{
+    background-color: #E6EAE5;
+    width: 80%;
+    height: 130px;
+    flex-direction: row;
+    max-width: 310px;
+    min-width: 310px;
+    margin-right: 10px;
+    margin-left: 10px;
+    align-items: center;
+    border-radius: 20px 20px 20px 20px;
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+             
+  }
+
+  .principal-invested{
+    background-color: #E6EAE5;
+    width: 80%;
+    height: 130px;
+    flex-direction: row;
+    max-width: 310px;
+    min-width: 310px;
+    margin-right: 15px;
+    margin-left: 15px;
+    align-items: center;
+    border-radius: 20px 20px 20px 20px;
+    text-align: center;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: space-evenly;
+         
+  }
+  
+
+.el-switch input[type="checkbox"]:checked + label + span.active,
+.el-switch input[type="checkbox"]:checked + span.active {
+  color: blue;
+}
+
+
+
+  
+  
+  

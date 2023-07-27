@@ -18,10 +18,11 @@
   width: 100%;
   background-color:  #062f4f ;
   font-family: nunito sans;
-  font-size: 1em;
+  font-size: 14px;
   display: flex;
   justify-content: space-around;
   padding-top: 15px;
+  text-align: center;
 }
 
 .footer-container i:hover {
@@ -29,7 +30,13 @@
   }
 
 .politic-links{
-    color: #F9FAF8;  
+    color: #F9FAF8; 
+    font-size: 14px; 
+}
+
+.politic-links:hover {
+  color: #87F96E; 
+  text-decoration: underline; 
 }
 
 .logo-color{

@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap');
+
+/*Bond holders*/
+
+.bondholders{
+    font-family: 'Nunito Sans', sans-serif;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+.bh{
+    text-align: center;
+}
+
+.box1y2{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.box{
+    background-color: #E6EAE5;
+    height: 130px;
+    display: flex;
+    width: 30%;
+    max-width: 490px;
+    min-width: 490px;
+    margin-right: 25px;
+    margin-left: 25px;
+    flex-direction: row;
+    border-radius: 20px;
+}
+
+.titlebox{
+    margin-left: 25px;
+}
+
+.boxdata{
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    justify-content: center;
+
+}
+
+.currentbhbox{
+    display: flex;
+    font-size: 70px;
+    margin: 0;
+    place-items: end ;
+    margin-right: 25px;
+}
+
+.previousbhbox{
+    display: flex;
+    margin: 0;
+    place-items: end ;
+    margin-bottom: 15px;
+
+}
+
+
+/*Bond Liquidity*/
+
+.bliquidity{
+    margin-top: 25px;
+    font-family: 'Nunito Sans', sans-serif;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+
+.bl{
+    text-align: center;
+}
+
+.boxliquidity{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.boxmature{
+    background-color: #E6EAE5;
+    height: 130px;
+    display: flex;
+    width: 30%;
+    max-width: 490px;
+    min-width: 490px;
+    margin-right: 25px;
+    margin-left: 25px;
+    flex-direction: column;
+    border-radius: 20px;
+}
+
+.titletomature{
+    margin: 0;
+    margin-top: 15px;
+    margin-left: 25px;
+}
+
+.month{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    margin-top: 15px;
+    margin-left: 45px;
+    color: #062F4F;
+}
+
+.h3s1{
+    margin: 0;
+}
+
+.h3s2{
+    margin: 0;
+    margin-top: 10px;
+}

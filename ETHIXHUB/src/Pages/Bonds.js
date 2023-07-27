@@ -24,7 +24,6 @@ const Bonds = () => {
         <Box3 />
       </div>
       </div>
-
       <div className="bondholders">
         <h3 className="bh">Bond Holders</h3>
         <div className="box1y2">
@@ -43,21 +42,24 @@ const Bonds = () => {
         <div className="container2">
           <div className="deposited-principal">
             <h3>Deposited principal by bond size</h3>
-            <CombinedChart2 />
-            <DetailBonds />
+              <CombinedChart2 />
+              <DetailBonds />
           </div>
 
           <div className="bond-holders">
             <h3>Bond holders</h3>
             <Chart5 />
-            <DetailBondholder />
+           <DetailBondholder/>
           </div>
           
         </div>
         
       </div>
-
+      
     </div>
+
+    
+
   );
 };
 
