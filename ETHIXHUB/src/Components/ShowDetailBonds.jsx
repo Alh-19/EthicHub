@@ -20,11 +20,9 @@ const DetailBonds = () => {
         setActiveCurrency(currency);
         setShowEth(currency === 'ETH');
     };
-
-
     
-    console.log(bondsEth)
-    console.log(bondsCelo)
+    // console.log(bondsEth)
+    // console.log(bondsCelo)
 
     useEffect(() => {
         if (loading) return;
@@ -35,9 +33,18 @@ const DetailBonds = () => {
 
     },[loading, error, bondsEth, bondsCelo]);
 
+    //Funcion mover scroll arriba de la página
+    const moveToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    };
+
     //funcion para ver el detail
     const toggleDetail = () => {
         setShowDetail(!showDetail);
+        moveToTop();
     };
 
     //funcion para cambiar la vita de Eth a Celo
@@ -163,7 +170,7 @@ const DetailBonds = () => {
         <div>
 
             <div className='btshow'>
-                <button className="butonshow2" onClick={toggleDetail}>
+                <button className="butonshow1" onClick={toggleDetail}>
                 {showDetail ? 'Hide detail' : 'Show detail'}
                 </button>
             </div>
@@ -172,32 +179,29 @@ const DetailBonds = () => {
 
             <div className="detailbh">
                 
-               <div className='ce-btnswitch' style={{overflowX:'hidden'}}>
-                             
-                <span className={activeCurrency === 'ETH' ? 'active' : ''}
-                             onClick={() => handleCurrencyChange('ETH')}>ETH</span>
+                <div className='ce-btnswitch' style={{overflowX:'hidden'}}>
+                
+                    <span className={activeCurrency === 'ETH' ? 'active' : ''}
+                        onClick={() => handleCurrencyChange('ETH')}>ETH</span>
 
-                             <input type="checkbox" id="switch" /><label for="switch" onClick={toggleView}>
-                            {showEth ? 'CELO' : 'ETH'}
+                        <input type="checkbox" id="switch" />
+                            <label for="switch" onClick={toggleView}>
+                                {showEth ? 'ETH' : 'CELO'}
                             </label>
-                        
-                         <span className={activeCurrency === 'CELO' ? 'active' : ''}
-                             onClick={() => handleCurrencyChange('CELO')}>CELO</span>
-                      
                             
+                        <span className={activeCurrency === 'CELO' ? 'active' : ''}
+                            onClick={() => handleCurrencyChange('CELO')}>CELO</span>
 
-
-                <button className="buton-hideshow" onClick={toggleDetail}> 
-                    {showDetail ? 'CLOSE' : 'SHOW DETAILS'}
-                </button>
-
+                    <button className="buton-hideshow" onClick={toggleDetail}> 
+                        {showDetail ? 'Close' : 'SHOW DETAILS'}
+                    </button>
 
                 </div>
-                   
+                
                 <div className='general-minted'>
-                <h3 className="minted-info">TOTAL MINTED {activeAllBonds.length}</h3>
-                <h3 className="minted-info">TOTAL ACTIVE {calculateTotalActive()}</h3>
-                <h3 className="minted-info"> TOTAL REDEEMED {countBondsWithRedeemDate()}</h3>
+                    <h3 className="minted-info">TOTAL MINTED {activeAllBonds.length}</h3>
+                    <h3 className="minted-info">TOTAL ACTIVE {calculateTotalActive()}</h3>
+                    <h3 className="minted-info"> TOTAL REDEEMED {countBondsWithRedeemDate()}</h3>
                 </div>
 
 
@@ -236,8 +240,6 @@ const DetailBonds = () => {
                             <h3 className='allbonds-btns'>Total Principal Withdrawn: {calculateTotalWithdrawn().toFixed(3)} {showEth ? '(DAI)' : '(cUSD)'}</h3>
                         </div>
 
-          
-
                             <thead className='head-table'>
                                 <tr>
                                     <th className='bh-table'>Token ID</th>
@@ -252,7 +254,6 @@ const DetailBonds = () => {
                                     <th className='bh-table'>Redeem date</th>
                                 </tr>
                             </thead>
-                       
 
                         {activeAllBonds.map((bonds, index) => {
                             const months = secondsToMonths(bonds.maturity);
@@ -276,7 +277,6 @@ const DetailBonds = () => {
                             const yieldValor = Big(interest).mul(Big(bonds.principal)).mul("0.01");
                             return(
                                 <tbody className='b-table'>
-                                    <td className='body-table'>key={index}</td>
                                     <td className='body-table'>{bonds.id}</td>
                                     <td className='body-table'>{bonds.size}</td>
                                     <td className='body-table'>{months} months</td>

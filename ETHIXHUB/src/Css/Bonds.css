@@ -114,20 +114,21 @@
 
 /*Showdetail bondholders*/
 
-.butonshow2{
-    padding: 8px 15px;
-    color: black;
-    background-color: #E6EAE5;
-    border-color: black;
-    border-radius: 5px;
-    cursor: pointer;
-    height: 45px;
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    margin-left: 20px;
-    font-weight: bold;
+.butonshow1{
+  padding: 8px 15px;
+  color: black;
+  background-color: #E6EAE5;
+  border-color: black;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 45px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  
+  font-weight: bold;
+  margin-top: 15px;
 }
 
 .butonshow1:hover{
@@ -150,7 +151,7 @@
   align-items: end;
   margin-left: 10vh;
   font-weight: bold;
- }
+}
 
 .butonshow2:hover{
   background-color:  #74d7dc;
@@ -197,8 +198,6 @@
     font-size: medium;
     text-transform: uppercase;
     background-color: #c8cbd1;
-
-    
   }
 
   td{
@@ -307,14 +306,18 @@
     margin-bottom: 50px;
     display: flex;
     justify-content: space-evenly;
-         
   }
   
 
 .el-switch input[type="checkbox"]:checked + label + span.active,
 .el-switch input[type="checkbox"]:checked + span.active {
   color: blue;
-    
+  font-weight: bolder;
+}
+
+.active{
+  color: blue;
+  font-weight: bolder;
 }
 
 .buton-hideshow{

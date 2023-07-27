@@ -2,7 +2,7 @@ import React, { useEffect, useContext, useState } from 'react';
 import { DataContext } from '../Data/DataContextProvider';
 import '../Css/Bonds.css';
 
- const DetailBondholder = () => {
+const DetailBondholder = () => {
     const { loading, error, data } = useContext(DataContext);
     const bondHoldersEth = data.query3Data?.bondHolders || [];
     const bondHoldersCelo = data.query4Data?.bondHolders || [];
@@ -12,13 +12,12 @@ import '../Css/Bonds.css';
     const [showDetail, setShowDetail] = useState(false);
     const [activeCurrency, setActiveCurrency] = useState('CELO');
     
-
     const handleCurrencyChange = (currency) => {
         setActiveCurrency(currency);
         setShowEth(currency === 'ETH');
     };
     
-     useEffect(() => {
+    useEffect(() => {
         if (loading) return;
         if (error) {
             console.error(`Error! ${error.message}`);
@@ -29,7 +28,7 @@ import '../Css/Bonds.css';
         setSumaPrincipalTotalEth(sumaPrincipalTotalEth);
         setSumaPrincipalTotalCelo(sumaPrincipalTotalCelo);
     }, [loading, error, bondHoldersEth, bondHoldersCelo]);
-     const calcularSumaPrincipalTotal = (bondHolders) => {
+    const calcularSumaPrincipalTotal = (bondHolders) => {
         let sumaPrincipalTotal = 0;
         bondHolders.forEach((bondHolder) => {
             bondHolder.bonds.forEach((bond) => {
@@ -38,30 +37,30 @@ import '../Css/Bonds.css';
         });
         return sumaPrincipalTotal;
     };
-     const calcularSumaPrincipalPorBondHolder = (bondHolder) => {
+    const calcularSumaPrincipalPorBondHolder = (bondHolder) => {
         let sumaPrincipalBondHolder = 0;
         bondHolder.bonds.forEach((bond) => {
             sumaPrincipalBondHolder += parseFloat(bond.principal);
         });
         return sumaPrincipalBondHolder;
     };
-     const toggleView = () => {
+    const toggleView = () => {
         setShowEth(!showEth);
         setActiveCurrency(!showEth ? 'ETH' : 'CELO');
     };
-     const moveToTop = () => {
+    const moveToTop = () => {
         window.scrollTo({
             top: 0,
             behavior: "smooth"
         });
     };
-     const toggleDetail = () => {
+    const toggleDetail = () => {
         setShowDetail(!showDetail);
         moveToTop();
     };
     const activeBondHolders = showEth ? bondHoldersEth : bondHoldersCelo;
     const sumaPrincipalTotal = showEth ? sumaPrincipalTotalEth : sumaPrincipalTotalCelo;
-     return (
+    return (
         <>
             <div>
                 <div className='btshow'>
@@ -72,9 +71,9 @@ import '../Css/Bonds.css';
                  {showDetail && (
                     <div className="detailbh">                                    
                         <div className="el-switch" style={{overflowX:'hidden'}}>
-                             <span className={activeCurrency === 'ETH' ? 'active' : ''}
+                            <span className={activeCurrency === 'ETH' ? 'active' : ''}
                                 onClick={() => handleCurrencyChange('ETH')}>ETH</span>
-                             <input type="checkbox" id="switch" />
+                            <input type="checkbox" id="switch" />
                                 <label for="switch" onClick={toggleView}>
                                     {showEth ? 'ETH' : 'CELO'}
                                 </label>
