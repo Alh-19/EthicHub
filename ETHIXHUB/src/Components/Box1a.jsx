@@ -1,34 +1,27 @@
-
-import React, { useEffect, useRef, useContext, useState } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { DataContext } from '../Data/DataContextProvider';
-import '../Css/Box.css'
+import '../Css/Box.css';
 
 const Box1a = () => {
-    const { loading, error, data } = useContext(DataContext);
+    const { query5Data } = useContext(DataContext);
     const [currentMonthBondHolders, setCurrentMonthBondHolders] = useState([]);
     const [previousMonthBondHolders, setPreviousMonthBondHolders] = useState([]);
 
     useEffect(() => {
-        if (loading) return;
-        if (error) {
-            console.error(`Error! ${error.message}`);
-            return;
-        }
+        if (!query5Data) return;
 
-        const { bondHolders } = data.query3Data;
+        const { dayCountEthixHolders } = query5Data;
         const bondTotals = {};
 
-        bondHolders.forEach((bondHolder) => {
-            bondHolder.bonds.forEach((bond) => {
-                const mintingDate = new Date(bond.mintingDate * 1000); // Convertir segundos a milisegundos
-                const monthYear = `${mintingDate.getMonth() + 1}/${mintingDate.getFullYear()}`;
-                
-                if (bondTotals.hasOwnProperty(monthYear)) {
-                    bondTotals[monthYear] += 1; // Sumar 1 al total existente
-                } else {
-                    bondTotals[monthYear] = 1; // Inicializar el total en 1 para el mes
-                }
-            });
+        dayCountEthixHolders.forEach((holder) => {
+            const date = new Date(holder.date); // Convert date string to Date object
+            const monthYear = `${date.getMonth() + 1}/${date.getFullYear()}`;
+
+            if (bondTotals.hasOwnProperty(monthYear)) {
+                bondTotals[monthYear] += holder.count;
+            } else {
+                bondTotals[monthYear] = holder.count;
+            }
         });
 
         const currentDate = new Date();
@@ -39,25 +32,17 @@ const Box1a = () => {
         const currentMonthKey = `${currentMonth}/${currentYear}`;
         const previousMonthKey = `${previousMonth}/${currentYear}`;
 
-        const currentMonthBondHolders = bondHolders.filter((bondHolder) =>
-            bondHolder.bonds.some((bond) => {
-                const mintingDate = new Date(bond.mintingDate * 1000);
-                const monthYear = `${mintingDate.getMonth() + 1}/${mintingDate.getFullYear()}`;
-                return monthYear === currentMonthKey;
-            })
+        const currentMonthBondHolders = dayCountEthixHolders.filter(
+            (holder) => `${new Date(holder.date).getMonth() + 1}/${new Date(holder.date).getFullYear()}` === currentMonthKey
         );
 
-        const previousMonthBondHolders = bondHolders.filter((bondHolder) =>
-            bondHolder.bonds.some((bond) => {
-                const mintingDate = new Date(bond.mintingDate * 1000);
-                const monthYear = `${mintingDate.getMonth() + 1}/${mintingDate.getFullYear()}`;
-                return monthYear === previousMonthKey;
-            })
+        const previousMonthBondHolders = dayCountEthixHolders.filter(
+            (holder) => `${new Date(holder.date).getMonth() + 1}/${new Date(holder.date).getFullYear()}` === previousMonthKey
         );
 
         setCurrentMonthBondHolders(currentMonthBondHolders);
         setPreviousMonthBondHolders(previousMonthBondHolders);
-    }, [loading, error, data]);
+    }, [query5Data]);
 
     return (
         <div className='box'>
@@ -71,3 +56,4 @@ const Box1a = () => {
 };
 
 export default Box1a;
+

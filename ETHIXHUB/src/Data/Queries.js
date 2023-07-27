@@ -90,12 +90,27 @@ export const QUERY6 = gql`
     stakeEthixHolders(
       first: 1000,
       orderBy: totalAmount, orderDirection: desc,
-      where: { totalAmount_gte:0 }
+      where: { totalAmount_gte: 0.000000000000000001 }
     ) {
       id
       type
       totalAmount
+      dateJoined
+      dateLeft
     }
   }
 `;
+
+export const QUERY7 = gql`
+query EthixHoldersCurrent {
+  ethixHolders(
+    first: 1000,
+    orderBy: totalAmount, orderDirection: desc,
+    where: { totalAmount_gte: 0.000000000000000001 }
+  ) {
+    id
+    totalAmount
+  }
+}
+`
 

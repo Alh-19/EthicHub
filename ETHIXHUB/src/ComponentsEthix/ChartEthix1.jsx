@@ -65,11 +65,58 @@ const ChartEthix1 = () => {
     }
   }, [selectedDate, chart]); // Asegúrate de agregar "chart" como dependencia también
 
+  // const updateChartData = () => {
+  //   if (selectedDate && chart && chart.data) {
+  //     const selectedMonth = selectedDate.getMonth();
+  //     const selectedYear = selectedDate.getFullYear();
+
+  //     const lastEthixHoldersData = query5Data.dayCountEthixHolders
+  //       .filter((item) => {
+  //         const itemDate = new Date(item.date * 1000);
+  //         return (
+  //           itemDate.getMonth() === selectedMonth &&
+  //           itemDate.getFullYear() === selectedYear
+  //         );
+  //       })
+  //       console.log(lastEthixHoldersData)
+  //       .pop();
+
+  //     const lastCeloHoldersData = query6Data.dayCountEthixHolders
+  //       .filter((item) => {
+  //         const itemDate = new Date(item.date * 1000);
+  //         return (
+  //           itemDate.getMonth() === selectedMonth &&
+  //           itemDate.getFullYear() === selectedYear
+  //         );
+  //       })
+  //       console.log(lastCeloHoldersData)
+  //       .pop();
+
+  //     const ethixData = chart.data.datasets.find(
+  //       (dataset) => dataset.label === 'ETH'
+  //     );
+  //     const celoData = chart.data.datasets.find(
+  //       (dataset) => dataset.label === 'CELO'
+  //     );
+  //     const allData = chart.data.datasets.find((dataset) => dataset.label === 'ALL');
+
+  //     const ethCount = lastEthixHoldersData ? parseFloat(lastEthixHoldersData.count) : 0;
+  //     const celoCount = lastCeloHoldersData ? parseFloat(lastCeloHoldersData.count) : 0;
+
+  //     ethixData.data = [ethCount];
+  //     celoData.data = [celoCount];
+  //     allData.data = [ethCount + celoCount];
+
+  //     chart.data.labels = [selectedDate.toLocaleString('default', { month: 'long', year: 'numeric' })];
+  //     chart.update();
+  //   }
+  // };
+
   const updateChartData = () => {
     if (selectedDate && chart && chart.data) {
       const selectedMonth = selectedDate.getMonth();
       const selectedYear = selectedDate.getFullYear();
-
+  
       const lastEthixHoldersData = query5Data.dayCountEthixHolders
         .filter((item) => {
           const itemDate = new Date(item.date * 1000);
@@ -77,10 +124,8 @@ const ChartEthix1 = () => {
             itemDate.getMonth() === selectedMonth &&
             itemDate.getFullYear() === selectedYear
           );
-        })
-        console.log(lastEthixHoldersData)
-        .pop();
-
+        });
+  
       const lastCeloHoldersData = query6Data.dayCountEthixHolders
         .filter((item) => {
           const itemDate = new Date(item.date * 1000);
@@ -88,10 +133,11 @@ const ChartEthix1 = () => {
             itemDate.getMonth() === selectedMonth &&
             itemDate.getFullYear() === selectedYear
           );
-        })
-        console.log(lastCeloHoldersData)
-        .pop();
-
+        });
+  
+      const lastEthixHolder = lastEthixHoldersData.length > 0 ? lastEthixHoldersData.pop() : null;
+      const lastCeloHolder = lastCeloHoldersData.length > 0 ? lastCeloHoldersData.pop() : null;
+  
       const ethixData = chart.data.datasets.find(
         (dataset) => dataset.label === 'ETH'
       );
@@ -99,18 +145,21 @@ const ChartEthix1 = () => {
         (dataset) => dataset.label === 'CELO'
       );
       const allData = chart.data.datasets.find((dataset) => dataset.label === 'ALL');
-
-      const ethCount = lastEthixHoldersData ? parseFloat(lastEthixHoldersData.count) : 0;
-      const celoCount = lastCeloHoldersData ? parseFloat(lastCeloHoldersData.count) : 0;
-
+  
+      const ethCount = lastEthixHolder ? parseFloat(lastEthixHolder.count) : 0;
+      const celoCount = lastCeloHolder ? parseFloat(lastCeloHolder.count) : 0;
+  
       ethixData.data = [ethCount];
       celoData.data = [celoCount];
       allData.data = [ethCount + celoCount];
-
+  
       chart.data.labels = [selectedDate.toLocaleString('default', { month: 'long', year: 'numeric' })];
       chart.update();
     }
   };
+  
+
+
 
   useEffect(() => {
     if (chart && chart.data) {
