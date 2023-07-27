@@ -14,6 +14,14 @@ const DetailBonds = () => {
     const [showRedeemedBonds, setShowRedeemedBonds] = useState(false);
     const [showMaturedBonds, setShowMaturedBonds] = useState(false);
     const [showActiveBonds, setShowActiveBonds] = useState(false);
+    const [activeCurrency, setActiveCurrency] = useState('CELO');
+    
+    const handleCurrencyChange = (currency) => {
+        setActiveCurrency(currency);
+        setShowEth(currency === 'ETH');
+    };
+
+
     
     console.log(bondsEth)
     console.log(bondsCelo)
@@ -161,67 +169,90 @@ const DetailBonds = () => {
             </div>
 
             {showDetail && (
-            <div className="detailbh">
 
-                <button className="butonshow2" onClick={toggleDetail}>
-                    {showDetail ? 'Hide detail' : 'Show detail'}
+            <div className="detailbh">
+                
+               <div className='ce-btnswitch' style={{overflowX:'hidden'}}>
+                             
+                <span className={activeCurrency === 'ETH' ? 'active' : ''}
+                             onClick={() => handleCurrencyChange('ETH')}>ETH</span>
+
+                             <input type="checkbox" id="switch" /><label for="switch" onClick={toggleView}>
+                            {showEth ? 'CELO' : 'ETH'}
+                            </label>
+                        
+                         <span className={activeCurrency === 'CELO' ? 'active' : ''}
+                             onClick={() => handleCurrencyChange('CELO')}>CELO</span>
+                      
+                            
+
+
+                <button className="buton-hideshow" onClick={toggleDetail}> 
+                    {showDetail ? 'CLOSE' : 'SHOW DETAILS'}
                 </button>
 
-                <div className='btshow'>
-                    <button className="" onClick={toggleView}>
-                        {showEth ? 'Show Celo' : 'Show Ethereum'}
-                    </button>
+
+                </div>
+                   
+                <div className='general-minted'>
+                <h3 className="minted-info">TOTAL MINTED {activeAllBonds.length}</h3>
+                <h3 className="minted-info">TOTAL ACTIVE {calculateTotalActive()}</h3>
+                <h3 className="minted-info"> TOTAL REDEEMED {countBondsWithRedeemDate()}</h3>
                 </div>
 
-                <h2>TOTAL MINTED {activeAllBonds.length}</h2>
-                <h2>TOTAL ACTIVE {calculateTotalActive()}</h2>
-                <h2> TOTAL REDEEMED {countBondsWithRedeemDate()}</h2>
 
-                <div className='btshow'>
-                    <button className="butonshow2" onClick={toggleAllBonds}>
-                    {showAllBonds ? 'Hide All Bonds' : 'Show All Bonds'}
-                    </button>
-                </div>
+                <div className='general-btn'>
+                    <div className='btshow'>
+                        <button className="butonshow2" onClick={toggleAllBonds}>
+                        {showAllBonds ? 'Hide All Bonds' : 'Show All Bonds'}
+                        </button>
+                    </div>
 
-                <div className='btshow'>
-                    <button className="butonshow2" onClick={toggleActiveBonds}>
-                    {showActiveBonds ? 'Hide Active Bonds' : 'Show Active Bonds'}
-                    </button>
-                </div>
+                    <div className='btshow'>
+                        <button className="butonshow2" onClick={toggleActiveBonds}>
+                        {showActiveBonds ? 'Hide Active Bonds' : 'Show Active Bonds'}
+                        </button>
+                    </div>
 
-                <div className='btshow'>
-                    <button className="butonshow2" onClick={toggleMaturedBonds}>
-                    {showMaturedBonds ? 'Hide Matured Bonds' : 'Show Matured Bonds'}
-                    </button>
-                </div>
+                    <div className='btshow'>
+                        <button className="butonshow2" onClick={toggleMaturedBonds}>
+                        {showMaturedBonds ? 'Hide Matured Bonds' : 'Show Matured Bonds'}
+                        </button>
+                    </div>
 
-                <div className='btshow'>
-                    <button className="butonshow2" onClick={toggleRedeemedBonds}>
-                    {showRedeemedBonds ? 'Hide Redeemed Bonds' : 'Show Redeemed Bonds'}
-                    </button>
+                    <div className='btshow'>
+                        <button className="butonshow2" onClick={toggleRedeemedBonds}>
+                        {showRedeemedBonds ? 'Hide Redeemed Bonds' : 'Show Redeemed Bonds'}
+                        </button>
+                    </div>
                 </div>
 
                 {/* All bonds detail */}
                 {showAllBonds && (
                     <div>
-                        <div>
-                            <h2>Total Principal Invested: {calculateTotalPrincipal().toFixed(3)} {showEth ? '(DAI)' : '(cUSD)'}</h2>
-                            <h2>Total Yield Generated: {calculateTotalYield()} {showEth ? '(DAI)' : '(cUSD)'}</h2>
-                            <h2>Total Principal Withdrawn: {calculateTotalWithdrawn().toFixed(3)} {showEth ? '(DAI)' : '(cUSD)'}</h2>
+                        <div className='general-allbonds'>
+                            <h3 className='allbonds-btns'>Total Principal Invested: {calculateTotalPrincipal().toFixed(3)} {showEth ? '(DAI)' : '(cUSD)'}</h3>
+                            <h3 className='allbonds-btns'> Total Yield Generated: {calculateTotalYield()} {showEth ? '(DAI)' : '(cUSD)'}</h3>
+                            <h3 className='allbonds-btns'>Total Principal Withdrawn: {calculateTotalWithdrawn().toFixed(3)} {showEth ? '(DAI)' : '(cUSD)'}</h3>
                         </div>
 
-                        <div className='bhtable'>
-                            <p>Token ID:</p>
-                            <p>Type:</p>
-                            <p>Maturity:</p>
-                            <p>APR:</p>
-                            <p>Principal {showEth ? '(DAI)' : '(cUSD)'}:</p>
-                            <p>Yield {showEth ? '(DAI)' : '(cUSD)'}:</p>
-                            <p>Withdrawn {showEth ? '(DAI)' : '(cUSD)'}:</p>
-                            <p>Minting date:</p>
-                            <p>Maturity date:</p>
-                            <p>Redeem date:</p>
-                        </div>
+          
+
+                            <thead className='head-table'>
+                                <tr>
+                                    <th className='bh-table'>Token ID</th>
+                                    <th className='bh-table'>Type</th>
+                                    <th className='bh-table'>Maturity</th>
+                                    <th className='bh-table'>APR</th>
+                                    <th className='bh-table'>Principal {showEth ? '(DAI)' : '(cUSD)'}:</th>
+                                    <th className='bh-table'>Yield {showEth ? '(DAI)' : '(cUSD)'}:</th>
+                                    <th className='bh-table'>Withdrawn {showEth ? '(DAI)' : '(cUSD)'}:</th>
+                                    <th className='bh-table'>Minting date</th>
+                                    <th className='bh-table'>Maturity date</th>
+                                    <th className='bh-table'>Redeem date</th>
+                                </tr>
+                            </thead>
+                       
 
                         {activeAllBonds.map((bonds, index) => {
                             const months = secondsToMonths(bonds.maturity);
@@ -244,18 +275,19 @@ const DetailBonds = () => {
                             };
                             const yieldValor = Big(interest).mul(Big(bonds.principal)).mul("0.01");
                             return(
-                                <div className='bhtable' key={index}>
-                                    <p>{bonds.id}</p>
-                                    <p>{bonds.size}</p>
-                                    <p>{months} months</p>
-                                    <p>{interestAnual()}%</p>
-                                    <p>{bonds.principal}</p>
-                                    <p>{yieldValor.toFixed(3)}</p>
-                                    <p>{withdrawn}</p>
-                                    <p>{maturityDate}</p>
-                                    <p>{mintingDate}</p>
-                                    <p>{redeemDate}</p>
-                                </div>
+                                <tbody className='b-table'>
+                                    <td className='body-table'>key={index}</td>
+                                    <td className='body-table'>{bonds.id}</td>
+                                    <td className='body-table'>{bonds.size}</td>
+                                    <td className='body-table'>{months} months</td>
+                                    <td className='body-table'>{interestAnual()}%</td>
+                                    <td className='body-table'>{bonds.principal}</td>
+                                    <td className='body-table'>{yieldValor.toFixed(3)}</td>
+                                    <td className='body-table'>{withdrawn}</td>
+                                    <td className='body-table'>{maturityDate}</td>
+                                    <td className='body-table'>{mintingDate}</td>
+                                    <td className='body-table'>{redeemDate}</td>
+                                </tbody>
                             )
                         })}
                     </div>
@@ -265,18 +297,18 @@ const DetailBonds = () => {
                 {showActiveBonds && (
                     <div>
 
-                        <h2> Total Principal Active {calculateTotalPrincipalActive()}{showEth ? '(DAI)' : '(cUSD)'}</h2>
+                        <h3 className='allbonds-card'> Total Principal Active {calculateTotalPrincipalActive()}{showEth ? '(DAI)' : '(cUSD)'}</h3>
 
-                        <div className='bhtable'>
-                            <h2>Nº:</h2>
-                            <p>Token Id:</p>
-                            <p>Type:</p>
-                            <p>Maturity</p>
-                            <p>APR</p>
-                            <p>Principal {showEth ? '(DAI)' : '(cUSD)'}:</p>
-                            <p>Yield {showEth ? '(DAI)' : '(cUSD)'}:</p>
-                            <p>Maturity date:</p>
-                        </div>
+                        <thead className='abhead-table'>
+                            <th className='ab-table'>Nº:</th>
+                            <th className='ab-table'>Token Id:</th>
+                            <th className='ab-table'>Type:</th>
+                            <th className='ab-table'>Maturity</th>
+                            <th className='ab-table'>APR</th>
+                            <th className='ab-table'>Principal {showEth ? '(DAI)' : '(cUSD)'}:</th>
+                            <th className='ab-table'>Yield {showEth ? '(DAI)' : '(cUSD)'}:</th>
+                            <th className='ab-table'>Maturity date:</th>
+                        </thead>
 
                         {detailActiveBonds.map((bonds, index) =>{
                             const maturityDate = new Date(bonds.maturityDate * 1000).toDateString();
@@ -296,16 +328,16 @@ const DetailBonds = () => {
                             };
                             const yieldValor = Big(interest).mul(Big(bonds.principal)).mul("0.01");
                             return(
-                                <div className='bhtable' key={index}>
-                                    <h2>{index + 1}</h2>
-                                    <p>{bonds.id}</p>
-                                    <p>{bonds.size}</p>
-                                    <p>{months} months</p>
-                                    <p>{interestAnual()}%</p>
-                                    <p>{bonds.principal}</p>
-                                    <p>{yieldValor.toFixed()}</p>
-                                    <p>{maturityDate}</p>
-                                </div>
+                                <tbody className='abtable' key={index}>
+                                    <td className='ab-bodytable'>{index + 1}</td>
+                                    <td className='ab-bodytable'>{bonds.id}</td>
+                                    <td className='ab-bodytable'>{bonds.size}</td>
+                                    <td className='ab-bodytable'>{months} months</td>
+                                    <td className='ab-bodytable'>{interestAnual()}%</td>
+                                    <td className='ab-bodytable'>{bonds.principal}</td>
+                                    <td className='ab-bodytable'>{yieldValor.toFixed()}</td>
+                                    <td className='ab-bodytable'>{maturityDate}</td>
+                                </tbody>
                             )
                         })}
 
@@ -315,20 +347,21 @@ const DetailBonds = () => {
                 {/* MATURED bonds detail */}
                 {showMaturedBonds && (
                     <div>
+                            <div className='maturecard-container'>
+                        <h3 className='mature-card'> Total Principal Matured {calculateTotalPrincipalMatured()}{showEth ? '(DAI)' : '(cUSD)'}</h3>
+                        <h3 className='mature-card'> Total Yield Matured {calculateTotalYieldMatured()}{showEth ? '(DAI)' : '(cUSD)'}</h3>
+                            </div>
 
-                        <h2> Total Principal Matured {calculateTotalPrincipalMatured()}{showEth ? '(DAI)' : '(cUSD)'}</h2>
-                        <h2> Total Yield Matured {calculateTotalYieldMatured()}{showEth ? '(DAI)' : '(cUSD)'}</h2>
-
-                        <div className='bhtable'>
-                            <h2>Nº:</h2>
-                            <p>Token Id:</p>
-                            <p>Type:</p>
-                            <p>Maturity</p>
-                            <p>APR</p>
-                            <p>Principal {showEth ? '(DAI)' : '(cUSD)'}:</p>
-                            <p>Yield {showEth ? '(DAI)' : '(cUSD)'}:</p>
-                            <p>Maturity date:</p>
-                        </div>
+                        <thead className='matured-table'>
+                            <th className='mat-table'>Nº:</th>
+                            <th className='mat-table'>Token Id:</th>
+                            <th className='mat-table'>Type:</th>
+                            <th className='mat-table'>Maturity</th>
+                            <th className='mat-table'>APR</th>
+                            <th className='mat-table'>Principal {showEth ? '(DAI)' : '(cUSD)'}:</th>
+                            <th className='mat-table'>Yield {showEth ? '(DAI)' : '(cUSD)'}:</th>
+                            <th className='mat-table'>Maturity date:</th>
+                        </thead>
 
                         {maturedAndActiveBonds.map((bonds, index) => {
                             const maturityDate = new Date(bonds.maturityDate * 1000).toDateString();
@@ -348,16 +381,16 @@ const DetailBonds = () => {
                             };
                             const yieldValor = Big(interest).mul(Big(bonds.principal)).mul("0.01");
                             return (
-                                <div className='bhtable' key={index}>
-                                    <h2>{index + 1}</h2>
-                                    <p>{bonds.id}</p>
-                                    <p>{bonds.size}</p>
-                                    <p>{months} months</p>
-                                    <p>{interestAnual()}%</p>
-                                    <p>{bonds.principal}</p>
-                                    <p>{yieldValor.toFixed()}</p>
-                                    <p>{maturityDate}</p>
-                                </div>
+                                <tbody className='mat-body' key={index}>
+                                    <td className='mat-bodytable'>{index + 1}</td>
+                                    <td className='mat-bodytable'>{bonds.id}</td>
+                                    <td className='mat-bodytable'>{bonds.size}</td>
+                                    <td className='mat-bodytable'>{months} months</td>
+                                    <td className='mat-bodytable'>{interestAnual()}%</td>
+                                    <td className='mat-bodytable'>{bonds.principal}</td>
+                                    <td className='mat-bodytable'>{yieldValor.toFixed()}</td>
+                                    <td className='mat-bodytable'>{maturityDate}</td>
+                                </tbody>
                             )
                         })}
 
@@ -368,19 +401,19 @@ const DetailBonds = () => {
                 {showRedeemedBonds && (
                     <div>
                         
-                        <h2>Total Principal Withdrawn: {calculateTotalWithdrawn().toFixed(3)} {showEth ? '(DAI)' : '(cUSD)'}</h2>
+                        <h3 className='redeem-card'>Total Principal Withdrawn: {calculateTotalWithdrawn().toFixed(3)} {showEth ? '(DAI)' : '(cUSD)'}</h3>
 
-                        <div className='bhtable'>
-                            <h2>Nº:</h2>
-                            <p>Token Id:</p>
-                            <p>Type</p>
-                            <p>Maturity:</p>
-                            <p>APR:</p>
-                            <p>Principal {showEth ? '(DAI)' : '(cUSD)'}:</p>
-                            <p>Yield {showEth ? '(DAI)' : '(cUSD)'}:</p>
-                            <p>Withdrawn {showEth ? '(DAI)' : '(cUSD)'}:</p>
-                            <p>Redeem date:</p>
-                        </div>
+                        <thead className='red-table'>
+                            <th className='redeem-table'>Nº:</th>
+                            <th className='redeem-table'>Token Id:</th>
+                            <th className='redeem-table'>Type</th>
+                            <th className='redeem-table'>Maturity:</th>
+                            <th className='redeem-table'>APR:</th>
+                            <th className='redeem-table'>Principal {showEth ? '(DAI)' : '(cUSD)'}:</th>
+                            <th className='redeem-table'>Yield {showEth ? '(DAI)' : '(cUSD)'}:</th>
+                            <th className='redeem-table'>Withdrawn {showEth ? '(DAI)' : '(cUSD)'}:</th>
+                            <th className='redeem-table'>Redeem date:</th>
+                        </thead>
 
                         {redeemedBonds.map((bonds, index) => {
                             const months = secondsToMonths(bonds.maturity);
@@ -401,17 +434,17 @@ const DetailBonds = () => {
                             const redeemDate = bonds.redeemDate ? new Date(bonds.redeemDate * 1000).toDateString() : "-";
                             const withdrawn = bonds.withdrawn ? (bonds.withdrawn).toString() : "-";
                             return(
-                                <div className='bhtable' key={index}>
-                                    <h2>{index + 1}</h2>
-                                    <p>{bonds.id}</p>
-                                    <p>{bonds.size}</p>
-                                    <p>{months} months</p>
-                                    <p>{interestAnual()}%</p>
-                                    <p>{bonds.principal}</p>
-                                    <p>{yieldValor.toFixed()}</p>
-                                    <p>{withdrawn}</p>
-                                    <p>{redeemDate}</p>
-                                </div>
+                                <tbody className='red-body' key={index}>
+                                    <td className='redeem-bt'>{index + 1}</td>
+                                    <td className='redeem-bt'>{bonds.id}</td>
+                                    <td className='redeem-bt'>{bonds.size}</td>
+                                    <td className='redeem-bt'>{months} months</td>
+                                    <td className='redeem-bt'>{interestAnual()}%</td>
+                                    <td className='redeem-bt'>{bonds.principal}</td>
+                                    <td className='redeem-bt'>{yieldValor.toFixed()}</td>
+                                    <td className='redeem-bt'>{withdrawn}</td>
+                                    <td className='redeem-bt'>{redeemDate}</td>
+                                </tbody>
                             )
                         })}
                     </div>
