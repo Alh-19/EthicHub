@@ -1,22 +1,29 @@
 import React, { useEffect, useContext, useRef, useState } from 'react';
 import { DataContext } from '../Data/DataContextProvider.js';
 import { Chart } from 'chart.js/auto';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import '../Css/DatePicke.css'
 
 const ChartEthix1 = () => {
   const chartRef = useRef(null);
   const [chart, setChart] = useState(null);
   const { data } = useContext(DataContext);
   const { query5Data, query6Data } = data;
-  const [selectedDate, setSelectedDate] = useState('');
+
+  // Inicializar con el mes pasado
+  const today = new Date();
+  const lastMonth = new Date(today.getFullYear(), today.getMonth() - 1);
+  const [selectedDate, setSelectedDate] = useState(lastMonth);
 
   useEffect(() => {
     if (chartRef.current && query5Data && query6Data && !chart) {
       const ctx = chartRef.current.getContext('2d');
 
       const newChartInstance = new Chart(ctx, {
-        type: 'bar',
+        type: 'bar', // Asegúrate de especificar el tipo de gráfico adecuado
         data: {
-          labels: [selectedDate],
+          labels: [],
           datasets: [
             {
               label: 'ETH',
@@ -42,130 +49,112 @@ const ChartEthix1 = () => {
           ],
         },
         options: {
-          responsive: true,
-          indexAxis: 'x', // Cambiar a 'x' para barras verticales
-          scales: {
-            x: {
-              title: {
-                display: true,
-                text: 'Month', // Etiqueta del eje x
-              },
-              display: true, // Mostrar el eje x
-              ticks: {
-                autoSkip: false, // Evitar que se salten las etiquetas
-              },
-            },
-            y: {
-              title: {
-                display: true,
-                text: 'Number of IDs',
-              },
-            },
-          },
-          plugins: {
-            tooltip: {
-              callbacks: {
-                label: (context) => {
-                  const datasetLabel = context.dataset.label || '';
-                  const value = context.parsed.y || 0;
-                  return `${datasetLabel}: ${value}`;
-                },
-              },
-            },
-            datalabels: {
-              anchor: 'end',
-              align: 'top',
-              formatter: (value, context) => {
-                const datasetLabel = context.dataset.label || '';
-                return `${datasetLabel} - ${selectedDate}`;
-              },
-            },
-          },
+          // Opciones del gráfico...
         },
       });
 
       setChart(newChartInstance);
+      updateChartData();
     }
-  }, [chart, query5Data, query6Data, selectedDate]);
+  }, [chart, query5Data, query6Data]);
 
   useEffect(() => {
-    // Update the chart when the selected date changes
+    // Actualizar el gráfico cuando cambie la fecha seleccionada
     if (chart && chart.data) {
-      const ethixHoldersData = query5Data.dayCountEthixHolders.find(
-        (item) =>
-          new Date(item.date * 1000).toLocaleString('default', { month: 'long', year: 'numeric' }) === selectedDate
-      );
-      const celoHoldersData = query6Data.dayCountEthixHolders.find(
-        (item) =>
-          new Date(item.date * 1000).toLocaleString('default', { month: 'long', year: 'numeric' }) === selectedDate
-      );
+      updateChartData();
+    }
+  }, [selectedDate, chart]); // Asegúrate de agregar "chart" como dependencia también
 
-      console.log('ethixHoldersData:', ethixHoldersData);
-      console.log('celoHoldersData:', celoHoldersData);
+  const updateChartData = () => {
+    if (selectedDate && chart && chart.data) {
+      const selectedMonth = selectedDate.getMonth();
+      const selectedYear = selectedDate.getFullYear();
 
-      const ethixData = chart.data.datasets.find((dataset) => dataset.label === 'ETH');
-      const celoData = chart.data.datasets.find((dataset) => dataset.label === 'CELO');
+      const lastEthixHoldersData = query5Data.dayCountEthixHolders
+        .filter((item) => {
+          const itemDate = new Date(item.date * 1000);
+          return (
+            itemDate.getMonth() === selectedMonth &&
+            itemDate.getFullYear() === selectedYear
+          );
+        })
+        console.log(lastEthixHoldersData)
+        .pop();
+
+      const lastCeloHoldersData = query6Data.dayCountEthixHolders
+        .filter((item) => {
+          const itemDate = new Date(item.date * 1000);
+          return (
+            itemDate.getMonth() === selectedMonth &&
+            itemDate.getFullYear() === selectedYear
+          );
+        })
+        console.log(lastCeloHoldersData)
+        .pop();
+
+      const ethixData = chart.data.datasets.find(
+        (dataset) => dataset.label === 'ETH'
+      );
+      const celoData = chart.data.datasets.find(
+        (dataset) => dataset.label === 'CELO'
+      );
       const allData = chart.data.datasets.find((dataset) => dataset.label === 'ALL');
 
-      if (ethixHoldersData) {
-        const ethCount = parseFloat(ethixHoldersData.count);
-        ethixData.data = [ethCount];
-        if (celoHoldersData) {
-          allData.data = [ethCount + parseFloat(celoHoldersData.count)];
-        } else {
-          allData.data = [ethCount];
-        }
-      } else {
-        ethixData.data = [];
-        if (celoHoldersData) {
-          allData.data = [parseFloat(celoHoldersData.count)];
-        } else {
-          allData.data = [];
-        }
-      }
+      const ethCount = lastEthixHoldersData ? parseFloat(lastEthixHoldersData.count) : 0;
+      const celoCount = lastCeloHoldersData ? parseFloat(lastCeloHoldersData.count) : 0;
 
-      if (celoHoldersData) {
-        const celoCount = parseFloat(celoHoldersData.count);
-        celoData.data = [celoCount];
-        if (!ethixHoldersData) {
-          allData.data = [celoCount];
-        }
-      } else {
-        celoData.data = [];
-      }
+      ethixData.data = [ethCount];
+      celoData.data = [celoCount];
+      allData.data = [ethCount + celoCount];
 
+      chart.data.labels = [selectedDate.toLocaleString('default', { month: 'long', year: 'numeric' })];
       chart.update();
     }
-  }, [chart, selectedDate, query5Data, query6Data]);
-
-
-  const handleDateChange = (e) => {
-    setSelectedDate(e.target.value);
   };
 
-  const availableDates = [
-    ...query5Data.dayCountEthixHolders.map((item) =>
-      new Date(item.date * 1000).toLocaleString('default', { month: 'long', year: 'numeric' })
-    ),
-    ...query6Data.dayCountEthixHolders.map((item) =>
-      new Date(item.date * 1000).toLocaleString('default', { month: 'long', year: 'numeric' })
-    ),
-  ];
-  const uniqueDates = [...new Set(availableDates)];
+  useEffect(() => {
+    if (chart && chart.data) {
+      updateChartData();
+    }
+  }, [selectedDate, chart, query5Data, query6Data]);
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
+
 
   return (
     <div>
-      <canvas ref={chartRef}></canvas>
-      <select value={selectedDate} onChange={handleDateChange}>
-        <option value="">Select a Month</option>
-        {uniqueDates.map((date) => (
-          <option key={date} value={date}>
-            {new Date(date).toLocaleString('default', { month: 'long', year: 'numeric' })}
-          </option>
-        ))}
-      </select>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'start' , marginLeft: '10px' }}>
+      <div style={{marginBottom: '40px' , marginLeft: '40px' }}>
+          <DatePicker
+            selected={selectedDate}
+            onChange={handleDateChange}
+            dateFormat="MMMM yyyy"
+            showMonthYearPicker
+            showFullMonthYearPicker
+            placeholderText="Select a Month"
+            todayButton="Today"
+          />
+        </div>
+        <div style={{ height: '400px', width: '100%' }}>
+          <canvas ref={chartRef}></canvas>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default ChartEthix1; 
+export default ChartEthix1;
+
+
+
+
+
+
+
+
+
+
+
+

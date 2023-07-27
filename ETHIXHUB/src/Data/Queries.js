@@ -68,3 +68,34 @@ export const QUERY4 = gql`
     }
   }
 `;
+
+export const QUERY5 = gql `
+  query StakeEthixTotals {
+    factoryEthixes(first: 1) {
+      id
+      totalStaked
+      totalStakedGeneral
+      totalStakedHonduras
+      totalStakedBrasil
+      totalStakedMexico
+      totalStakedMexico2
+      totalStakedEcuador
+      totalStakedPeru
+    }
+  }
+`;
+
+export const QUERY6 = gql`
+  query StakeEthixHoldersCurrent {
+    stakeEthixHolders(
+      first: 1000,
+      orderBy: totalAmount, orderDirection: desc,
+      where: { totalAmount_gte:0 }
+    ) {
+      id
+      type
+      totalAmount
+    }
+  }
+`;
+
