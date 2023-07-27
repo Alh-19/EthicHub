@@ -1,44 +1,46 @@
-import React from 'react'
-import './Header.css'
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import '../Css/Header.css';
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
+const Header = () => {
+  const location = useLocation();
+  const [currentPage, setCurrentPage] = useState(location.pathname.substring(1));
 
-  const Header = () => {
-    const [currentPage, setCurrentPage] = useState(''); // Estado para mantener la página actual
-    const handlePageChange = (page) => {
-      setCurrentPage(page);
-    };
-    return (
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
 
+  useEffect(() => {
+    const pathname = location.pathname;
+    const page = pathname.substring(1);
+    setCurrentPage(page);
+  }, 
+  [location]);
+
+  return (
     <div className='header-container'>
-
       <div className='logo-container'>
-        <Link to="http://localhost:3000/">
-          <img src="logo.png" alt="Logo" style={{width:'250px'}}/>
+        <Link to="/">
+          <img src="logo.png" alt="Logo" style={{ width: '250px' }} />
         </Link>
       </div>
-
       <div className='navbar'>
         <ul>
-          
-            <Link to="/Ethix" onClick={() => handlePageChange('Ethix')}>
-            <li className={currentPage === 'Ethix' ? 'active' : ''}>Ethix</li>
-            </Link>
-          
-            <Link to= "/Stake" onClick={() => handlePageChange('Stake')}>
-            <li className={currentPage === 'Stake' ? 'active' : ''}>Stake</li>
-            </Link>
-          
-            <Link to="/Bonds" onClick={() => handlePageChange('Bonds')}>
-            <li className={currentPage === 'Bonds' ? 'active' : ''}>Bonds</li>
-            </Link>
-          
+          <Link to="/Ethix" onClick={() => handlePageChange('Ethix')}>
+            <li className={currentPage === 'Ethix' ? 'active selected' : ''}>Ethix</li>
+          </Link>
+          <Link to="/Stake" onClick={() => handlePageChange('Stake')}>
+            <li className={currentPage === 'Stake' ? 'active selected' : ''}>Stake</li>
+          </Link>
+          <Link to="/Bonds" onClick={() => handlePageChange('Bonds')}>
+            <li className={currentPage === 'Bonds' ? 'active selected' : ''}>Bonds</li>
+          </Link>
         </ul>
       </div>
-
     </div>
-
   );
 };
-  export default Header;
+
+export default Header;
+
