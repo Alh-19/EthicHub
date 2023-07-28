@@ -84,7 +84,8 @@ const DetailBondholder = () => {
                                     {showDetail ? 'Close' : 'Show detail'}
                                 </button>
                             
-                        </div>                             
+                        </div>    
+                                                 
                         <div className='container-tarjetas'>
                          <div className='total-bondholders'><h3>Total Bondholders: {activeBondHolders.length}</h3></div>
                          <div className='principal-invested'><h3>Principal invested: {sumaPrincipalTotal.toFixed(3)} {showEth ? '(DAI)' : '(cUSD)'}</h3></div>
@@ -92,23 +93,24 @@ const DetailBondholder = () => {
                         
                             <thead>
                                 <tr>
-                                    <th>Rank</th>
-                                    <th>ID</th>
-                                    <th>Total Bonds</th>
-                                    <th>Total Active</th>
-                                    <th>Total Redeemed</th>
-                                    <th>Suma Principal</th>
+                                    <th className='total-bh'>Rank</th>
+                                    <th className='total-bh'>ID</th>
+                                    <th className='total-bh'>Total Bonds</th>
+                                    <th className='total-bh'>Total Active</th>
+                                    <th className='total-bh'>Total Redeemed</th>
+                                    <th className='total-bh'>Suma Principal</th>
                                 </tr>
                             </thead>
+                            
                             <tbody>
                                 {activeBondHolders.map((bondHolder, index) => (
                                     <tr key={index}>
-                                        <td>{index + 1}</td>
-                                        <td>{bondHolder.id}</td>
-                                        <td>{bondHolder.totalBonds}</td>
-                                        <td>{bondHolder.totalActive}</td>
-                                        <td>{bondHolder.totalRedeemed}</td>
-                                        <td>{calcularSumaPrincipalPorBondHolder(bondHolder).toFixed(3)}</td>
+                                        <td className='totalbh-body'>{index + 1}</td>
+                                        <td className='totalbh-body'>{bondHolder.id}</td>
+                                        <td className='totalbh-body'>{bondHolder.totalBonds}</td>
+                                        <td className='totalbh-body'>{bondHolder.totalActive}</td>
+                                        <td className='totalbh-body'>{bondHolder.totalRedeemed}</td>
+                                        <td className='totalbh-body'>{calcularSumaPrincipalPorBondHolder(bondHolder).toFixed(3)}</td>
                                     </tr>
                                 ))}
                             </tbody>

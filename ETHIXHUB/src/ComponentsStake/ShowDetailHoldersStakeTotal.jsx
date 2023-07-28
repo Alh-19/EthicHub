@@ -105,35 +105,41 @@ const DetailHoldersStakeTotal = () => {
                         </button>
                     </div>
 
-                    <div>
-                        <h1>{currentDateDetails.formattedDate}</h1>
-                        <h1>Total Holders {showEth ? 'Eth' : 'Celo'} {activeHoldersThismonth.length} holders </h1>
+                    <div className='stakeinfo-cards'>
+                        <h3 className='stake-cards'>{currentDateDetails.formattedDate}</h3>
+                        <h3 className='stake-cards'>Total Holders {showEth ? 'Eth' : 'Celo'} {activeHoldersThismonth.length} holders </h3>
                     </div>
 
-                    <div>
-                        <thead className=''>
-                            <th className=''>Rank</th>
-                            <th className=''>Address</th>
-                            <th className=''>Quantity</th>
-                            <th className=''>Stake Type</th>
+                    
+                        <thead>
+                            <tr>
+                                <th className='staketb-head'>Rank</th>
+                                <th className='staketb-head'>Address</th>
+                                <th className='staketb-head'>Quantity</th>
+                                <th className='staketb-head'>Stake Type</th>
+                            </tr>
                         </thead>
-                    </div>
+                    
 
-                    <div>
+                    <tbody>
+
                         {activeHoldersThismonth.map((stakeEthixHolders, index) => {
                             const allTypes = stakeEthixHolders.type.join(', ');
                             return (
-                                <tbody className='' key={index}>
-                                    <td className=''>{index + 1}</td>
-                                    <td className=''>{stakeEthixHolders.id}</td>
-                                    <td className=''>{stakeEthixHolders.totalAmount}</td>
-                                    <td className=''>{allTypes}</td>
-                                </tbody>
+
+                                <tr key={index}>
+                                    <td className='staketb-body'>{index + 1}</td>
+                                    <td className='staketb-body'>{stakeEthixHolders.id}</td>
+                                    <td className='staketb-body'>{stakeEthixHolders.totalAmount}</td>
+                                    <td className='staketb-body'>{allTypes}</td>
+                                </tr>
                             )
                         })}
+                    </tbody>
+
                     </div>
 
-                </div>
+                
 
             )}
 

@@ -191,20 +191,7 @@
     
   }*/
 
-  th, td{
-    padding: 5px 40px;
-  }
-
-  th{
-    font-size: medium;
-    text-transform: uppercase;
-    background-color: #c8cbd1;
-  }
-
-  td{
-    border: 0.1px solid #c8cbd1;
-    text-align: center;
-  }
+  cd
 
   input[type=checkbox]{
     height: 0;
@@ -496,7 +483,7 @@
           }
 
 .mature-card{
-    flex-direction: row;
+            flex-direction: row;
             display: flex;
             align-items: center;
             background-color: #E6EAE5;
@@ -877,7 +864,17 @@
     width: 25px;
   }
 
-
+  /***********Total details table**********/
+  .total-bh{
+      font-size: medium;
+      text-transform: uppercase;
+      background-color: #c8cbd1;
+      padding: 5px 40px;
+      }
   
+  .totalbh-body{
+    border: 0.1px solid #c8cbd1;
+    text-align: center;
+          }
   
   

@@ -13,9 +13,6 @@ const DetailBondHoldersEthixTotal = () => {
     const dataHoldersEth = data.query11Data?.ethixHolders || [];
     const dataHoldersCelo = data.query12Data?.ethixHolders || [];
 
-    // console.log('eth holders data', dataHoldersEth)
-    // console.log('celo holders data', dataHoldersCelo)
-
     useEffect(() => {
         if (loading) return;
         if (error) {
@@ -62,12 +59,11 @@ const DetailBondHoldersEthixTotal = () => {
         };
 
     const currentDateDetails = getCurrentDate();
-    // console.log('Fecha actual:', currentDateDetails.formattedDate);
 
     //total holders eth and celo
     const totalEthHolders = dataHoldersEth.length;
     const totalCeloHolders = dataHoldersCelo.length;
-    // console.log('eth total holders', totalEthHolders, 'celo total holders', totalCeloHolders)
+
     const activeHolders = showEth ? totalEthHolders : totalCeloHolders;
     const activeHoldersData = showEth ? dataHoldersEth : dataHoldersCelo;
 
@@ -113,31 +109,34 @@ const DetailBondHoldersEthixTotal = () => {
                         </button>
                     </div>
 
-                    <div>
-                        <h1>{currentDateDetails.formattedDate}</h1>
-                        <h1>Total Holders {showEth ? 'Eth' : 'Celo'} {activeHolders} holders </h1>
+                    <div className='infocards-ethix'>
+                        <h3 className='cards-ethix'>{currentDateDetails.formattedDate}</h3>
+                        <h3 className='cards-ethix'>Total Holders {showEth ? 'Eth' : 'Celo'} {activeHolders} holders </h3>
                     </div>
 
-                    <div className=''>
-                    <thead className=''>
-                        <th className=''>Rank</th>
-                        <th className=''>Address</th>
-                        <th className=''>Quantity</th>
+                   
+
+                    <thead>
+                        <tr>
+                            <th className='ethixtb-head'>Rank</th>
+                            <th className='ethixtb-head'>Address</th>
+                            <th className='ethixtb-head'>Quantity</th>
+                        </tr>
+
                     </thead>
-                    </div>
-
-                    <div>
+                 
+                    <tbody>
                         {activeHoldersData.map((ethixHolders, index) =>{
                             return(
-                                <tbody className='' key={index}>
-                                    <td className=''>{index + 1}</td>
-                                    <td className=''>{ethixHolders.id}</td>
-                                    <td className=''>{ethixHolders.totalAmount}</td>
-                                </tbody>
+                                <tr key={index}>
+                                    <td className='ethix-bodytb'>{index + 1}</td>
+                                    <td className='ethix-bodytb'>{ethixHolders.id}</td>
+                                    <td className='ethix-bodytb'>{ethixHolders.totalAmount}</td>
+                                </tr>
                             )
                         })}
-                    </div>
-
+                 
+                 </tbody>
                 </div>
             )}
 

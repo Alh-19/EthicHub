@@ -1,5 +1,3 @@
-
-
 import React, { useEffect, useContext, useState } from 'react';
 import { DataContext } from '../Data/DataContextProvider';
 import '../Css/Bonds.css';
@@ -179,28 +177,33 @@ const DetailHoldersStake = () => {
                         </button>
                     </div>
 
-                    <div>
-                        <h1>{previousMonthDateDetails.formattedDate} {lastMonthHoldersStake} holders</h1>
-                        <h1>{currentDateDetails.formattedDate} {currentHoldersStake.length} holders</h1>
-                        <h1>+{newHoldersStake} holders </h1>
+                    <div className='infocard-stk'>
+                        <h3 className='infocards-stake'>{previousMonthDateDetails.formattedDate} {lastMonthHoldersStake} holders</h3>
+                        <h3 className='infocards-stake'>{currentDateDetails.formattedDate} {currentHoldersStake.length} holders</h3>
+                        <h3 className='infocards-stake'>+{newHoldersStake} holders </h3>
                     </div>
 
 
                     <div>
-                        <h2> Total addresses joined - {newHoldersStake} </h2>
 
-                        <h3> {totalAmountStake} stk ethix</h3>
+                        <div className='infocard2-stk'>
+                        <h3 className='infocards-stake'> Total addresses joined - {newHoldersStake} </h3>
+                        <h3 className='infocards-stake'> {totalAmountStake} stk ethix</h3>
+
+                    </div>
 
                         {newHoldersStakeData.map((stakeEthixHolders, index) =>{
                             
                             return(
                                 
-
-                                <tbody className='' key={index}>
-                                    <td className=''>{stakeEthixHolders.id}</td>
-                                    <td className=''>{stakeEthixHolders.totalAmount} stk ethix</td>
-                                </tbody>
-
+                               
+                                        <tbody className='stake-table' key={index}>
+                                         
+                                        <td className='stake-bodyt'>{stakeEthixHolders.id}</td>
+                                        <td className='stake-bodyt'>{stakeEthixHolders.totalAmount} stk ethix</td>
+                                   
+                                    </tbody>
+                               
                                 
 
                             )
