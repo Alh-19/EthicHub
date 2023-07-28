@@ -1,7 +1,12 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { DataContext } from '../Data/DataContextProvider';
 import { Chart } from 'chart.js';
-import '../Css/Stake.css'
+
+import hondurasImage from '../Components/img/honduras.png';
+import brazilImage from '../Components/img/brazil.png';
+import ecuadorImage from '../Components/img/ecuador.png'
+import mexicoImage from '../Components/img/mexico.png';
+import peruImage from '../Components/img/peru.png';
 
 const ChartStake3 = () => {
   const { data } = useContext(DataContext);
@@ -19,7 +24,7 @@ const ChartStake3 = () => {
         'Total Staked',
         'General',
         'Honduras',
-        'Brasil',
+        'Brazil',
         'Mexico',
         'Mexico (Cori)',
         'Ecuador',
@@ -95,23 +100,27 @@ const ChartStake3 = () => {
   }, [chartData]);
 
   return (
-    <div>
+    <div className='chartflags'>
       {query7Data.loading || query8Data.loading ? (
         <p>Loading...</p>
       ) : query7Data.error || query8Data.error ? (
         <p>Error fetching data</p>
       ) : (
-        <div  className='chart-ethix-combined'>
-        <canvas id="myChart"></canvas>
-        </div>
+        <canvas id="myChart" width="400" height="200"></canvas>
       )}
+
+    <div className='flag-icons'>  
+    <img className='honduras-flag' src={hondurasImage} alt="Honduras" />
+    <img className='brazil-flag' src={brazilImage} alt="Brazil" />
+    <img className='mexico-flag' src={mexicoImage} alt="Mexico" />
+    <img className='mexico-flagcori' src={mexicoImage} alt="Mexico (Cori)" />
+    <img className='ecuador-flag' src={ecuadorImage} alt="Ecuador" />
+    <img className='peru-flag' src={peruImage} alt="Peru" />
+
+          </div>
+
     </div>
   );
 };
 
 export default ChartStake3;
-
-
-
-
-  
