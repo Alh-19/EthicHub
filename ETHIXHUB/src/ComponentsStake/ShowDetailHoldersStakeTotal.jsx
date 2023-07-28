@@ -26,12 +26,6 @@ const DetailHoldersStakeTotal = () => {
     },[loading, error, stakeHoldersEth, stakeHoldersCelo]);
 
 
-
-
-    
-
-
-
      //funcion para ver el detail
     const toggleDetail = () => {
         setShowDetail(!showDetail);

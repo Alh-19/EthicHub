@@ -24,4 +24,44 @@
   .image-container + .chart-container {
     margin-left: 10px; /* Add spacing between the charts in a row */
   }
+
+  .chartflags{
+    
+  }
+
+  .flag-icons{
+    width:70%;
+    display: flex;
+    justify-content: space-around;
+    margin-left: 500px;
+    }
   
+  .honduras-flag{
+    width: 20px;
+    height: 20px;
+  }
+
+  .brazil-flag{
+    width: 20px;
+    height: 20px;
+  }
+
+  .mexico-flag{
+    width: 20px;
+    height: 20px;
+  }
+
+  .mexico-flagcori{
+    width: 20px;
+    height: 20px;
+  }
+
+  .ecuador-flag{
+    width: 20px;
+    height: 20px;
+  }
+
+  .peru-flag{
+    width: 20px;
+    height: 20px;
+  }
