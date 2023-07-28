@@ -7,7 +7,7 @@ import ChartEthix5 from "../ComponentsEthix/ChartEthix5";
 import ImageEthix from "../ComponentsEthix/ImageEthix";
 import "../Css/Ethix.css"; // Import the CSS file
 import DetailBondHoldersEthixTotal from "../ComponentsEthix/ShowDetailHoldersEthixTotal";
-import DetailBondHoldersEthix from "../ComponentsEthix/ShowDetailHoldersEthix";
+
 
 const Ethix = () => {
   return (
@@ -19,7 +19,6 @@ const Ethix = () => {
         <div className="chart-container">
           <ChartEthix2 />
         </div>
-        <DetailBondHoldersEthix />
       </div>
       <div className="ethix-row">
         <div className="chart-container">

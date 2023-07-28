@@ -25,16 +25,62 @@ const DetailHoldersStakeTotal = () => {
 
     },[loading, error, stakeHoldersEth, stakeHoldersCelo]);
 
+    const getCurrentDate = () => {
+        const currentDate = new Date();
+        const year = currentDate.getUTCFullYear();
+        const month = currentDate.getUTCMonth();
+        const day = currentDate.getUTCDate();
+        const hours = currentDate.getUTCHours();
+        const minutes = currentDate.getUTCMinutes();
+        const seconds = currentDate.getUTCSeconds();
+
+        const months = [
+            'January', 'February', 'March', 'April', 'May', 'June',
+            'July', 'August', 'September', 'October', 'November', 'December'
+        ];
+        const monthName = months[month];
+    
+        const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const dayOfWeek = weekdays[currentDate.getUTCDay()];
+    
+        // Opcionalmente, puedes dar formato a la fecha y hora como desees, por ejemplo:
+        const formattedDate = `${dayOfWeek}, ${day} ${monthName} ${year} ${hours}:${minutes}:${seconds} GMT`;
+
+        return {
+            currentDate,
+            year,
+            month: monthName,
+            day,
+            hours,
+            minutes,
+            seconds,
+            dayOfWeek,
+            formattedDate,
+            };
+        };
+
+    const currentDateDetails = getCurrentDate();
+    // console.log('Fecha actual:', currentDateDetails.formattedDate);
 
 
 
     
 
+    const activeHoldersThismonth = showEth ? stakeHoldersEth : stakeHoldersCelo;
+    console.log('aqui',activeHoldersThismonth)
 
-
-     //funcion para ver el detail
+    //funcion scroll arriba
+    const moveToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    };
+    
+    //funcion para ver el detail
     const toggleDetail = () => {
         setShowDetail(!showDetail);
+        moveToTop();
     };
 
     //funcion para cambiar la vita de Eth a Celo
@@ -65,7 +111,30 @@ const DetailHoldersStakeTotal = () => {
                     </div>
 
                     <div>
-                
+                        <h1>{currentDateDetails.formattedDate}</h1>
+                        <h1>Total Holders {showEth ? 'Eth' : 'Celo'} {activeHoldersThismonth.length} holders </h1>
+                    </div>
+
+                    <div>
+                        <thead className=''>
+                            <th className=''>Rank</th>
+                            <th className=''>Address</th>
+                            <th className=''>Quantity</th>
+                            <th className=''>Stake Type</th>
+                        </thead>
+                    </div>
+
+                    <div>
+                    {activeHoldersThismonth.map((stakeEthixHolders, index) => {
+                            return(
+                                <tbody className=''key={index}>
+                                    <td className=''>{index + 1}</td>
+                                    <td className=''>{stakeEthixHolders.id}</td>
+                                    <td className=''>{stakeEthixHolders.totalAmount}</td>
+                                    <td className=''>{stakeEthixHolders.type}</td>
+                                </tbody>
+                            )
+                        })}
                     </div>
 
                 </div>

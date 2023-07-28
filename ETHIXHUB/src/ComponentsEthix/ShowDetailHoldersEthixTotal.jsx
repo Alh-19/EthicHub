@@ -6,16 +6,15 @@ import '../Css/Bonds.css';
 import Big from "big.js";
 import { startOfMonth, endOfMonth, subMonths } from 'date-fns'; 
 
-
 const DetailBondHoldersEthixTotal = () => {
     const { loading, error, data } = useContext(DataContext);
-    const ethixHoldersEth = data.query5Data?.dayCountEthixHolders || [];//CAMBIAR EL QUERYDATA
-    const ethixHoldersCelo = data.query6Data?.dayCountEthixHolders || [];//CAMBIAR EL QUERYDATA
     const [showDetail, setShowDetail] = useState(false);
     const [showEth, setShowEth] = useState(true);
+    const dataHoldersEth = data.query11Data?.ethixHolders || [];
+    const dataHoldersCelo = data.query12Data?.ethixHolders || [];
 
-    // console.log('eth holders data',ethixHoldersEth)
-    // console.log('celo holders data',ethixHoldersCelo)
+    // console.log('eth holders data', dataHoldersEth)
+    // console.log('celo holders data', dataHoldersCelo)
 
     useEffect(() => {
         if (loading) return;
@@ -24,8 +23,10 @@ const DetailBondHoldersEthixTotal = () => {
         return;
         }
 
-    },[loading, error, ethixHoldersEth, ethixHoldersCelo]);
+    },[loading, error, dataHoldersEth, dataHoldersCelo]);
 
+
+    //Get current date
     const getCurrentDate = () => {
         const currentDate = new Date();
         const year = currentDate.getUTCFullYear();
@@ -44,7 +45,7 @@ const DetailBondHoldersEthixTotal = () => {
         const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
         const dayOfWeek = weekdays[currentDate.getUTCDay()];
     
-        // Opcionalmente, puedes dar formato a la fecha y hora como desees, por ejemplo:
+        // Give format to the date
         const formattedDate = `${dayOfWeek}, ${day} ${monthName} ${year} ${hours}:${minutes}:${seconds} GMT`;
 
         return {
@@ -60,34 +61,35 @@ const DetailBondHoldersEthixTotal = () => {
             };
         };
 
-        const currentDateDetails = getCurrentDate();
-        console.log('Fecha actual:', currentDateDetails.formattedDate);
+    const currentDateDetails = getCurrentDate();
+    // console.log('Fecha actual:', currentDateDetails.formattedDate);
 
-     // Función para calcular el total histórico de holders
-    const calculateTotalHolders = (data) => {
-        return data.reduce((total, item) => {
-        const count = parseFloat(item.count);
-        return (count);
-        },);
-    };
-
-    // Calcular el total histórico de holders para Ethereum y Celo
-    const totalEthHolders = calculateTotalHolders(ethixHoldersEth);
-    const totalCeloHolders = calculateTotalHolders(ethixHoldersCelo);
+    //total holders eth and celo
+    const totalEthHolders = dataHoldersEth.length;
+    const totalCeloHolders = dataHoldersCelo.length;
     // console.log('eth total holders', totalEthHolders, 'celo total holders', totalCeloHolders)
+    const activeHolders = showEth ? totalEthHolders : totalCeloHolders;
+    const activeHoldersData = showEth ? dataHoldersEth : dataHoldersCelo;
 
     
-    //funcion para ver el detail
+    //funtion scroll top
+    const moveToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    };
+    
+    //funtion to show detail
     const toggleDetail = () => {
         setShowDetail(!showDetail);
+        moveToTop();
     };
 
-    //funcion para cambiar la vita de Eth a Celo
+    //funtion to change between Eth and Celo
     const toggleView = () => {
         setShowEth(!showEth);
     };
-
-    const activeHoldersThismonth = showEth ? totalEthHolders : totalCeloHolders;
 
     return(
         <div>
@@ -113,26 +115,34 @@ const DetailBondHoldersEthixTotal = () => {
 
                     <div>
                         <h1>{currentDateDetails.formattedDate}</h1>
-                        <h1>Total Holders {showEth ? 'Eth' : 'Celo'} {activeHoldersThismonth} holders </h1>
-                        
-
+                        <h1>Total Holders {showEth ? 'Eth' : 'Celo'} {activeHolders} holders </h1>
                     </div>
 
                     <div className=''>
-                            <p>Rank</p>
-                            <p>Address</p>
-                            <p>Quantity</p>
-                            
-                        </div>
+                    <thead className=''>
+                        <th className=''>Rank</th>
+                        <th className=''>Address</th>
+                        <th className=''>Quantity</th>
+                    </thead>
+                    </div>
+
+                    <div>
+                        {activeHoldersData.map((ethixHolders, index) =>{
+                            return(
+                                <tbody className='' key={index}>
+                                    <td className=''>{index + 1}</td>
+                                    <td className=''>{ethixHolders.id}</td>
+                                    <td className=''>{ethixHolders.totalAmount}</td>
+                                </tbody>
+                            )
+                        })}
+                    </div>
 
                 </div>
-
             )}
-
 
         </div>
     );
-
 };
 
 export default DetailBondHoldersEthixTotal;

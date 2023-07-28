@@ -110,6 +110,7 @@ query EthixHoldersCurrent {
   ) {
     id
     totalAmount
+    dateJoined
   }
 }
 `
