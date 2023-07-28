@@ -33,7 +33,7 @@ const Ethix = () => {
         </div>
       </div>
       <div className="detail-ethix">
-      <DetailBondHoldersEthix />
+
       </div>
      
       <div className="ethix-row">
