@@ -24,7 +24,7 @@ const ChartStake3 = () => {
         'Total Staked',
         'General',
         'Honduras',
-        'Brasil',
+        'Brazil',
         'Mexico',
         'Mexico (Cori)',
         'Ecuador',

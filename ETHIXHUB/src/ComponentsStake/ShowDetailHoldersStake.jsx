@@ -47,7 +47,7 @@ const DetailHoldersStake = () => {
         <div>
 
             <div className='btshow'>
-                <button className="butonshow2" onClick={toggleDetail}>
+                <button className="butonshow1" onClick={toggleDetail}>
                 {showDetail ? 'Hide detail' : 'Show detail'}
                 </button>
             </div>

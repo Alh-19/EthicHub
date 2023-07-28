@@ -1,18 +1,58 @@
 
 .stake-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: 'Nunito Sans', sans-serif;
+  }
+
+  .chart-container {
+    background: #E6EAE5;
+    border-radius: 20px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
-  
   
   .stake-row2 {
     display: flex;
     flex-direction: row;
-
   }
 
   .stake-row1 {
     display: flex;
     flex-direction: row;
+  }
 
+  .stake-row3{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  
+  #myChart {
+    width: 960px;
+    margin-top: 20px;
+  }
+
+  .detail-ethix {
+    align-self: flex-end;
+    margin-right: 180px;
+  }
+
+  .chart-container-combined {
+  font-family: 'Nunito Sans', sans-serif;
+    background: #E6EAE5;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    width: 980px;
+    height: 560px;
   }

@@ -12,6 +12,8 @@ import DetailBondHoldersEthix from "../ComponentsEthix/ShowDetailHoldersEthix";
 const Ethix = () => {
   return (
     <div className="ethix-container">
+      <h3>Ethix Holders per month </h3>
+       
       <div className="ethix-row">
         <div className="chart-container">
           <ChartEthix1 />
@@ -19,8 +21,9 @@ const Ethix = () => {
         <div className="chart-container">
           <ChartEthix2 />
         </div>
-        <DetailBondHoldersEthix />
       </div>
+      
+      <h3>Ethix Holders per month </h3>
       <div className="ethix-row">
         <div className="chart-container">
           <ChartEthix4 />
@@ -29,14 +32,21 @@ const Ethix = () => {
           <ChartEthix5 />
         </div>
       </div>
+      <div className="detail-ethix">
+      <DetailBondHoldersEthix />
+      </div>
+     
       <div className="ethix-row">
         <div className="image-container">
           <ImageEthix />
         </div>
-        <div className="chart-container">
+        <div className="chart-container-total">
+        <h3>Ethix holders total</h3>
           <ChartEthix3 />
         </div>
-        <DetailBondHoldersEthixTotal />
+      </div>
+       <div className="detail-ethix">
+      <DetailBondHoldersEthixTotal />
       </div>
     </div>
   );
