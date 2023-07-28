@@ -5,7 +5,6 @@ import '../Css/Bonds.css';
 import Big from "big.js";
 import { startOfMonth, endOfMonth, subMonths } from 'date-fns'; 
 
-
 const DetailHoldersStakeTotal = () => {
     const { loading, error, data } = useContext(DataContext);
     const stakeHoldersEth = data.query9Data?.stakeEthixHolders || [];
@@ -61,10 +60,6 @@ const DetailHoldersStakeTotal = () => {
 
     const currentDateDetails = getCurrentDate();
     // console.log('Fecha actual:', currentDateDetails.formattedDate);
-
-
-
-    
 
     const activeHoldersThismonth = showEth ? stakeHoldersEth : stakeHoldersCelo;
     console.log('aqui',activeHoldersThismonth)
@@ -125,13 +120,14 @@ const DetailHoldersStakeTotal = () => {
                     </div>
 
                     <div>
-                    {activeHoldersThismonth.map((stakeEthixHolders, index) => {
-                            return(
-                                <tbody className=''key={index}>
+                        {activeHoldersThismonth.map((stakeEthixHolders, index) => {
+                            const allTypes = stakeEthixHolders.type.join(', ');
+                            return (
+                                <tbody className='' key={index}>
                                     <td className=''>{index + 1}</td>
                                     <td className=''>{stakeEthixHolders.id}</td>
                                     <td className=''>{stakeEthixHolders.totalAmount}</td>
-                                    <td className=''>{stakeEthixHolders.type}</td>
+                                    <td className=''>{allTypes}</td>
                                 </tbody>
                             )
                         })}
