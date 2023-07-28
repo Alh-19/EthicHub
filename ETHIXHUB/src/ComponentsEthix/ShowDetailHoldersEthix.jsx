@@ -4,18 +4,18 @@ import React, { useEffect, useContext, useState } from 'react';
 import { DataContext } from '../Data/DataContextProvider';
 import '../Css/Bonds.css';
 import Big from "big.js";
-import { startOfMonth, endOfMonth, subMonths } from 'date-fns'; 
+import { startOfMonth, endOfMonth, subMonths, isAfter, isBefore } from 'date-fns';
 
 
 const DetailBondHoldersEthix = () => {
     const { loading, error, data } = useContext(DataContext);
-    const ethixHoldersEth = data.query5Data?.dayCountEthixHolders || [];//CAMBIAR EL QUERYDATA
-    const ethixHoldersCelo = data.query6Data?.dayCountEthixHolders || [];//CAMBIAR EL QUERYDATA
+    const dataHoldersEth = data.query11Data?.ethixHolders || [];
+    const dataHoldersCelo = data.query12Data?.ethixHolders || [];
     const [showDetail, setShowDetail] = useState(false);
     const [showEth, setShowEth] = useState(true);
 
-    // console.log('eth holders data',ethixHoldersEth)
-    // console.log('celo holders data',ethixHoldersCelo)
+    console.log('eth holders data', dataHoldersEth)
+    console.log('celo holders data', dataHoldersCelo)
 
     useEffect(() => {
         if (loading) return;
@@ -24,97 +24,122 @@ const DetailBondHoldersEthix = () => {
         return;
         }
 
-    },[loading, error, ethixHoldersEth, ethixHoldersCelo]);
+    },[loading, error, dataHoldersEth, dataHoldersCelo]);
 
-
-    // Función para calcular el total histórico de holders
-    const calculateTotalHolders = (data) => {
-        return data.reduce((total, item) => {
-        const count = parseFloat(item.count);
-        return (count);
-        },);
+    //total holders eth and celo
+    const totalEthHolders = dataHoldersEth.length;
+    const totalCeloHolders = dataHoldersCelo.length;
+    // console.log('eth total holders', totalEthHolders, 'celo total holders', totalCeloHolders)
+    const activeHolders = showEth ? totalEthHolders : totalCeloHolders;
+    // Data Holder eth an celo
+    const activeHoldersData = showEth ? dataHoldersEth : dataHoldersCelo;
+    
+    const getCurrentHolders = () => {
+        return showEth ? dataHoldersEth : dataHoldersCelo;
     };
 
-    // Calcular el total histórico de holders para Ethereum y Celo
-    const totalEthHolders = calculateTotalHolders(ethixHoldersEth);
-    const totalCeloHolders = calculateTotalHolders(ethixHoldersCelo);
-    console.log('eth total holders', totalEthHolders, 'celo total holders', totalCeloHolders)
 
-    // Función para obtener el total histórico de holders del mes pasado
-    const calculateTotalHoldersLastMonth = (data) => {
+
+
+
+
+    // Function to calculate the number of ethixholders who were present last month
+    const getEthixHoldersLastMonth = () => {
         const currentDate = new Date();
-        const lastMonthDate = subMonths(currentDate, 1);
-
-        const lastMonthData = data.filter((item) => {
-        const itemDate = new Date(item.date * 1000);
-        const startOfMonthDate = startOfMonth(lastMonthDate);
-        const endOfMonthDate = endOfMonth(lastMonthDate);
-        return itemDate >= startOfMonthDate && itemDate <= endOfMonthDate;
+        const firstDayOfLastMonth = startOfMonth(subMonths(currentDate, 1));
+        const lastDayOfLastMonth = endOfMonth(subMonths(currentDate, 1));
+        const ethixholders = getCurrentHolders();
+        return ethixholders.filter(ethixholder => {
+            const ethixholderDate = new Date(ethixholder.dateJoined * 1000); // Convert seconds to milliseconds
+            return isBefore(ethixholderDate, lastDayOfLastMonth);
         });
-
-        return calculateTotalHolders(lastMonthData);
     };
 
-    // Calcular el total histórico de holders del mes pasado para Ethereum y Celo
-    const totalEthHoldersLastMonth = calculateTotalHoldersLastMonth(ethixHoldersEth);
-    const totalCeloHoldersLastMonth = calculateTotalHoldersLastMonth(ethixHoldersCelo);
-    // console.log('eth total holders last month',totalEthHoldersLastMonth,'celo total holders last month', totalCeloHoldersLastMonth)
+    const lastMonthHoldersEth = getEthixHoldersLastMonth(dataHoldersEth).length;
+    const lastMonthHoldersCelo = getEthixHoldersLastMonth(dataHoldersCelo).length;
+    const lastMonthHoldersStake = showEth ? lastMonthHoldersEth : lastMonthHoldersCelo;
+    console.log(lastMonthHoldersEth, lastMonthHoldersCelo)
 
-     // Función para calcular el total de nuevos holders que se han unido este mes
-    const calculateNewHolders = (data) => {
+
+
+
+
+
+
+
+
+
+    //funtion of actual month
+    const getCurrentDate = () => {
         const currentDate = new Date();
-        const startOfMonthDate = startOfMonth(currentDate);
-        const endOfMonthDate = endOfMonth(currentDate);
+        const year = currentDate.getUTCFullYear();
+        const month = currentDate.getUTCMonth();
+        
+        const months = [
+            'January', 'February', 'March', 'April', 'May', 'June',
+            'July', 'August', 'September', 'October', 'November', 'December'
+        ];
+        const monthName = months[month];
 
-        const firstDataPoint = data.find((item) => {
-        const itemDate = new Date(item.date * 1000);
-        return itemDate >= startOfMonthDate;
-        });
+        // change format od date
+        const formattedDate = `${monthName} ${year}:`;
 
-        const lastDataPoint = data.reduce((latest, item) => {
-        const itemDate = new Date(item.date * 1000);
-        if (itemDate <= endOfMonthDate) {
-            return item;
-        }
-        return latest;
-        }, {});
-
-        if (firstDataPoint && lastDataPoint) {
-        const newHoldersCount = parseFloat(lastDataPoint.count) - parseFloat(firstDataPoint.count);
-        return newHoldersCount >= 0 ? newHoldersCount : 0;
-        }
-        return 0;
+        return {
+            currentDate,
+            year,
+            month: monthName,
+            formattedDate,
+            };
     };
 
-    // Calcular el total de nuevos holders que se han unido este mes para Ethereum y Celo
-    const newEthHoldersThisMonth = calculateNewHolders(ethixHoldersEth);
-    const newCeloHoldersThisMonth = calculateNewHolders(ethixHoldersCelo);
-    // console.log('eth new holders this month', newEthHoldersThisMonth,'celo new holders this month', newCeloHoldersThisMonth)
+    const currentDateDetails = getCurrentDate();
+    // console.log('Fecha actual:', currentDateDetails.formattedDate);
 
+    // Function to get the date of the previous month
+    const getPreviousMonthDate = () => {
+        const currentDate = new Date();
+        const previousMonthDate = subMonths(currentDate, 1);
+        const year = previousMonthDate.getUTCFullYear();
+        const month = previousMonthDate.getUTCMonth();
+        
+        const months = [
+            'January', 'February', 'March', 'April', 'May', 'June',
+            'July', 'August', 'September', 'October', 'November', 'December'
+        ];
+        const monthName = months[month];
 
+        // Format the date as desired
+        const formattedDate = `${monthName} ${year}:`;
 
+        return {
+            year,
+            month: monthName,
+            formattedDate,
+        };
+    };
 
+    // Get the date of the previous month
+    const previousMonthDateDetails = getPreviousMonthDate();
+    // console.log('Fecha mes pasado:', previousMonthDateDetails.formattedDate);
 
-
-
-
-
-
-
-    //funcion para ver el detail
+    //funtion scroll top
+    const moveToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    };
+    
+    //funtion to show detail
     const toggleDetail = () => {
         setShowDetail(!showDetail);
+        moveToTop();
     };
 
-    //funcion para cambiar la vita de Eth a Celo
+    //funtion to change between Eth and Celo
     const toggleView = () => {
         setShowEth(!showEth);
     };
-
-    const activeHoldersThismonth = showEth ? totalEthHolders : totalCeloHolders;
-    const activeHoldersLastmonth = showEth ? totalEthHoldersLastMonth : totalCeloHoldersLastMonth;
-    const activeNewHoldersThismonth = showEth ? newEthHoldersThisMonth : newCeloHoldersThisMonth;
-
 
     return(
         <div>
@@ -139,9 +164,9 @@ const DetailBondHoldersEthix = () => {
                     </div>
 
                     <div>
-                        <h1> Last Month: {activeHoldersLastmonth} holders </h1>
-                        <h1> Current Month: {activeHoldersThismonth} holders </h1>
-                        <h1> + {activeNewHoldersThismonth} holders </h1>
+                        <h1>{previousMonthDateDetails.formattedDate} </h1>
+                        <h1>{currentDateDetails.formattedDate} {activeHolders} holders </h1>
+                        <h1>   </h1>
 
                     </div>
 
@@ -159,84 +184,7 @@ export default DetailBondHoldersEthix;
 
 
 
-    // // Función para obtener los datos del mes actual y el mes pasado
-    // const getMonthlyData = (data, currentDate) => {
-    //     const currentMonthData = data.filter((item) => {
-    //     const itemDate = new Date(item.date * 1000);
-    //     const startOfMonthDate = startOfMonth(currentDate);
-    //     const endOfMonthDate = endOfMonth(currentDate);
-    //     return itemDate >= startOfMonthDate && itemDate <= endOfMonthDate;
-    //     });
-
-    //     const previousMonthDate = subMonths(currentDate, 1);
-    //     const previousMonthData = data.filter((item) => {
-    //     const itemDate = new Date(item.date * 1000);
-    //     const startOfMonthDate = startOfMonth(previousMonthDate);
-    //     const endOfMonthDate = endOfMonth(previousMonthDate);
-    //     return itemDate >= startOfMonthDate && itemDate <= endOfMonthDate;
-    //     });
-
-    //     return { currentMonthData, previousMonthData };
-    // };
-
-    // // Obtener los datos del mes actual y el mes pasado para Ethereum
-    // const { currentMonthData: ethCurrentMonthData, previousMonthData: ethPreviousMonthData } = getMonthlyData(
-    //     ethixHoldersEth,
-    //     new Date()
-    // );
-    // console.log(ethCurrentMonthData, ethPreviousMonthData)
-
-    // // Obtener los datos del mes actual y el mes pasado para Celo
-    // const { currentMonthData: celoCurrentMonthData, previousMonthData: celoPreviousMonthData } = getMonthlyData(
-    //     ethixHoldersCelo,
-    //     new Date()
-    // );
-    // console.log(celoCurrentMonthData, celoPreviousMonthData)
 
 
 
 
-
-
-
-
-
-    
-//      // Función para calcular el total de direcciones que se han unido en el mes actual
-//   const calculateTotalAddressesJoined = (data) => {
-//     const currentDate = new Date();
-//     const startOfMonthDate = startOfMonth(currentDate);
-//     const endOfMonthDate = endOfMonth(currentDate);
-
-//     const filteredData = data.filter((item) => {
-//       const itemDate = new Date(item.date * 1000);
-//       return itemDate >= startOfMonthDate && itemDate <= endOfMonthDate;
-//     });
-
-//     const uniqueAddresses = new Set();
-//     filteredData.forEach((item) => {
-//       uniqueAddresses.add(item.address);
-//     });
-
-//     return uniqueAddresses.size;
-//   };
-
-//    // Calcular el total de direcciones que se han unido en el mes actual para Ethereum y Celo
-//    const totalEthAddressesJoined = calculateTotalAddressesJoined(ethixHoldersEth);
-//    const totalCeloAddressesJoined = calculateTotalAddressesJoined(ethixHoldersCelo);
-//     console.log(totalEthAddressesJoined, totalCeloAddressesJoined);
-
-//  // Función para calcular el total histórico de direcciones
-//  const calculateTotalAddressesJoined = (data) => {
-//     const uniqueAddresses = new Set();
-//     data.forEach((item) => {
-//       uniqueAddresses.add(item.address);
-//     });
-
-//     return uniqueAddresses.size;
-//   };
-
-//   // Calcular el total histórico de direcciones para Ethereum y Celo
-//   const totalEthAddressesJoined = calculateTotalAddressesJoined(ethixHoldersEth);
-//   const totalCeloAddressesJoined = calculateTotalAddressesJoined(ethixHoldersCelo);
-//   console.log(totalEthAddressesJoined, totalCeloAddressesJoined);
