@@ -4,17 +4,18 @@ import { Chart } from 'chart.js/auto';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-const ChartStake1B = () => {
+const ChartStake1D = () => {
   const chartRef = useRef(null);
   const [chart, setChart] = useState(null);
   const { data } = useContext(DataContext);
   const { query9Data, query10Data } = data;
 
-  // Inicializar con el mes pasado
+  // Inicializar con la fecha de ayer
   const today = new Date();
-  const currentMonth = new Date(today.getFullYear(), today.getMonth());
-  const [selectedDate, setSelectedDate] = useState(currentMonth);
-  
+  const yesterday = new Date(today);
+  yesterday.setDate(today.getDate() - 1);
+  const [selectedDate, setSelectedDate] = useState(yesterday);
+
   useEffect(() => {
     if (chartRef.current && query9Data && query10Data && !chart) {
       const ctx = chartRef.current.getContext('2d');
@@ -66,6 +67,7 @@ const ChartStake1B = () => {
 
   const updateChartData = () => {
     if (selectedDate && chart && chart.data) {
+      const selectedDay = selectedDate.getDate();
       const selectedMonth = selectedDate.getMonth();
       const selectedYear = selectedDate.getFullYear();
 
@@ -74,7 +76,8 @@ const ChartStake1B = () => {
         const itemDate = new Date(item.dateJoined * 1000);
         return (
           itemDate.getFullYear() < selectedYear ||
-          (itemDate.getFullYear() === selectedYear && itemDate.getMonth() <= selectedMonth)
+          (itemDate.getFullYear() === selectedYear &&
+            (itemDate.getMonth() < selectedMonth || (itemDate.getMonth() === selectedMonth && itemDate.getDate() <= selectedDay)))
         );
       });
 
@@ -82,7 +85,8 @@ const ChartStake1B = () => {
         const itemDate = new Date(item.dateJoined * 1000);
         return (
           itemDate.getFullYear() < selectedYear ||
-          (itemDate.getFullYear() === selectedYear && itemDate.getMonth() <= selectedMonth)
+          (itemDate.getFullYear() === selectedYear &&
+            (itemDate.getMonth() < selectedMonth || (itemDate.getMonth() === selectedMonth && itemDate.getDate() <= selectedDay)))
         );
       });
 
@@ -99,7 +103,9 @@ const ChartStake1B = () => {
       celoData.data = [celoCountAccumulated];
       allData.data = [allCountAccumulated];
 
-      chart.data.labels = [selectedDate.toLocaleString('default', { month: 'long', year: 'numeric' })];
+      chart.data.labels = [
+        selectedDate.toLocaleString('default', { day: 'numeric', month: 'long', year: 'numeric' }),
+      ];
       chart.update();
     }
   };
@@ -116,19 +122,20 @@ const ChartStake1B = () => {
 
   return (
     <div>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'start', marginLeft: '10px' }}>
-        <div style={{ marginBottom: '40px', marginLeft: '40px' }}>
+      <div>
+        <div className='datepicker-container'>
           <DatePicker
             selected={selectedDate}
             onChange={handleDateChange}
-            dateFormat="MMMM yyyy"
-            showMonthYearPicker
-            showFullMonthYearPicker
-            placeholderText="Select a Month"
+            dateFormat="dd MMMM yyyy"
+            showYearDropdown
+            scrollableYearDropdown
+            yearDropdownItemNumber={10}
+            placeholderText="Select a Date"
             todayButton="Today"
           />
         </div>
-        <div style={{ height: '400px', width: '100%' }}>
+        <div className='chart-ethix'>
           <canvas ref={chartRef}></canvas>
         </div>
       </div>
@@ -136,4 +143,4 @@ const ChartStake1B = () => {
   );
 };
 
-export default ChartStake1B;
+export default ChartStake1D;

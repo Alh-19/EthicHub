@@ -5,7 +5,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../Css/DatePicke.css';
 
-const ChartEthix1 = () => {
+const ChartEthix4= () => {
   const chartRef = useRef(null);
   const [chart, setChart] = useState(null);
   const { data } = useContext(DataContext);
@@ -50,7 +50,7 @@ const ChartEthix1 = () => {
           ],
         },
         options: {
-          // Opciones del gráfico...
+          responsive: true,
         },
       });
 
@@ -113,8 +113,8 @@ const ChartEthix1 = () => {
 
   return (
     <div>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'start', marginLeft: '10px' }}>
-        <div style={{ marginBottom: '40px', marginLeft: '40px' }}>
+      <div>
+      <div className='datepicker-container'>
           <DatePicker
             selected={selectedDate}
             onChange={handleDateChange}
@@ -126,7 +126,7 @@ const ChartEthix1 = () => {
             todayButton="Today"
           />
         </div>
-        <div style={{ height: '400px', width: '100%' }}>
+        <div className='chart-ethix'>
           <canvas ref={chartRef}></canvas>
         </div>
       </div>
@@ -134,4 +134,4 @@ const ChartEthix1 = () => {
   );
 };
 
-export default ChartEthix1;
+export default ChartEthix4;

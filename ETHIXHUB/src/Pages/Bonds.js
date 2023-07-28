@@ -33,29 +33,27 @@ const Bonds = () => {
       </div>
 
       <div className="container">
-
         <div className="bonds-minted">
-          <h3>Amount of bonds minted by month</h3>
+          <h3>Bonds minted by month</h3>
           <CombinedChart />
         </div>
-
+        <div className="detail-ethix">
+              <DetailBonds />
+        </div>
         <div className="container2">
           <div className="deposited-principal">
-            <h3>Deposited principal by bond size</h3>
+            <h3>Total deposited by bond size</h3>
               <CombinedChart2 />
-              <DetailBonds />
           </div>
-
           <div className="bond-holders">
-            <h3>Bond holders</h3>
+            <h3>Bond holders total</h3>
             <Chart5 />
-           <DetailBondholder/>
           </div>
-          
         </div>
-        
+        <div className="detail-ethix">
+           <DetailBondholder/>
+        </div>
       </div>
-      
     </div>
 
     

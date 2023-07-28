@@ -52,7 +52,12 @@ const ChartEthix3 = () => {
     }
   }, [loading, error, data]);
 
-  return <canvas ref={canvasRef} />;
+  return (
+    <div>
+     <canvas ref={canvasRef} />
+     </div>
+  )
+ 
 };
 
 export default ChartEthix3;
