@@ -5,17 +5,15 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../Css/DatePicke.css';
 
-const ChartEthix5 = () => {
+const ChartEthix5= () => {
   const chartRef = useRef(null);
   const [chart, setChart] = useState(null);
   const { data } = useContext(DataContext);
   const { query5Data, query6Data } = data;
 
-  // Set the default date to the day before yesterday
+  // Set the default date to yesterday
   const today = new Date();
-  const dayBeforeYesterday = new Date(today);
-  dayBeforeYesterday.setDate(dayBeforeYesterday.getDate() - 2);
-  const [selectedDate, setSelectedDate] = useState(dayBeforeYesterday);
+  const [selectedDate, setSelectedDate] = useState(today); 
 
   useEffect(() => {
     if (chartRef.current && query5Data && query6Data && !chart) {
@@ -50,7 +48,7 @@ const ChartEthix5 = () => {
           ],
         },
         options: {
-          // Opciones del gráfico...
+          responsive: true,
         },
       });
 
@@ -80,8 +78,14 @@ const ChartEthix5 = () => {
           itemDate.getFullYear() === selectedYear &&
           itemDate.getMonth() === selectedMonth &&
           itemDate.getDate() === selectedDay
+
+          
         );
+        
+  
       });
+      console.log('ETH holders data:', ethixHoldersData);
+  console.log('CELO holders data:', celoHoldersData);
 
       const ethCount = ethixHoldersData.length > 0 ? parseFloat(ethixHoldersData[0].count) : 0;
       const celoCount = celoHoldersData.length > 0 ? parseFloat(celoHoldersData[0].count) : 0;
@@ -113,8 +117,8 @@ const ChartEthix5 = () => {
 
   return (
     <div>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'start', marginLeft: '10px' }}>
-        <div style={{ marginBottom: '40px', marginLeft: '40px' }}>
+      <div>
+      <div className='datepicker-container'>
           <DatePicker
             selected={selectedDate}
             onChange={handleDateChange}
@@ -126,7 +130,7 @@ const ChartEthix5 = () => {
             todayButton="Today"
           />
         </div>
-        <div style={{ height: '400px', width: '100%' }}>
+        <div className='chart-ethix'>
           <canvas ref={chartRef}></canvas>
         </div>
       </div>

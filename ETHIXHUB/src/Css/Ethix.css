@@ -1,27 +1,60 @@
-/* Ethix.css */
-
-/* Set display to flex for the main container */
 .ethix-container {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+  font-family: 'Nunito Sans', sans-serif;
   }
   
-  /* Apply flex properties to each row container */
   .ethix-row {
     display: flex;
-    margin-bottom: 10px; /* Add some spacing between rows */
   }
   
-  /* Set the width of each chart component and image component */
-  .chart-container,
-  .image-container {
-    flex: 1;
-    min-width: 0; /* Allow the charts to shrink if necessary */
+  .chart-container {
+    background: #E6EAE5;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-left: 25px;
+    margin-right: 25px;
+    width: 440px;
+    height: 300px;
+  }
+
+  .chart-container-total {
+    background: #E6EAE5;
+    border-radius: 20px;
+    padding: 20px;
+    padding-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-left: 25px;
+    width: 440px;
+    height: 360px;
   }
   
-  /* Add some spacing between the components */
-  .chart-container + .chart-container,
-  .image-container + .chart-container {
-    margin-left: 10px; /* Add spacing between the charts in a row */
+  .chart-ethix {
+    width: 400px;
+    height: 200px;
   }
   
+  .detail-ethix { 
+    margin-bottom: 60px;
+  }
+
+  .image-ethix {
+    border-radius: 100px;
+    width: 420px;
+    height: 'auto';
+    margin-right: 90px;
+    padding-top: 20px;
+  }

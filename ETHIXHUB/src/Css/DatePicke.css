@@ -1,7 +1,7 @@
 
 .react-datepicker__input-container input {
     background-color: #f0f0f0;
-    background: white;
+    background: #E6EAE5;
     color: gray;
     font-size: 14px;
     font-family: 'Nunito Sans', sans-serif;
@@ -32,4 +32,11 @@
   .react-datepicker {
    margin-bottom: 40px;
   }
+
+  
+.datepicker-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
   

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { DataContext } from '../Data/DataContextProvider';
 import { Chart } from 'chart.js';
+import '../Css/Stake.css'
 
 const ChartStake3 = () => {
   const { data } = useContext(DataContext);
@@ -100,7 +101,9 @@ const ChartStake3 = () => {
       ) : query7Data.error || query8Data.error ? (
         <p>Error fetching data</p>
       ) : (
-        <canvas id="myChart" width="400" height="200"></canvas>
+        <div  className='chart-ethix-combined'>
+        <canvas id="myChart"></canvas>
+        </div>
       )}
     </div>
   );

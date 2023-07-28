@@ -52,7 +52,11 @@ const ChartStake2 = () => {
     }
   }, [loading, error, data]);
 
-  return <canvas ref={canvasRef} />;
+  return (
+    <div>
+      <canvas ref={canvasRef} />
+    </div>
+  )
 };
 
 export default ChartStake2;
