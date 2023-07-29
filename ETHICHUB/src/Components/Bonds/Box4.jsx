@@ -1,8 +1,9 @@
 import React, { useEffect, useContext, useState } from 'react';
-import { DataContext } from '../Data/DataContextProvider';
-import '../Css/Box.css';
+import { DataContext } from '../../Data/DataContextProvider';
+import '../../Css/Bonds.css';
+import '../../Css/Box.css'
 
-const Box1a = () => {
+const Box4 = () => {
     const { query5Data } = useContext(DataContext);
     const [currentMonthBondHolders, setCurrentMonthBondHolders] = useState([]);
     const [previousMonthBondHolders, setPreviousMonthBondHolders] = useState([]);
@@ -14,7 +15,7 @@ const Box1a = () => {
         const bondTotals = {};
 
         dayCountEthixHolders.forEach((holder) => {
-            const date = new Date(holder.date); // Convert date string to Date object
+            const date = new Date(holder.date); 
             const monthYear = `${date.getMonth() + 1}/${date.getFullYear()}`;
 
             if (bondTotals.hasOwnProperty(monthYear)) {
@@ -46,14 +47,14 @@ const Box1a = () => {
 
     return (
         <div className='box'>
-            <h5 className='titlebox'>ETH: </h5>
+            <h5 className='titlebox'>ETH:</h5>
             <div className='boxdata'>
                 <h1 className='currentbhbox'>{currentMonthBondHolders.length}</h1>
-                <h2 className='previousbhbox'>Vs Last month {previousMonthBondHolders.length}</h2>
+                <h2 className='previousbhbox'>Vs last month {previousMonthBondHolders.length}</h2>
             </div>
         </div>
     );
 };
 
-export default Box1a;
+export default Box4;
 

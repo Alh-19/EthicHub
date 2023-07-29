@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useRef } from 'react';
-import { DataContext } from '../Data/DataContextProvider';
+import { DataContext } from '../../Data/DataContextProvider';
 import { Chart } from 'chart.js/auto';
-import '../Css/Bonds.css';
+import '../../Css/Bonds.css';
+
 
 const CombinedChart = () => {
   const { loading, error, data } = useContext(DataContext);
@@ -23,7 +24,7 @@ const CombinedChart = () => {
         const dateA = new Date(yearA, monthA - 1);
         const dateB = new Date(yearB, monthB - 1);
         return dateA - dateB;
-      }); // Ordenar los meses de forma ascendente
+      }); 
 
       const getMonthName = (month) => {
         const monthNames = [
@@ -111,12 +112,12 @@ const CombinedChart = () => {
 
     bondHolders.forEach((bondHolder) => {
       bondHolder.bonds.forEach((bond) => {
-        const mintingDate = new Date(bond.mintingDate * 1000); // Convertir segundos a milisegundos
+        const mintingDate = new Date(bond.mintingDate * 1000); 
         const monthYear = `${mintingDate.getMonth() + 1}/${mintingDate.getFullYear()}`;
         if (bondTotals.hasOwnProperty(monthYear)) {
-          bondTotals[monthYear] += 1; // Sumar 1 al total existente
+          bondTotals[monthYear] += 1; 
         } else {
-          bondTotals[monthYear] = 1; // Inicializar el total en 1 para el mes
+          bondTotals[monthYear] = 1; 
         }
       });
     });

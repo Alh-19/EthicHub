@@ -3,7 +3,7 @@ import ChartStake3 from "../ComponentsStake/ChartStake3";
 import ChartStake2 from "../ComponentsStake/ChartStake2";
 import ChartStake1 from "../ComponentsStake/ChartStake1";
 import ChartStake1B from "../ComponentsStake/ChartStake1B";
-import ImageEthix from "../ComponentsEthix/ImageEthix";
+import ImageStake from "../ComponentsStake/ImageStake";
 import ChartStake1C from "../ComponentsStake/ChartStake1C";
 import ChartStake1D from "../ComponentsStake/ChartStake1D";
 import "../Css/Stake.css"; // Import the CSS file
@@ -37,7 +37,7 @@ const Stake = () => {
       </div>
       <div className="stake-row2">
         <div className="image-container">
-          <ImageEthix />
+          <ImageStake />
         </div>
         <div className="chart-container-total">
         <h3>Stake holders total</h3>

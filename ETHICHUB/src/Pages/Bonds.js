@@ -1,14 +1,14 @@
-import CombinedChart from "../Components/CombinedChart";
-import CombinedChart2 from "../Components/CombinedChart2";
-import Chart5 from "../Components/Chart5";
-import Box1a from "../Components/Box1a";
-import Box1b from "../Components/Box1b";
-import Box1 from "../Components/Box1";
-import Box2 from "../Components/Box2";
-import Box3 from "../Components/Box3";
-import '../Css/Bonds.css';
-import DetailBondholder from "../Components/ShowDetailBondholder";
-import DetailBonds from "../Components/ShowDetailBonds";
+import CombinedChart from "../Components/Bonds/CombinedChart";
+import CombinedChart2 from "../Components/Bonds/CombinedChart2";
+import Chart5 from "../Components/Bonds/PieChart";
+import Box4 from "../Components/Bonds/Box4";
+import Box5 from "../Components/Bonds/Box5";
+import Box1 from "../Components/Bonds/Box1";
+import Box2 from "../Components/Bonds/Box2";
+import Box3 from "../Components/Bonds/Box3";
+import '../Css/Bonds.css'
+import DetailBondholder from "../Components/Bonds/ShowDetailPieChart";
+import DetailBonds from "../Components/Bonds/ShowDetailChart";
 
 
 const Bonds = () => {
@@ -27,8 +27,8 @@ const Bonds = () => {
       <div className="bondholders">
         <h3 className="bh">Bond Holders</h3>
         <div className="box1y2">
-          <Box1a />
-          <Box1b />
+          <Box4 />
+          <Box5 />
         </div>
       </div>
 

@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useContext, useState } from 'react';
-import { DataContext } from '../Data/DataContextProvider';
-import '../Css/Box.css'
+import { DataContext } from '../../Data/DataContextProvider';
+import '../../Css/Bonds.css';
+import '../../Css/Box.css'
 
-const Box1b = () => {
+const Box5 = () => {
     const { loading, error, data } = useContext(DataContext);
     const [currentMonthBondHolders, setCurrentMonthBondHolders] = useState([]);
     const [previousMonthBondHolders, setPreviousMonthBondHolders] = useState([]);
@@ -19,13 +20,13 @@ const Box1b = () => {
 
         bondHolders.forEach((bondHolder) => {
             bondHolder.bonds.forEach((bond) => {
-                const mintingDate = new Date(bond.mintingDate * 1000); // Convertir segundos a milisegundos
+                const mintingDate = new Date(bond.mintingDate * 1000); 
                 const monthYear = `${mintingDate.getMonth() + 1}/${mintingDate.getFullYear()}`;
 
                 if (bondTotals.hasOwnProperty(monthYear)) {
-                    bondTotals[monthYear] += 1; // Sumar 1 al total existente
+                    bondTotals[monthYear] += 1; 
                 } else {
-                    bondTotals[monthYear] = 1; // Inicializar el total en 1 para el mes
+                    bondTotals[monthYear] = 1; 
                 }
             });
         });
@@ -63,10 +64,10 @@ const Box1b = () => {
             <h5 className='titlebox'>CELO: </h5>
             <div className='boxdata'>
                 <h2 className='currentbhbox'>{currentMonthBondHolders.length}</h2>
-                <h2 className='previousbhbox'>Vs Last month {previousMonthBondHolders.length}</h2>
+                <h2 className='previousbhbox'>Vs last month {previousMonthBondHolders.length}</h2>
             </div>
         </div>
     );
 };
 
-export default Box1b;
+export default Box5;

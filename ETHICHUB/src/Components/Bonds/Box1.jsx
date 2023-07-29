@@ -1,11 +1,12 @@
 import React, { useEffect, useContext, useState } from 'react';
-import { DataContext } from '../Data/DataContextProvider';
+import { DataContext } from '../../Data/DataContextProvider';
+import '../../Css/Box.css'
 import Big from 'big.js';
 
 const Box1 = () => {
     const { loading, error, data } = useContext(DataContext);
-    const [workingCapitalEth, setWorkingCapitalEth] = useState(Big(0)); // State for ETH working capital
-    const [workingCapitalCelo, setWorkingCapitalCelo] = useState(Big(0)); // State for CELO working capital
+    const [workingCapitalEth, setWorkingCapitalEth] = useState(Big(0)); 
+    const [workingCapitalCelo, setWorkingCapitalCelo] = useState(Big(0));
 
     useEffect(() => {
         if (loading) return;
@@ -16,7 +17,7 @@ const Box1 = () => {
 
         const bondsEth = data.query1Data.bonds;
         const bondsCelo = data.query2Data.bonds;
-// Calculate working capital for ETH by summing all the "principal" values of ETH bonds
+
         const workingCapitalEth = bondsEth.reduce((total, bond) => {
             if (bond.redeemDate === null) {
               return total.plus(bond.principal);
@@ -25,7 +26,7 @@ const Box1 = () => {
           }, Big(0));
           setWorkingCapitalEth(workingCapitalEth);
 
-        // Calculate working capital for CELO by summing all the "principal" values of CELO bonds
+       
         const workingCapitalCelo = bondsCelo.reduce((total, bond) => {
             if (bond.redeemDate === null) {
               return total.plus(bond.principal);
@@ -39,7 +40,8 @@ const Box1 = () => {
     return (
         <div className='boxliquidity'>
             <div className="boxmature">
-                <h5 className='titletomature'>ETH Working Capital:</h5>
+                <h5 className='titletomature'>WORKING CAPITAL</h5>
+                <h7 className='titletomature'>Current month</h7>
                 <div className='month'>
                     <h3 className='h3s1'>ETH: {workingCapitalEth.toFixed(3)} DAI</h3> 
                     <h3 className='h3s2'>CELO: {workingCapitalCelo.toFixed(3)} cUSD</h3>

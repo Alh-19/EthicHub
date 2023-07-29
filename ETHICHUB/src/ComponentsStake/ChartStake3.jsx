@@ -109,15 +109,15 @@ const ChartStake3 = () => {
         <canvas id="myChart" width="400" height="200"></canvas>
       )}
 
-      <div className='flag-icons'>
-        <img className='honduras-flag' src={hondurasImage} alt="Honduras" />
-        <img className='brazil-flag' src={brazilImage} alt="Brazil" />
-        <img className='mexico-flag' src={mexicoImage} alt="Mexico" />
-        <img className='mexico-flagcori' src={mexicoImage} alt="Mexico (Cori)" />
-        <img className='ecuador-flag' src={ecuadorImage} alt="Ecuador" />
-        <img className='peru-flag' src={peruImage} alt="Peru" />
+    <div className='flag-icons'>  
+    <img className='honduras-flag' src={hondurasImage} alt="Honduras" />
+    <img className='brazil-flag' src={brazilImage} alt="Brazil" />
+    <img className='mexico-flag' src={mexicoImage} alt="Mexico" />
+    <img className='mexico-flagcori' src={mexicoImage} alt="Mexico (Cori)" />
+    <img className='ecuador-flag' src={ecuadorImage} alt="Ecuador" />
+    <img className='peru-flag' src={peruImage} alt="Peru" />
 
-      </div>
+          </div>
 
     </div>
   );

@@ -2,24 +2,26 @@
 
 /*Bond holders*/
 
-.bondholders{
+.bondholders {
     font-family: 'Nunito Sans', sans-serif;
     display: flex;
     width: 100%;
     flex-direction: column;
+    margin-bottom: 50px;
 }
-.bh{
+
+.bh {
     text-align: center;
 }
 
-.box1y2{
+.box1y2 {
     display: flex;
     width: 100%;
     flex-direction: row;
     justify-content: center;
 }
 
-.box{
+.box {
     background-color: #E6EAE5;
     height: 130px;
     display: flex;
@@ -32,11 +34,11 @@
     border-radius: 20px;
 }
 
-.titlebox{
+.titlebox {
     margin-left: 25px;
 }
 
-.boxdata{
+.boxdata {
     margin: 0;
     display: flex;
     flex-direction: row;
@@ -45,18 +47,18 @@
 
 }
 
-.currentbhbox{
+.currentbhbox {
     display: flex;
     font-size: 70px;
     margin: 0;
-    place-items: end ;
+    place-items: end;
     margin-right: 25px;
 }
 
-.previousbhbox{
+.previousbhbox {
     display: flex;
     margin: 0;
-    place-items: end ;
+    place-items: end;
     margin-bottom: 15px;
 
 }
@@ -64,44 +66,50 @@
 
 /*Bond Liquidity*/
 
-.bliquidity{
-    margin-top: 25px;
+.bliquidity {
     font-family: 'Nunito Sans', sans-serif;
     display: flex;
     flex-direction: column;
+    width: 100%;
     margin-bottom: 50px;
 }
 
-.bl{
+
+.bl {
     text-align: center;
 }
 
-.boxliquidity{
+.boxliquidity {
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
 
-.boxmature{
+.boxmature {
     background-color: #E6EAE5;
     height: 130px;
     display: flex;
     width: 30%;
-    max-width: 490px;
-    min-width: 490px;
+    max-width: 310px;
+    min-width: 310px;
     margin-right: 25px;
     margin-left: 25px;
     flex-direction: column;
     border-radius: 20px;
+    padding-top: 8px;
+    padding-bottom: 8px;
 }
 
-.titletomature{
+.titletomature {
     margin: 0;
-    margin-top: 15px;
+    margin-top: 6px;
     margin-left: 25px;
+    font-weight: bold;
+    font-size: 14px;
 }
 
-.month{
+
+.month {
     display: flex;
     flex-direction: column;
     margin: 0;
@@ -110,11 +118,73 @@
     color: #062F4F;
 }
 
-.h3s1{
+.h3s1 {
     margin: 0;
 }
 
-.h3s2{
+.h3s2 {
     margin: 0;
     margin-top: 10px;
+}
+
+
+
+
+@media (max-width: 768px) {
+    .bl {
+        display: block;
+        font-size: 14px;
+    }
+
+    .bh {
+        display: block;
+        font-size: 14px;
+    }
+
+    .box1y2 {
+        flex-direction: column;
+    }
+
+    .titletomature {
+        font-size: 10px;
+    }
+
+    .h3s2 {
+        margin: 0;
+        margin-top: 6px;
+        font-size: 14px;
+    }
+
+    .h3s1 {
+        font-size: 14px;
+    }
+
+    .boxmature {
+        height: 100px;
+        display: flex;
+        width: 80px;
+        margin-bottom: 20px;
+    }
+
+    .boxliquidity {
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    
+element.style {
+}
+.box {
+    width: 120px; 
+    height: 80px; 
+    display: flex;
+    margin-right: 25px;
+    margin-left: 0px;
+    flex-direction: row;
+    border-radius: 20px;
+    padding-top: 20px;
+    margin-bottom: 20px;
+}
 }

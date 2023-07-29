@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useContext, useState } from 'react';
 import { Chart } from 'chart.js/auto';
-import { DataContext } from '../Data/DataContextProvider';
+import { DataContext } from '../../Data/DataContextProvider';
+import '../../Css/Bonds.css';
 import Big from 'big.js';
-import '../Css/Bonds.css';
-import smallImage from './img/small.png';
-import mediumImage from './img/medium.png';
-import largeImage from './img/large.png';
+import smallImage from '../img/small.png'
+import mediumImage from '../img/medium.png';
+import largeImage from '../img/large.png';
 
 
 const CombinedChart2 = () => {
@@ -172,7 +172,7 @@ const CombinedChart2 = () => {
     });
 
     setChart(newChart);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  
   }, [loading, error, data]);
 
   const secondsToMonths = (seconds) => {

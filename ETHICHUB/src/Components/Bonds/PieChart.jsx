@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useContext, useState } from 'react';
 import Chart from 'chart.js/auto';
-import { DataContext } from '../Data/DataContextProvider';
-import '../Css/Bonds.css';
+import { DataContext } from '../../Data/DataContextProvider';
+import '../../Css/Bonds.css';
 
 const Chart5 = () => {
     const canvasRef = useRef(null);
@@ -28,9 +28,6 @@ const Chart5 = () => {
 
             const totalBondHoldersEth = calculateTotalBondHoldersEth();
             const totalBondHoldersCelo = calculateTotalBondHoldersCelo();
-
-            // console.log("Total bondHolders from Eth:", totalBondHoldersEth);
-            // console.log("Total bondHolders from Celo:", totalBondHoldersCelo);
 
             const ctx = canvasRef.current.getContext('2d');
 
@@ -60,7 +57,6 @@ const Chart5 = () => {
         };
 
         fetchChartData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [loading, error, data]);
 
     return (

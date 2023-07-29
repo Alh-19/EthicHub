@@ -11,18 +11,21 @@ const DetailHoldersStake = () => {
     const stakeHoldersCelo = data.query10Data?.stakeEthixHolders || [];
     const [showDetail, setShowDetail] = useState(false);
     const [showEth, setShowEth] = useState(true);
+    const [activeCurrency, setActiveCurrency] = useState('CELO');
 
-    // console.log('eth holders data',stakeHoldersEth)
-    // console.log('celo holders data',stakeHoldersCelo)
+    const handleCurrencyChange = (currency) => {
+        setActiveCurrency(currency);
+        setShowEth(currency === 'ETH');
+    };
 
     useEffect(() => {
         if (loading) return;
         if (error) {
-        console.error(`Error! ${error.message}`);
-        return;
+            console.error(`Error! ${error.message}`);
+            return;
         }
 
-    },[loading, error, stakeHoldersEth, stakeHoldersCelo, showEth]);
+    }, [loading, error, stakeHoldersEth, stakeHoldersCelo, showEth]);
 
     const getCurrentHolders = () => {
         return showEth ? stakeHoldersEth : stakeHoldersCelo;
@@ -30,7 +33,6 @@ const DetailHoldersStake = () => {
 
     const currentHoldersStake = getCurrentHolders();
 
-     // Function to calculate the number of stakeholders who joined this month
     const getStakeholdersJoinedThisMonth = () => {
         const currentDate = new Date();
         const firstDayOfThisMonth = startOfMonth(currentDate);
@@ -42,16 +44,16 @@ const DetailHoldersStake = () => {
         });
     };
 
+
     const getThisMonthHoldersEth = getStakeholdersJoinedThisMonth(stakeHoldersEth).length
     const getThisMonthHoldersCelo = getStakeholdersJoinedThisMonth(stakeHoldersCelo).length
-    // console.log(getThisMonthHoldersEth, getThisMonthHoldersCelo);
+
     const newHoldersStake = showEth ? getThisMonthHoldersEth : getThisMonthHoldersCelo;
-    
+
     const newStakeHoldersDataEth = getStakeholdersJoinedThisMonth(stakeHoldersEth)
     const newStakeHoldersDataCelo = getStakeholdersJoinedThisMonth(stakeHoldersCelo)
     const newHoldersStakeData = showEth ? newStakeHoldersDataEth : newStakeHoldersDataCelo;
 
-    // Function to calculate the total of stakeEthixHolders.totalAmount in newHoldersStakeData
     const calculateTotalAmount = () => {
         const totalAmount = newHoldersStakeData.reduce((accumulator, stakeholder) => {
             const amount = parseFloat(stakeholder.totalAmount);
@@ -65,14 +67,13 @@ const DetailHoldersStake = () => {
     const totalAmountStakeEthixHoldersCelo = calculateTotalAmount(newStakeHoldersDataCelo);
     const totalAmountStake = showEth ? totalAmountStakeEthixHoldersEth : totalAmountStakeEthixHoldersCelo;
 
-    // Function to calculate the number of stakeholders who were present last month
     const getStakeholdersLastMonth = () => {
         const currentDate = new Date();
         const firstDayOfLastMonth = startOfMonth(subMonths(currentDate, 1));
         const lastDayOfLastMonth = endOfMonth(subMonths(currentDate, 1));
         const stakeholders = getCurrentHolders();
         return stakeholders.filter(stakeholder => {
-            const stakeholderDate = new Date(stakeholder.dateJoined * 1000); // Convert seconds to milliseconds
+            const stakeholderDate = new Date(stakeholder.dateJoined * 1000);
             return isBefore(stakeholderDate, lastDayOfLastMonth);
         });
     };
@@ -81,19 +82,17 @@ const DetailHoldersStake = () => {
     const lastMonthHoldersCelo = getStakeholdersLastMonth(stakeHoldersCelo).length;
     const lastMonthHoldersStake = showEth ? lastMonthHoldersEth : lastMonthHoldersCelo;
 
-    //funtion of actual month
     const getCurrentDate = () => {
         const currentDate = new Date();
         const year = currentDate.getUTCFullYear();
         const month = currentDate.getUTCMonth();
-        
+
         const months = [
             'January', 'February', 'March', 'April', 'May', 'June',
             'July', 'August', 'September', 'October', 'November', 'December'
         ];
         const monthName = months[month];
-    
-        // change format od date
+
         const formattedDate = `${monthName} ${year}:`;
 
         return {
@@ -101,28 +100,25 @@ const DetailHoldersStake = () => {
             year,
             month: monthName,
             formattedDate,
-            };
         };
+    };
 
     const currentDateDetails = getCurrentDate();
-    // console.log('Fecha actual:', currentDateDetails.formattedDate);
 
-     // Function to get the date of the previous month
-     const getPreviousMonthDate = () => {
+    const getPreviousMonthDate = () => {
         const currentDate = new Date();
         const previousMonthDate = subMonths(currentDate, 1);
         const year = previousMonthDate.getUTCFullYear();
         const month = previousMonthDate.getUTCMonth();
-        
+
         const months = [
             'January', 'February', 'March', 'April', 'May', 'June',
             'July', 'August', 'September', 'October', 'November', 'December'
         ];
         const monthName = months[month];
-    
-        // Format the date as desired
+
         const formattedDate = `${monthName} ${year}:`;
-    
+
         return {
             year,
             month: monthName,
@@ -130,50 +126,48 @@ const DetailHoldersStake = () => {
         };
     };
 
-    // Get the date of the previous month
     const previousMonthDateDetails = getPreviousMonthDate();
-    // console.log('Fecha mes pasado:', previousMonthDateDetails.formattedDate);
 
-   
-
-    //funtion scroll top
     const moveToTop = () => {
         window.scrollTo({
             top: 0,
             behavior: "smooth"
         });
     };
-    
-    //funtion to show detail
+
     const toggleDetail = () => {
         setShowDetail(!showDetail);
         moveToTop();
     };
 
-    //funtion to change detail Eth or Celo
     const toggleView = () => {
         setShowEth(!showEth);
+        setActiveCurrency(!showEth ? 'ETH' : 'CELO');
     };
 
-    return(
+    return (
         <div>
 
             <div className='btshow'>
                 <button className="butonshow1" onClick={toggleDetail}>
-                {showDetail ? 'Hide detail' : 'Show detail'}
+                    {showDetail ? 'Close' : 'Show detail'}
                 </button>
             </div>
 
             {showDetail && (
                 <div className="detailbh">
+                    <div className="el-switch" style={{ overflowX: 'hidden' }}>
+                        <span className={activeCurrency === 'ETH' ? 'active' : ''}
+                            onClick={() => handleCurrencyChange('ETH')}>ETH</span>
+                        <input type="checkbox" id="switch" />
+                        <label for="switch" onClick={toggleView}>
+                            {showEth ? 'ETH' : 'CELO'}
+                        </label>
+                        <span className={activeCurrency === 'CELO' ? 'active' : ''}
+                            onClick={() => handleCurrencyChange('CELO')}>CELO</span>
 
-                    <button className="butonshow2" onClick={toggleDetail}>
-                        {showDetail ? 'Hide detail' : 'Show detail'}
-                    </button>
-
-                    <div className='btshow'>
-                        <button className="" onClick={toggleView}>
-                            {showEth ? 'Show Celo' : 'Show Ethereum'}
+                        <button className="buton-hideshow" onClick={toggleDetail}>
+                            {showDetail ? 'Close' : 'Show detail'}
                         </button>
                     </div>
 
@@ -187,24 +181,24 @@ const DetailHoldersStake = () => {
                     <div>
 
                         <div className='infocard2-stk'>
-                        <h3 className='infocards-stake'> Total addresses joined - {newHoldersStake} </h3>
-                        <h3 className='infocards-stake'> {totalAmountStake} stk ethix</h3>
+                            <h3 className='infocards-stake'> Total addresses joined - {newHoldersStake} </h3>
+                            <h3 className='infocards-stake'> {totalAmountStake} stk ethix</h3>
 
-                    </div>
+                        </div>
 
-                        {newHoldersStakeData.map((stakeEthixHolders, index) =>{
-                            
-                            return(
-                                
-                               
-                                        <tbody className='stake-table' key={index}>
-                                         
-                                        <td className='stake-bodyt'>{stakeEthixHolders.id}</td>
-                                        <td className='stake-bodyt'>{stakeEthixHolders.totalAmount} stk ethix</td>
-                                   
-                                    </tbody>
-                               
-                                
+                        {newHoldersStakeData.map((stakeEthixHolders, index) => {
+
+                            return (
+
+
+                                <tbody className='stake-table' key={index}>
+
+                                    <td className='stake-bodyt'>{stakeEthixHolders.id}</td>
+                                    <td className='stake-bodyt'>{stakeEthixHolders.totalAmount} stk ethix</td>
+
+                                </tbody>
+
+
 
                             )
                         })}
@@ -226,7 +220,7 @@ export default DetailHoldersStake;
 
 
 
-    
+
 
 
 

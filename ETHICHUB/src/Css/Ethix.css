@@ -46,6 +46,48 @@
     height: 200px;
   }
 
+
+  .flag-icons{
+    width:68%;
+    display: flex;
+    margin-left: 301px;
+    }
+  
+  .honduras-flag{
+    width: 20px;
+    height: 20px;
+    margin-left: 35px;
+  }
+
+  .brazil-flag{
+    width: 20px;
+    height: 20px;
+    margin-left: 93px;
+  }
+
+  .mexico-flag{
+    width: 20px;
+    height: 20px;
+    margin-left: 90px;
+  }
+
+  .mexico-flagcori{
+    width: 20px;
+    height: 20px;
+    margin-left: 91px;
+  }
+
+  .ecuador-flag{
+    width: 20px;
+    height: 20px;
+    margin-left: 92px;
+  }
+
+  .peru-flag{
+    width: 20px;
+    height: 20px;
+    margin-left: 93px;
+  }
   .detail-ethix { 
     margin-bottom: 60px;
   }
