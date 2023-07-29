@@ -308,8 +308,9 @@ label:active:after {
   font-size: 14px;
   display: flex;
   align-items: center;
-  margin-left: 10vh;
   font-weight: bold;
+  /*margin-bottom: 40px;*/
+  margin-right: 40px;
 }
 
 

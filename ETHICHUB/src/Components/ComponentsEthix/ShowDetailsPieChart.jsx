@@ -99,6 +99,9 @@ const ShowDetailsPieChart = () => {
 
                 <div className="detailbh">
                     <div className="el-switch" style={{ overflowX: 'hidden' }}>
+                    <button className="buton-hideshow" onClick={toggleDetail}>
+                            {showDetail ? 'Close' : 'Show details'}
+                        </button>
                         <span className={activeCurrency === 'ETH' ? 'active' : ''}
                             onClick={() => handleCurrencyChange('ETH')}>ETH</span>
                         <input type="checkbox" id="switch" />
@@ -108,9 +111,7 @@ const ShowDetailsPieChart = () => {
                         <span className={activeCurrency === 'CELO' ? 'active' : ''}
                             onClick={() => handleCurrencyChange('CELO')}>CELO</span>
 
-                        <button className="buton-hideshow" onClick={toggleDetail}>
-                            {showDetail ? 'Close' : 'Show details'}
-                        </button>
+                        
                     </div>
 
                     <div className='infocards-ethix'>

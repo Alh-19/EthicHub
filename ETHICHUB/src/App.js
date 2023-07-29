@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import Header from './Components/Header.js';
+import Header from './Components/Header.jsx';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { DataContext } from './Data/DataContextProvider';
 import { css } from '@emotion/react';
@@ -7,7 +7,7 @@ import { ClipLoader } from 'react-spinners';
 import Ethix from './Pages/Ethix.js';
 import Stake from './Pages/Stake.js'
 import Bonds from './Pages/Bonds.js';
-import Footer from './Components/Footer.js';
+import Footer from './Components/Footer.jsx';
 
 const override = css`
   display: block;

@@ -10,7 +10,6 @@ import '../Css/Bonds.css'
 import ShowDetailsPieChart from "../Components/ComponentsBonds/ShowDetailsPieChart";
 import ShowDetailsChart1 from "../Components/ComponentsBonds/ShowDetailsChart1";
 
-
 const Bonds = () => {
   return (
     <div>
@@ -51,10 +50,8 @@ const Bonds = () => {
         <div className="detail-ethix">
            <ShowDetailsPieChart/>
         </div>
-      </div>
-    </div>
-   
-
+        </div>
+      </div> 
   );
 };
 
