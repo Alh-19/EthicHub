@@ -12,10 +12,8 @@ import DetailBonds from "../Components/ComponentsBonds/ShowDetailChart";
 
 
 const Bonds = () => {
-
   return (
     <div>
-
       <div className="bliquidity">
         <h3 className="bl">Bond Liquidity</h3>
         <div className="box1y2">
@@ -55,8 +53,7 @@ const Bonds = () => {
         </div>
       </div>
     </div>
-
-    
+   
 
   );
 };
