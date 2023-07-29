@@ -6,7 +6,7 @@ const ImageStake = () => {
     <div >
       <img className='image-stake'
         src="https://i.postimg.cc/cLgsQQ5K/New-Project-24.png"
-        alt="Image Stake"
+        alt="Stake"
         style={{ maxWidth: '100%', height: 'auto' }}
       />
     </div>
