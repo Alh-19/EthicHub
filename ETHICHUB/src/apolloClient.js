@@ -1,4 +1,4 @@
-import { ApolloClient, InMemoryCache, ApolloLink, HttpLink } from '@apollo/client';
+import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';
 
 
 const subgraph1Link = new HttpLink({
@@ -10,14 +10,13 @@ const subgraph2Link = new HttpLink({
 });
 
 const client = new ApolloClient({
-  link: ApolloLink.concat(subgraph1Link),
+  link: subgraph1Link,
   cache: new InMemoryCache(),
 });
 
 const client2 = new ApolloClient({
-  link: ApolloLink.concat(subgraph2Link),
+  link: subgraph2Link,
   cache: new InMemoryCache(),
 });
 
 export { client, client2, subgraph1Link, subgraph2Link };
-
