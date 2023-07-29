@@ -41,7 +41,7 @@ const Box1 = () => {
         <div className='boxliquidity'>
             <div className="boxmature">
                 <h5 className='titletomature'>WORKING CAPITAL</h5>
-                <h7 className='titletomature'>Current month</h7>
+                <h6 className='titletomature'>Current month</h6>
                 <div className='month'>
                     <h3 className='h3s1'>ETH: {workingCapitalEth.toFixed(3)} DAI</h3> 
                     <h3 className='h3s2'>CELO: {workingCapitalCelo.toFixed(3)} cUSD</h3>

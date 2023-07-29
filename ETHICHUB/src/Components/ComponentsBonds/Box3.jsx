@@ -51,7 +51,7 @@ const Box3 = () => {
     <div className='boxliquidity'>
       <div className="boxmature">
         <h5 className='titletomature'>INTEREST</h5>
-        <h7 className='titletomature'>All time</h7>
+        <h6 className='titletomature'>All time</h6>
         <div className='month'>
           <h3 className='h3s1'>ETH: {totalInterestEth.toFixed(3)} DAI</h3>
           <h3 className='h3s2'>CELO: {totalInterestCelo.toFixed(3)} cUSD</h3>

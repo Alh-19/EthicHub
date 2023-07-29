@@ -86,7 +86,7 @@ const Box2 = () => {
     <div className='boxliquidity'>
       <div className="boxmature">
         <h5 className='titletomature'>REPAYABLE CAPITAL</h5>
-        <h7 className='titletomature'>Next month</h7>
+        <h6 className='titletomature'>Next month</h6>
         <div className='month'>
           {!noBondsNextMonth && (
             <>
