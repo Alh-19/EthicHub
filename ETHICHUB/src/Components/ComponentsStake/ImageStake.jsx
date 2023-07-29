@@ -1,5 +1,5 @@
 import React from 'react';
-import '../Css/Ethix.css'
+import '../../Css/Ethix.css'
 
 const ImageStake = () => {
   return (

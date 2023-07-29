@@ -4,7 +4,7 @@ import '../Css/Footer.css';
 import { useState } from 'react';
 
  const Footer = () => {
-  const [currentPage, setCurrentPage] = useState(''); // Estado para mantener la página actual
+  const [currentPage, setCurrentPage] = useState(''); 
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };

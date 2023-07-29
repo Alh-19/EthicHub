@@ -1,14 +1,14 @@
 import React from "react";
-import ChartStake3 from "../ComponentsStake/ChartStake3";
-import ChartStake2 from "../ComponentsStake/ChartStake2";
-import ChartStake1 from "../ComponentsStake/ChartStake1";
-import ChartStake1B from "../ComponentsStake/ChartStake1B";
-import ImageStake from "../ComponentsStake/ImageStake";
-import ChartStake1C from "../ComponentsStake/ChartStake1C";
-import ChartStake1D from "../ComponentsStake/ChartStake1D";
-import "../Css/Stake.css"; // Import the CSS file
-import DetailHoldersStake from "../ComponentsStake/ShowDetailHoldersStake";
-import DetailHoldersStakeTotal from "../ComponentsStake/ShowDetailHoldersStakeTotal";
+import ChartStake1 from "../Components/ComponentsStake/ChartStake1";
+import ChartStake1B from "../Components/ComponentsStake/ChartStake1B";
+import ChartStake1C from "../Components/ComponentsStake/ChartStake1C";
+import ChartStake1D from "../Components/ComponentsStake/ChartStake1D";
+import ChartStake2 from "../Components/ComponentsStake/ChartStake2";
+import ChartStake3 from "../Components/ComponentsStake/ChartStake3";
+import ImageStake from "../Components/ComponentsStake/ImageStake";
+import DetailHoldersStake from "../Components/ComponentsStake/ShowDetailHoldersStake";
+import DetailHoldersStakeTotal from "../Components/ComponentsStake/ShowDetailHoldersStakeTotal";
+import "../Css/Stake.css"; 
 
 const Stake = () => {
   return (

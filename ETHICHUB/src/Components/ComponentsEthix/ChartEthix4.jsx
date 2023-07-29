@@ -1,23 +1,23 @@
 import React, { useEffect, useContext, useRef, useState } from 'react';
-import { DataContext } from '../Data/DataContextProvider.js';
+import { DataContext } from '../../Data/DataContextProvider.js';
 import { Chart } from 'chart.js/auto';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import '../../Css/DatePicker.css'
 
-const ChartStake1D = () => {
+const ChartEthix4= () => {
   const chartRef = useRef(null);
   const [chart, setChart] = useState(null);
   const { data } = useContext(DataContext);
-  const { query9Data, query10Data } = data;
-
-  // Inicializar con la fecha de ayer
+  const { query5Data, query6Data } = data;
+  
   const today = new Date();
   const yesterday = new Date(today);
-  yesterday.setDate(today.getDate() - 1);
+  yesterday.setDate(yesterday.getDate() - 1);
   const [selectedDate, setSelectedDate] = useState(yesterday);
 
   useEffect(() => {
-    if (chartRef.current && query9Data && query10Data && !chart) {
+    if (chartRef.current && query5Data && query6Data && !chart) {
       const ctx = chartRef.current.getContext('2d');
 
       const newChartInstance = new Chart(ctx, {
@@ -49,62 +49,52 @@ const ChartStake1D = () => {
           ],
         },
         options: {
-          // Opciones del gráfico...
+          responsive: true,
         },
       });
 
       setChart(newChartInstance);
       updateChartData();
     }
-  }, [chart, query9Data, query10Data]);
-
-  useEffect(() => {
-    // Actualizar el gráfico cuando cambie la fecha seleccionada
-    if (chart && chart.data) {
-      updateChartData();
-    }
-  }, [selectedDate, chart]); // Asegúrate de agregar "chart" como dependencia también
+  }, [chart, query5Data, query6Data]);
 
   const updateChartData = () => {
     if (selectedDate && chart && chart.data) {
-      const selectedDay = selectedDate.getDate();
-      const selectedMonth = selectedDate.getMonth();
       const selectedYear = selectedDate.getFullYear();
+      const selectedMonth = selectedDate.getMonth();
+      const selectedDay = selectedDate.getDate();
 
-      // Filtrar los datos de holders hasta la fecha más actual
-      const ethDataUntilDate = query9Data.stakeEthixHolders.filter((item) => {
-        const itemDate = new Date(item.dateJoined * 1000);
+      const ethixHoldersData = query5Data.dayCountEthixHolders.filter((item) => {
+        const itemDate = new Date(item.date * 1000);
         return (
-          itemDate.getFullYear() < selectedYear ||
-          (itemDate.getFullYear() === selectedYear &&
-            (itemDate.getMonth() < selectedMonth || (itemDate.getMonth() === selectedMonth && itemDate.getDate() <= selectedDay)))
+          itemDate.getFullYear() === selectedYear &&
+          itemDate.getMonth() === selectedMonth &&
+          itemDate.getDate() === selectedDay
         );
       });
 
-      const celoDataUntilDate = query10Data.stakeEthixHolders.filter((item) => {
-        const itemDate = new Date(item.dateJoined * 1000);
+      const celoHoldersData = query6Data.dayCountEthixHolders.filter((item) => {
+        const itemDate = new Date(item.date * 1000);
         return (
-          itemDate.getFullYear() < selectedYear ||
-          (itemDate.getFullYear() === selectedYear &&
-            (itemDate.getMonth() < selectedMonth || (itemDate.getMonth() === selectedMonth && itemDate.getDate() <= selectedDay)))
+          itemDate.getFullYear() === selectedYear &&
+          itemDate.getMonth() === selectedMonth &&
+          itemDate.getDate() === selectedDay
         );
       });
 
-      // Calcular la cantidad acumulada de holders hasta la fecha más actual
-      const ethCountAccumulated = ethDataUntilDate.length;
-      const celoCountAccumulated = celoDataUntilDate.length;
-      const allCountAccumulated = ethCountAccumulated + celoCountAccumulated;
+      const ethCount = ethixHoldersData.length > 0 ? parseFloat(ethixHoldersData[0].count) : 0;
+      const celoCount = celoHoldersData.length > 0 ? parseFloat(celoHoldersData[0].count) : 0;
 
       const ethixData = chart.data.datasets.find((dataset) => dataset.label === 'ETH');
       const celoData = chart.data.datasets.find((dataset) => dataset.label === 'CELO');
       const allData = chart.data.datasets.find((dataset) => dataset.label === 'ALL');
 
-      ethixData.data = [ethCountAccumulated];
-      celoData.data = [celoCountAccumulated];
-      allData.data = [allCountAccumulated];
+      ethixData.data = [ethCount];
+      celoData.data = [celoCount];
+      allData.data = [ethCount + celoCount];
 
       chart.data.labels = [
-        selectedDate.toLocaleString('default', { day: 'numeric', month: 'long', year: 'numeric' }),
+        selectedDate.toLocaleString('default', { month: 'long', year: 'numeric', day: 'numeric' }),
       ];
       chart.update();
     }
@@ -114,7 +104,7 @@ const ChartStake1D = () => {
     if (chart && chart.data) {
       updateChartData();
     }
-  }, [selectedDate, chart, query9Data, query10Data]);
+  }, [selectedDate, chart, query5Data, query6Data]);
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -123,14 +113,14 @@ const ChartStake1D = () => {
   return (
     <div>
       <div>
-        <div className='datepicker-container'>
+      <div className='datepicker-container'>
           <DatePicker
             selected={selectedDate}
             onChange={handleDateChange}
-            dateFormat="dd MMMM yyyy"
+            dateFormat="MMMM d, yyyy"
+            showMonthDropdown
             showYearDropdown
-            scrollableYearDropdown
-            yearDropdownItemNumber={10}
+            dropdownMode="select"
             placeholderText="Select a Date"
             todayButton="Today"
           />
@@ -143,4 +133,4 @@ const ChartStake1D = () => {
   );
 };
 
-export default ChartStake1D;
+export default ChartEthix4;

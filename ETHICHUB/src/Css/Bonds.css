@@ -114,8 +114,6 @@
   z-index: 1;
 }
 
-/*Showdetageneril bondholders*/
-
 .butonshow1 {
   padding: 8px 15px;
   color: black;
@@ -323,7 +321,7 @@ label:active:after {
 }
 
 
-/************ VISTA DE BOND HOLDERS ************/
+/************ BOND HOLDERS ************/
 
 .general-minted {
   display: flex;
@@ -391,7 +389,7 @@ label:active:after {
   text-align: center;
 }
 
-/************ ESTE ES EL CÓDIGO DE LAS TABLAS ************/
+/************ TABLES ************/
 .bh-table {
   font-size: medium;
   text-transform: uppercase;
@@ -512,7 +510,7 @@ td {
   margin-bottom: 60px;
 }
 
-/**************** BOTÓN SLIDER *******************/
+/**************** SLIDER BUTTON *******************/
 .ce-btnswitch {
   display: inline-flex;
   align-items: center;
@@ -535,142 +533,6 @@ input[type=checkbox] {
   width: 0;
   visibility: hidden;
 }
-
-
-/************ VISTA DE BOND HOLDERS ************/
-
-.general-btn {
-  flex-direction: row;
-  align-items: center;
-  text-align: center;
-  display: flex;
-  height: 130px;
-  margin-right: 15px;
-  margin-left: 15px;
-  border-radius: 20px;
-  display: flex;
-  width: 100%;
-  justify-content: space-evenly;
-}
-
-.general-allbonds {
-  flex-direction: row;
-  text-align: center;
-  display: flex;
-  height: 130px;
-  margin-right: 15px;
-  margin-left: 15px;
-  border-radius: 20px;
-  display: flex;
-  width: 100%;
-  justify-content: space-evenly;
-  margin-bottom: 50px;
-}
-
-/************ TABLE ************/
-.bh-table {
-  font-size: medium;
-  text-transform: uppercase;
-  background-color: #c8cbd1;
-  padding: 5px 40px;
-}
-
-.th,
-td {
-  padding: 5px 40px;
-}
-
-.body-table {
-  border: 0.1px solid #c8cbd1;
-  text-align: center;
-}
-
-/************* Active bonds detail *************/
-.ab-table {
-  font-size: medium;
-  text-transform: uppercase;
-  background-color: #c8cbd1;
-  padding: 5px 40px;
-}
-
-.th,
-td {
-  padding: 5px 40px;
-}
-
-.ab-bodytable {
-  border: 0.1px solid #c8cbd1;
-  text-align: center;
-}
-
-
-
-
-/************** Matured Bonds Detail **************/
-
-.mat-table {
-  font-size: medium;
-  text-transform: uppercase;
-  background-color: #c8cbd1;
-  padding: 5px 40px;
-}
-
-.th,
-td {
-  padding: 5px 40px;
-}
-
-.mat-bodytable {
-  border: 0.1px solid #c8cbd1;
-  text-align: center;
-}
-
-
-.maturecard-container {
-  display: flex;
-  margin-left: 20px;
-}
-
-/************** REDEEMED Bonds Detail **************/
-
-.redeem-table {
-  font-size: medium;
-  text-transform: uppercase;
-  background-color: #c8cbd1;
-  padding: 5px 40px;
-}
-
-.th,
-td {
-  padding: 5px 40px;
-}
-
-.redeem-bt {
-  border: 0.1px solid #c8cbd1;
-  text-align: center;
-}
-
-
-/**************** BOTÓN SLIDER *******************/
-.ce-btnswitch {
-  display: inline-flex;
-  align-items: center;
-  position: relative;
-  font-size: 14px;
-  line-height: 20px;
-  height: 32px;
-  vertical-align: middle;
-  margin-bottom: 50px;
-  font-weight: bold;
-}
-
-
-input[type=checkbox] {
-  height: 0;
-  width: 0;
-  visibility: hidden;
-}
-
 
 /***********Total details table**********/
 .total-bh {

@@ -1,12 +1,12 @@
 import React from "react";
-import ChartEthix1 from "../ComponentsEthix/ChartEthix1";
-import ChartEthix2 from "../ComponentsEthix/ChartEthix2";
-import ChartEthix3 from "../ComponentsEthix/ChartEthix3";
-import ChartEthix4 from "../ComponentsEthix/ChartEthix4";
-import ChartEthix5 from "../ComponentsEthix/ChartEthix5";
-import ImageEthix from "../ComponentsEthix/ImageEthix";
-import "../Css/Ethix.css"; // Import the CSS file
-import DetailBondHoldersEthixTotal from "../ComponentsEthix/ShowDetailHoldersEthixTotal";
+import ChartEthix1 from "../Components/ComponentsEthix/ChartEthix1";
+import ChartEthix2 from "../Components/ComponentsEthix/ChartEthix2";
+import ChartEthix3 from "../Components/ComponentsEthix/ChartEthix3";
+import ChartEthix4 from "../Components/ComponentsEthix/ChartEthix4";
+import ChartEthix5 from "../Components/ComponentsEthix/ChartEthix5";
+import ImageEthix from "../Components/ComponentsEthix/ImageEthix";
+import "../Css/Ethix.css"; 
+import DetailBondHoldersEthixTotal from "../Components/ComponentsEthix/ShowDetailHoldersEthixTotal.jsx";
 
 
 const Ethix = () => {

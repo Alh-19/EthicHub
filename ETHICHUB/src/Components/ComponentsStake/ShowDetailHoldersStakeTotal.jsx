@@ -1,7 +1,7 @@
 
 import React, { useEffect, useContext, useState } from 'react';
-import { DataContext } from '../Data/DataContextProvider';
-import '../Css/Bonds.css';
+import { DataContext } from '../../Data/DataContextProvider.js';
+import '../../Css/Bonds.css';
 import Big from "big.js";
 import { startOfMonth, endOfMonth, subMonths } from 'date-fns';
 
@@ -47,7 +47,6 @@ const DetailHoldersStakeTotal = () => {
         const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
         const dayOfWeek = weekdays[currentDate.getUTCDay()];
 
-        // Opcionalmente, puedes dar formato a la fecha y hora como desees, por ejemplo:
         const formattedDate = `${dayOfWeek}, ${day} ${monthName} ${year} ${hours}:${minutes}:${seconds} GMT`;
 
         return {
@@ -64,12 +63,9 @@ const DetailHoldersStakeTotal = () => {
     };
 
     const currentDateDetails = getCurrentDate();
-    // console.log('Fecha actual:', currentDateDetails.formattedDate);
 
     const activeHoldersThismonth = showEth ? stakeHoldersEth : stakeHoldersCelo;
-    console.log('aqui', activeHoldersThismonth)
 
-    //funcion scroll arriba
     const moveToTop = () => {
         window.scrollTo({
             top: 0,
@@ -77,7 +73,6 @@ const DetailHoldersStakeTotal = () => {
         });
     };
 
-    //funcion para ver el detail
     const toggleDetail = () => {
         setShowDetail(!showDetail);
         moveToTop();

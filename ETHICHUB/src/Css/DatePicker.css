@@ -16,8 +16,6 @@
   }
   
   .react-datepicker__input-container input:focus {
-    /* Estilos cuando la barra de búsqueda tiene el foco */
-    /* Por ejemplo: */
     outline: none;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
   }
@@ -25,7 +23,7 @@
   .react-datepicker__month-text {
     font-family: 'Nunito Sans', sans-serif;
     font-weight: bold;
-    font-size: 12px; /* Cambiar el tamo de la fuente del nombre del mes */
+    font-size: 12px; 
     margin-bottom: 40px;
   }
 

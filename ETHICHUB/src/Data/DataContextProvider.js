@@ -8,51 +8,51 @@ export const DataContext = createContext();
 
 export function DataContextProvider({ children, clients }) {
   const { loading: loading1, error: error1, data: data1 } = useQuery(QUERY1, {
-    client: clients.client, // Utiliza el cliente client1 para esta consulta
+    client: clients.client, 
   });
 
   const { loading: loading2, error: error2, data: data2 } = useQuery(QUERY1, {
-    client: clients.client2, // Utiliza el cliente client2 para esta consulta
+    client: clients.client2, 
   });
 
   const { loading: loading3, error: error3, data: data3 } = useQuery(QUERY2, {
-    client: clients.client, // Utiliza el cliente client1 para esta consulta
+    client: clients.client, 
   });
 
   const { loading: loading4, error: error4, data: data4 } = useQuery(QUERY2, {
-    client: clients.client2, // Utiliza el cliente client2 para esta consulta
+    client: clients.client2, 
   });
 
   const { loading: loading5, error: error5, data: data5 } = useQuery(QUERY4, {
-    client: clients.client, // Utiliza el cliente client1 para esta consulta
+    client: clients.client, 
   });
 
   const { loading: loading6, error: error6, data: data6 } = useQuery(QUERY4, {
-    client: clients.client2, // Utiliza el cliente client2 para esta consulta
+    client: clients.client2, 
   });
 
   const { loading: loading7, error: error7, data: data7 } = useQuery(QUERY5, {
-    client: clients.client, // Utiliza el cliente client1 para esta consulta
+    client: clients.client, 
   });
 
   const { loading: loading8, error: error8, data: data8 } = useQuery(QUERY5, {
-    client: clients.client2, // Utiliza el cliente client1 para esta consulta
+    client: clients.client2, 
   });
 
   const { loading: loading9, error: error9, data: data9 } = useQuery(QUERY6, {
-    client: clients.client, // Utiliza el cliente client1 para esta consulta
+    client: clients.client, 
   });
 
   const { loading: loading10, error: error10, data: data10 } = useQuery(QUERY6, {
-    client: clients.client2, // Utiliza el cliente client1 para esta consulta
+    client: clients.client2, 
   });
 
   const { loading: loading11, error: error11, data: data11 } = useQuery(QUERY7, {
-    client: clients.client, // Utiliza el cliente client1 para esta consulta
+    client: clients.client, 
   });
 
   const { loading: loading12, error: error12, data: data12 } = useQuery(QUERY7, {
-    client: clients.client2, // Utiliza el cliente client1 para esta consulta
+    client: clients.client2, 
   });
 
   

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useContext } from 'react';
 import Chart from 'chart.js/auto';
-import { DataContext } from '../Data/DataContextProvider';
+import { DataContext } from '../../Data/DataContextProvider.js';
 
 const ChartStake2 = () => {
   const canvasRef = useRef(null);
@@ -25,9 +25,6 @@ const ChartStake2 = () => {
 
     const totalStakeHoldersEth = calculateTotalStakeHoldersEth();
     const totalStakeHoldersCelo = calculateTotalStakeHoldersCelo();
-
-    console.log("Total stakeHolders from Eth:", totalStakeHoldersEth);
-    console.log("Total stakeHolders from Celo:", totalStakeHoldersCelo);
 
     const ctx = canvasRef.current.getContext('2d');
 

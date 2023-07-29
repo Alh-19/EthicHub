@@ -1,14 +1,14 @@
-import CombinedChart from "../Components/Bonds/CombinedChart";
-import CombinedChart2 from "../Components/Bonds/CombinedChart2";
-import Chart5 from "../Components/Bonds/PieChart";
-import Box4 from "../Components/Bonds/Box4";
-import Box5 from "../Components/Bonds/Box5";
-import Box1 from "../Components/Bonds/Box1";
-import Box2 from "../Components/Bonds/Box2";
-import Box3 from "../Components/Bonds/Box3";
+import CombinedChart from "../Components/ComponentsBonds/CombinedChart";
+import CombinedChart2 from "../Components/ComponentsBonds/CombinedChart2";
+import Chart5 from "../Components/ComponentsBonds/PieChart";
+import Box1 from "../Components/ComponentsBonds/Box1";
+import Box2 from "../Components/ComponentsBonds/Box2";
+import Box3 from "../Components/ComponentsBonds/Box3";
+import Box4 from "../Components/ComponentsBonds/Box4";
+import Box5 from "../Components/ComponentsBonds/Box5";
 import '../Css/Bonds.css'
-import DetailBondholder from "../Components/Bonds/ShowDetailPieChart";
-import DetailBonds from "../Components/Bonds/ShowDetailChart";
+import DetailBondholder from "../Components/ComponentsBonds/ShowDetailPieChart";
+import DetailBonds from "../Components/ComponentsBonds/ShowDetailChart";
 
 
 const Bonds = () => {

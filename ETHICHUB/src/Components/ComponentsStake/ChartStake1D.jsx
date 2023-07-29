@@ -1,19 +1,19 @@
 import React, { useEffect, useContext, useRef, useState } from 'react';
-import { DataContext } from '../Data/DataContextProvider.js';
+import { DataContext } from '../../Data/DataContextProvider.js';
 import { Chart } from 'chart.js/auto';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-const ChartStake1 = () => {
+const ChartStake1D = () => {
   const chartRef = useRef(null);
   const [chart, setChart] = useState(null);
   const { data } = useContext(DataContext);
   const { query9Data, query10Data } = data;
 
-  // Inicializar con el mes pasado
   const today = new Date();
-  const lastMonth = new Date(today.getFullYear(), today.getMonth() - 1);
-  const [selectedDate, setSelectedDate] = useState(lastMonth);
+  const yesterday = new Date(today);
+  yesterday.setDate(today.getDate() - 1);
+  const [selectedDate, setSelectedDate] = useState(yesterday);
 
   useEffect(() => {
     if (chartRef.current && query9Data && query10Data && !chart) {
@@ -48,7 +48,7 @@ const ChartStake1 = () => {
           ],
         },
         options: {
-          // Opciones del gráfico...
+
         },
       });
 
@@ -58,23 +58,23 @@ const ChartStake1 = () => {
   }, [chart, query9Data, query10Data]);
 
   useEffect(() => {
-    // Actualizar el gráfico cuando cambie la fecha seleccionada
     if (chart && chart.data) {
       updateChartData();
     }
-  }, [selectedDate, chart]); // Asegúrate de agregar "chart" como dependencia también
+  }, [selectedDate, chart]);
 
   const updateChartData = () => {
     if (selectedDate && chart && chart.data) {
+      const selectedDay = selectedDate.getDate();
       const selectedMonth = selectedDate.getMonth();
       const selectedYear = selectedDate.getFullYear();
 
-      // Filtrar los datos de holders hasta la fecha más actual
       const ethDataUntilDate = query9Data.stakeEthixHolders.filter((item) => {
         const itemDate = new Date(item.dateJoined * 1000);
         return (
           itemDate.getFullYear() < selectedYear ||
-          (itemDate.getFullYear() === selectedYear && itemDate.getMonth() <= selectedMonth)
+          (itemDate.getFullYear() === selectedYear &&
+            (itemDate.getMonth() < selectedMonth || (itemDate.getMonth() === selectedMonth && itemDate.getDate() <= selectedDay)))
         );
       });
 
@@ -82,11 +82,11 @@ const ChartStake1 = () => {
         const itemDate = new Date(item.dateJoined * 1000);
         return (
           itemDate.getFullYear() < selectedYear ||
-          (itemDate.getFullYear() === selectedYear && itemDate.getMonth() <= selectedMonth)
+          (itemDate.getFullYear() === selectedYear &&
+            (itemDate.getMonth() < selectedMonth || (itemDate.getMonth() === selectedMonth && itemDate.getDate() <= selectedDay)))
         );
       });
 
-      // Calcular la cantidad acumulada de holders hasta la fecha más actual
       const ethCountAccumulated = ethDataUntilDate.length;
       const celoCountAccumulated = celoDataUntilDate.length;
       const allCountAccumulated = ethCountAccumulated + celoCountAccumulated;
@@ -99,7 +99,9 @@ const ChartStake1 = () => {
       celoData.data = [celoCountAccumulated];
       allData.data = [allCountAccumulated];
 
-      chart.data.labels = [selectedDate.toLocaleString('default', { month: 'long', year: 'numeric' })];
+      chart.data.labels = [
+        selectedDate.toLocaleString('default', { day: 'numeric', month: 'long', year: 'numeric' }),
+      ];
       chart.update();
     }
   };
@@ -121,10 +123,11 @@ const ChartStake1 = () => {
           <DatePicker
             selected={selectedDate}
             onChange={handleDateChange}
-            dateFormat="MMMM yyyy"
-            showMonthYearPicker
-            showFullMonthYearPicker
-            placeholderText="Select a Month"
+            dateFormat="dd MMMM yyyy"
+            showYearDropdown
+            scrollableYearDropdown
+            yearDropdownItemNumber={10}
+            placeholderText="Select a Date"
             todayButton="Today"
           />
         </div>
@@ -136,4 +139,4 @@ const ChartStake1 = () => {
   );
 };
 
-export default ChartStake1;
+export default ChartStake1D;

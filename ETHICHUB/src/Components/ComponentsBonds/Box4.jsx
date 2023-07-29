@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { DataContext } from '../../Data/DataContextProvider';
-import '../../Css/Bonds.css';
+import '../../Css/Bonds.css'
 import '../../Css/Box.css'
 
 const Box4 = () => {

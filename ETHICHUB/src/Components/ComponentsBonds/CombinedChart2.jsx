@@ -3,9 +3,9 @@ import { Chart } from 'chart.js/auto';
 import { DataContext } from '../../Data/DataContextProvider';
 import '../../Css/Bonds.css';
 import Big from 'big.js';
-import smallImage from '../img/small.png'
-import mediumImage from '../img/medium.png';
-import largeImage from '../img/large.png';
+import smallImage from '../../img/small.png'
+import mediumImage from '../../img/medium.png';
+import largeImage from '../../img/large.png';
 
 
 const CombinedChart2 = () => {

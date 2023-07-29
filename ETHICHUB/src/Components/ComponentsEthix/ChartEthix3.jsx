@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useContext } from 'react';
 import { Chart } from 'chart.js/auto';
-import { DataContext } from '../Data/DataContextProvider';
-import '../Css/DatePicker.css'
+import { DataContext } from '../../Data/DataContextProvider.js';
+import '../../Css/DatePicker.css';
 
 const ChartEthix3 = () => {
   const canvasRef = useRef(null);
   const { loading, error, data } = useContext(DataContext);
+  const chartRef = useRef(null); 
 
   useEffect(() => {
     if (loading) return;
@@ -27,13 +28,14 @@ const ChartEthix3 = () => {
     const totalEthixHoldersEth = calculateTotalHoldersEth();
     const totalEthixHoldersCelo = calculateTotalHoldersCelo();
 
-    console.log("Total Holders from Eth:", totalEthixHoldersEth);
-    console.log("Total Holders from Celo:", totalEthixHoldersCelo);
-
     const ctx = canvasRef.current.getContext('2d');
 
+    if (chartRef.current) {
+      chartRef.current.destroy();
+    }
+
     if (ctx) {
-      new Chart(ctx, {
+      chartRef.current = new Chart(ctx, {
         type: 'pie',
         data: {
           labels: ['Eth', 'Celo'],
@@ -55,10 +57,10 @@ const ChartEthix3 = () => {
 
   return (
     <div>
-     <canvas ref={canvasRef} />
-     </div>
-  )
- 
+      <canvas ref={canvasRef} />
+    </div>
+  );
 };
 
 export default ChartEthix3;
+

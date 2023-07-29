@@ -1,18 +1,18 @@
 import React, { useEffect, useContext, useRef, useState } from 'react';
-import { DataContext } from '../Data/DataContextProvider.js';
+import { DataContext } from '../../Data/DataContextProvider.js';
 import { Chart } from 'chart.js/auto';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-const ChartStake1B = () => {
+const ChartStake1 = () => {
   const chartRef = useRef(null);
   const [chart, setChart] = useState(null);
   const { data } = useContext(DataContext);
   const { query9Data, query10Data } = data;
 
-  // Inicializar con el mes pasado
   const today = new Date();
-  const [selectedDate, setSelectedDate] = useState(today); // Change this line
+  const lastMonth = new Date(today.getFullYear(), today.getMonth() - 1);
+  const [selectedDate, setSelectedDate] = useState(lastMonth);
 
   useEffect(() => {
     if (chartRef.current && query9Data && query10Data && !chart) {
@@ -47,7 +47,7 @@ const ChartStake1B = () => {
           ],
         },
         options: {
-          // Opciones del gráfico...
+
         },
       });
 
@@ -57,18 +57,16 @@ const ChartStake1B = () => {
   }, [chart, query9Data, query10Data]);
 
   useEffect(() => {
-    // Actualizar el gráfico cuando cambie la fecha seleccionada
     if (chart && chart.data) {
       updateChartData();
     }
-  }, [selectedDate, chart]); // Asegúrate de agregar "chart" como dependencia también
+  }, [selectedDate, chart]); 
 
   const updateChartData = () => {
     if (selectedDate && chart && chart.data) {
       const selectedMonth = selectedDate.getMonth();
       const selectedYear = selectedDate.getFullYear();
 
-      // Filtrar los datos de holders hasta la fecha más actual
       const ethDataUntilDate = query9Data.stakeEthixHolders.filter((item) => {
         const itemDate = new Date(item.dateJoined * 1000);
         return (
@@ -85,7 +83,6 @@ const ChartStake1B = () => {
         );
       });
 
-      // Calcular la cantidad acumulada de holders hasta la fecha más actual
       const ethCountAccumulated = ethDataUntilDate.length;
       const celoCountAccumulated = celoDataUntilDate.length;
       const allCountAccumulated = ethCountAccumulated + celoCountAccumulated;
@@ -135,4 +132,4 @@ const ChartStake1B = () => {
   );
 };
 
-export default ChartStake1B;
+export default ChartStake1;

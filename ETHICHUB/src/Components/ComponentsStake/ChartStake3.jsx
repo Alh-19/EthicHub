@@ -1,19 +1,19 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { DataContext } from '../Data/DataContextProvider';
+import { DataContext } from '../../Data/DataContextProvider.js';
 import { Chart } from 'chart.js';
 
-import hondurasImage from '../Components/img/honduras.png';
-import brazilImage from '../Components/img/brazil.png';
-import ecuadorImage from '../Components/img/ecuador.png'
-import mexicoImage from '../Components/img/mexico.png';
-import peruImage from '../Components/img/peru.png';
+import hondurasImage from '../../img/honduras.png';
+import brazilImage from '../../img/brazil.png';
+import ecuadorImage from '../../img/ecuador.png'
+import mexicoImage from '../../img/mexico.png';
+import peruImage from '../../img/peru.png';
 
 const ChartStake3 = () => {
   const { data } = useContext(DataContext);
   const { query7Data, query8Data } = data;
 
   const [chartData, setChartData] = useState(null);
-  const chartRef = useRef(null); // Ref to store the Chart instance
+  const chartRef = useRef(null); 
 
   useEffect(() => {
     if (query7Data && query8Data) {
@@ -54,7 +54,7 @@ const ChartStake3 = () => {
       ];
 
       const chartConfig = {
-        type: 'bar', // Change the type of chart as needed
+        type: 'bar', 
         data: {
           labels: chartLabels,
           datasets: [
@@ -89,11 +89,9 @@ const ChartStake3 = () => {
 
   useEffect(() => {
     if (chartData) {
-      // Destroy the previous Chart instance, if it exists
       if (chartRef.current) {
         chartRef.current.destroy();
       }
-      // Create the chart using chartData and store the instance in the ref
       const ctx = document.getElementById('myChart').getContext('2d');
       chartRef.current = new Chart(ctx, chartData);
     }

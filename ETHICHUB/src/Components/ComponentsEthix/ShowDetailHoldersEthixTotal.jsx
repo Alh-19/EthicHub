@@ -1,8 +1,8 @@
 
 
 import React, { useEffect, useContext, useState } from 'react';
-import { DataContext } from '../Data/DataContextProvider';
-import '../Css/Bonds.css';
+import { DataContext } from '../../Data/DataContextProvider.js';
+import '../../Css/Bonds.css';
 import Big from "big.js";
 import { startOfMonth, endOfMonth, subMonths } from 'date-fns';
 
@@ -28,8 +28,6 @@ const DetailBondHoldersEthixTotal = () => {
 
     }, [loading, error, dataHoldersEth, dataHoldersCelo]);
 
-
-    //Get current date
     const getCurrentDate = () => {
         const currentDate = new Date();
         const year = currentDate.getUTCFullYear();
@@ -48,7 +46,6 @@ const DetailBondHoldersEthixTotal = () => {
         const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
         const dayOfWeek = weekdays[currentDate.getUTCDay()];
 
-        // Give format to the date
         const formattedDate = `${dayOfWeek}, ${day} ${monthName} ${year} ${hours}:${minutes}:${seconds} GMT`;
 
         return {
@@ -66,15 +63,12 @@ const DetailBondHoldersEthixTotal = () => {
 
     const currentDateDetails = getCurrentDate();
 
-    //total holders eth and celo
     const totalEthHolders = dataHoldersEth.length;
     const totalCeloHolders = dataHoldersCelo.length;
 
     const activeHolders = showEth ? totalEthHolders : totalCeloHolders;
     const activeHoldersData = showEth ? dataHoldersEth : dataHoldersCelo;
 
-
-    //funtion scroll top
     const moveToTop = () => {
         window.scrollTo({
             top: 0,
@@ -82,7 +76,6 @@ const DetailBondHoldersEthixTotal = () => {
         });
     };
 
-    //funtion to show detail
     const toggleDetail = () => {
         setShowDetail(!showDetail);
         moveToTop();

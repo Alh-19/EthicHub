@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from 'react';
-import { DataContext } from '../Data/DataContextProvider';
-import '../Css/Bonds.css';
+import { DataContext } from '../../Data/DataContextProvider.js';
+import '../../Css/Bonds.css';
 import Big from "big.js";
 import { startOfMonth, endOfMonth, subMonths, isAfter, isBefore } from 'date-fns';
 
