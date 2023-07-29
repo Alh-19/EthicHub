@@ -51,14 +51,14 @@
     display: flex;
     font-size: 70px;
     margin: 0;
-    place-items: end;
+    place-items: flex-end;
     margin-right: 25px;
 }
 
 .previousbhbox {
     display: flex;
     margin: 0;
-    place-items: end;
+    place-items: flex-end;
     margin-bottom: 15px;
 
 }

@@ -6,8 +6,8 @@ const ShowDetailsPieChart = () => {
     const { loading, error, data } = useContext(DataContext);
     const bondHoldersEth = data.query3Data?.bondHolders || [];
     const bondHoldersCelo = data.query4Data?.bondHolders || [];
-    const [sumaPrincipalTotalEth, setSumaPrincipalTotalEth] = useState(0);
-    const [sumaPrincipalTotalCelo, setSumaPrincipalTotalCelo] = useState(0);
+    const [addPrincipalTotalEth, setaddPrincipalTotalEth] = useState(0);
+    const [addPrincipalTotalCelo, setaddPrincipalTotalCelo] = useState(0);
     const [showEth, setShowEth] = useState(true);
     const [showDetail, setShowDetail] = useState(false);
     const [activeCurrency, setActiveCurrency] = useState('CELO');
@@ -23,26 +23,26 @@ const ShowDetailsPieChart = () => {
             console.error(`Error! ${error.message}`);
             return;
         }
-        const sumaPrincipalTotalEth = calcularSumaPrincipalTotal(bondHoldersEth);
-        const sumaPrincipalTotalCelo = calcularSumaPrincipalTotal(bondHoldersCelo);
-        setSumaPrincipalTotalEth(sumaPrincipalTotalEth);
-        setSumaPrincipalTotalCelo(sumaPrincipalTotalCelo);
+        const addPrincipalTotalEth = calculateaddPrincipalTotal(bondHoldersEth);
+        const addPrincipalTotalCelo = calculateaddPrincipalTotal(bondHoldersCelo);
+        setaddPrincipalTotalEth(addPrincipalTotalEth);
+        setaddPrincipalTotalCelo(addPrincipalTotalCelo);
     }, [loading, error, bondHoldersEth, bondHoldersCelo]);
-    const calcularSumaPrincipalTotal = (bondHolders) => {
-        let sumaPrincipalTotal = 0;
+    const calculateaddPrincipalTotal = (bondHolders) => {
+        let addPrincipalTotal = 0;
         bondHolders.forEach((bondHolder) => {
             bondHolder.bonds.forEach((bond) => {
-                sumaPrincipalTotal += parseFloat(bond.principal);
+                addPrincipalTotal += parseFloat(bond.principal);
             });
         });
-        return sumaPrincipalTotal;
+        return addPrincipalTotal;
     };
-    const calcularSumaPrincipalPorBondHolder = (bondHolder) => {
-        let sumaPrincipalBondHolder = 0;
+    const calculateaddPrincipalPorBondHolder = (bondHolder) => {
+        let addPrincipalBondHolder = 0;
         bondHolder.bonds.forEach((bond) => {
-            sumaPrincipalBondHolder += parseFloat(bond.principal);
+            addPrincipalBondHolder += parseFloat(bond.principal);
         });
-        return sumaPrincipalBondHolder;
+        return addPrincipalBondHolder;
     };
     const toggleView = () => {
         setShowEth(!showEth);
@@ -59,7 +59,7 @@ const ShowDetailsPieChart = () => {
         moveToTop();
     };
     const activeBondHolders = showEth ? bondHoldersEth : bondHoldersCelo;
-    const sumaPrincipalTotal = showEth ? sumaPrincipalTotalEth : sumaPrincipalTotalCelo;
+    const addPrincipalTotal = showEth ? addPrincipalTotalEth : addPrincipalTotalCelo;
     return (
         <>
             <div>
@@ -87,7 +87,7 @@ const ShowDetailsPieChart = () => {
                                                  
                         <div className='container-tarjetas'>
                          <div className='total-bondholders'><h3>Total Bondholders: {activeBondHolders.length}</h3></div>
-                         <div className='principal-invested'><h3>Principal invested: {sumaPrincipalTotal.toFixed(3)} {showEth ? '(DAI)' : '(cUSD)'}</h3></div>
+                         <div className='principal-invested'><h3>Principal invested: {addPrincipalTotal.toFixed(3)} {showEth ? '(DAI)' : '(cUSD)'}</h3></div>
                          </div> 
                         
                             <thead>
@@ -95,9 +95,9 @@ const ShowDetailsPieChart = () => {
                                     <th className='total-bh'>Rank</th>
                                     <th className='total-bh'>ID</th>
                                     <th className='total-bh'>Total Bonds</th>
-                                    <th className='total-bh'>Total Active</th>
-                                    <th className='total-bh'>Total Redeemed</th>
-                                    <th className='total-bh'>Suma Principal</th>
+                                    <th className='total-bh'>Total bonds Active</th>
+                                    <th className='total-bh'>Total bonds Redeemed</th>
+                                    <th className='total-bh'>Total principal invested{showEth ? '(dai)' : '(cUSD)'}</th>
                                 </tr>
                             </thead>
                             
@@ -109,7 +109,7 @@ const ShowDetailsPieChart = () => {
                                         <td className='totalbh-body'>{bondHolder.totalBonds}</td>
                                         <td className='totalbh-body'>{bondHolder.totalActive}</td>
                                         <td className='totalbh-body'>{bondHolder.totalRedeemed}</td>
-                                        <td className='totalbh-body'>{calcularSumaPrincipalPorBondHolder(bondHolder).toFixed(3)}</td>
+                                        <td className='totalbh-body'>{calculateaddPrincipalPorBondHolder(bondHolder).toFixed(3)}</td>
                                     </tr>
                                 ))}
                             </tbody>

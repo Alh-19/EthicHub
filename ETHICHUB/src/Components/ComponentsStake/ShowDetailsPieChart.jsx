@@ -2,8 +2,6 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { DataContext } from '../../Data/DataContextProvider.js';
 import '../../Css/Bonds.css';
-import Big from "big.js";
-import { startOfMonth, endOfMonth, subMonths } from 'date-fns';
 
 
 const ShowDetailsPieChart = () => {

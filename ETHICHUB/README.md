@@ -3,7 +3,7 @@
 ![]( https://7131880.fs1.hubspotusercontent-na1.net/hubfs/7131880/Copia%20de%20EH_logo_2019_cuadrado_color-1.png
 )
 
-EthicHub es una empresa en crecimiento que se encarga de facilitar financiación en países como México y Honduras a pequeños productores a través de una plataforma de crowdlending. Es la primera empresa agrotech que opera en blockchain y que incorpora un sistema de compensación construido sobre el ethix: su propio token. Su misión es generar un triple impacto: social, financiero y medioambiental.
+[EthicHub](https://ethix.ethichub.com/) es una empresa en crecimiento que se encarga de facilitar financiación en países como México y Honduras a pequeños productores a través de una plataforma de crowdlending. Es la primera empresa agrotech que opera en blockchain y que incorpora un sistema de compensación construido sobre el ethix: su propio token. Su misión es generar un triple impacto: social, financiero y medioambiental.
 
 ## Requisitos de nuestro MVP
 El proyecto debe ser desarrollado en react.js , el objetivo principal se basa en mejorar la dashboard para CRM de EthicHub de metricas q se alimenta de info blockchain. 
@@ -19,25 +19,49 @@ A contiuacion mostramos una captura de pantalla de Bonds donde nos recomiendan e
 - Trello 
 
 ## Tecnologia para  el  front end
-- Reac js 
+- React js 
 - GraphQL
-- Chart js 
 - Apollo Client 
 - Node.js
 - React-router-dom 
-- Git 
+- Git & Github
+- Chart.js 
+- big.js
+- Date Picker
+- date-fns
 
 ## Tecnología para testing 
 - CYPRESS
 
+## Para inicializar el proyecto
+1. Accede la carpeta del proyecto
+
+ - **`cd ETHICHUB`**
+
+2. Instala las dependencias
+
+ - **`npm install`**
+
+si la instalacion da error
+
+- **`npm install --force`**
+
+## Para abrir el proyecto
+Dentro de la carpeta ETHICHUB 
+
+**`npm start`**
+
+Este comando abre el proyecto en modo desarrollador 
+Por defecto el proyecto se abre en [http://localhost:3000](http://localhost:3000) para verlo en tu navedador.
+
 ## Repositorio del proyecto 
 
-(https://github.com/Alh-19/EthixHub)
+[Proyecto](https://github.com/Alh-19/EthixHub)
 
 
 ## Equipo de desarrolladoras
-- Lucia Pazos 
-- Adriana Rodriguez 
-- Ana Lopez 
-- Erika Linares 
-- Malena Urquizu
+- [Lucia Pazos](https://github.com/luluuuuuuuuuuu) **Product owner**
+- [Adriana Rodriguez](https://github.com/filgadri) **UX/UI**
+- [Ana Lopez](https://github.com/Alh-19) **Scrum Master**
+- [Erika Linares](https://github.com/Erikalinares) **Dev**
+- [Malena Urquizu](https://github.com/MaleUrquizu) **Dev**
