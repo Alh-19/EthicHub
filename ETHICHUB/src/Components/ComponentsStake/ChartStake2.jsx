@@ -1,59 +1,124 @@
-import React, { useEffect, useRef, useContext } from 'react';
-import Chart from 'chart.js/auto';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { DataContext } from '../../Data/DataContextProvider.js';
+import { Chart } from 'chart.js';
+
+import hondurasImage from '../../img/honduras.png';
+import brazilImage from '../../img/brazil.png';
+import ecuadorImage from '../../img/ecuador.png'
+import mexicoImage from '../../img/mexico.png';
+import peruImage from '../../img/peru.png';
 
 const ChartStake2 = () => {
-  const canvasRef = useRef(null);
-  const { loading, error, data } = useContext(DataContext);
+  const { data } = useContext(DataContext);
+  const { query7Data, query8Data } = data;
+
+  const [chartData, setChartData] = useState(null);
+  const chartRef = useRef(null); 
 
   useEffect(() => {
-    if (loading) return;
-    if (error) {
-      console.error(`Error! ${error.message}`);
-      return;
-    }
+    if (query7Data && query8Data) {
+      const ethData = query7Data.factoryEthixes[0];
+      const celoData = query8Data.factoryEthixes[0];
 
-    const calculateTotalStakeHoldersEth = () => {
-      const stakeHoldersEthCount = data.query9Data?.stakeEthixHolders?.length ?? 0;
-      return stakeHoldersEthCount;
-    };
+      const chartLabels = [
+        'Total Staked',
+        'General',
+        'Honduras',
+        'Brazil',
+        'Mexico',
+        'Mexico (Cori)',
+        'Ecuador',
+        'Peru',
+      ];
 
-    const calculateTotalStakeHoldersCelo = () => {
-      const stakeHoldersCeloCount = data.query10Data?.stakeEthixHolders?.length ?? 0;
-      return stakeHoldersCeloCount;
-    };
+      const ethValues = [
+        ethData.totalStaked,
+        ethData.totalStakedGeneral,
+        ethData.totalStakedHonduras,
+        ethData.totalStakedBrasil,
+        ethData.totalStakedMexico,
+        ethData.totalStakedMexico2,
+        ethData.totalStakedEcuador,
+        ethData.totalStakedPeru,
+      ];
 
-    const totalStakeHoldersEth = calculateTotalStakeHoldersEth();
-    const totalStakeHoldersCelo = calculateTotalStakeHoldersCelo();
+      const celoValues = [
+        celoData.totalStaked,
+        celoData.totalStakedGeneral,
+        celoData.totalStakedHonduras,
+        celoData.totalStakedBrasil,
+        celoData.totalStakedMexico,
+        celoData.totalStakedMexico2,
+        celoData.totalStakedEcuador,
+        celoData.totalStakedPeru,
+      ];
 
-    const ctx = canvasRef.current.getContext('2d');
-
-    if (ctx) {
-      new Chart(ctx, {
-        type: 'pie',
+      const chartConfig = {
+        type: 'bar', 
         data: {
-          labels: ['Eth', 'Celo'],
+          labels: chartLabels,
           datasets: [
             {
-              label: 'Total Bonds',
-              data: [totalStakeHoldersEth, totalStakeHoldersCelo],
-              backgroundColor: ['#062F4F', '#87F96E'],
+              label: 'ETH',
+              data: ethValues,
+              backgroundColor: '#062F4F',
+              borderColor: '#062F4F',
+              borderWidth: 1,
+            },
+            {
+              label: 'CELO',
+              data: celoValues,
+              backgroundColor: '#87F96E',
+              borderColor: '#87F96E',
+              borderWidth: 1,
             },
           ],
         },
         options: {
-          responsive: true,
-          maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
         },
-      });
+      };
+
+      setChartData(chartConfig);
     }
-  }, [loading, error, data]);
+  }, [query7Data, query8Data]);
+
+  useEffect(() => {
+    if (chartData) {
+      if (chartRef.current) {
+        chartRef.current.destroy();
+      }
+      const ctx = document.getElementById('myChart').getContext('2d');
+      chartRef.current = new Chart(ctx, chartData);
+    }
+  }, [chartData]);
 
   return (
-    <div>
-      <canvas ref={canvasRef} />
+    <div className='chartflags'>
+      {query7Data.loading || query8Data.loading ? (
+        <p>Loading...</p>
+      ) : query7Data.error || query8Data.error ? (
+        <p>Error fetching data</p>
+      ) : (
+        <canvas id="myChart" width="400" height="200"></canvas>
+      )}
+
+    <div className='flag-icons'>  
+    <img className='honduras-flag' src={hondurasImage} alt="Honduras" />
+    <img className='brazil-flag' src={brazilImage} alt="Brazil" />
+    <img className='mexico-flag' src={mexicoImage} alt="Mexico" />
+    <img className='mexico-flagcori' src={mexicoImage} alt="Mexico (Cori)" />
+    <img className='ecuador-flag' src={ecuadorImage} alt="Ecuador" />
+    <img className='peru-flag' src={peruImage} alt="Peru" />
+
+          </div>
+
     </div>
-  )
+  );
 };
 
 export default ChartStake2;

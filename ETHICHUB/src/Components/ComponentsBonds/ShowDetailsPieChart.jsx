@@ -2,7 +2,7 @@ import React, { useEffect, useContext, useState } from 'react';
 import { DataContext } from '../../Data/DataContextProvider';
 import '../../Css/Bonds.css';
 
-const DetailBondholder = () => {
+const ShowDetailsPieChart = () => {
     const { loading, error, data } = useContext(DataContext);
     const bondHoldersEth = data.query3Data?.bondHolders || [];
     const bondHoldersCelo = data.query4Data?.bondHolders || [];
@@ -65,7 +65,7 @@ const DetailBondholder = () => {
             <div>
                 <div className='btshow'>
                     <button className="butonshow1" onClick={toggleDetail}>
-                        {showDetail ? 'Close' : 'Show detail'}
+                        {showDetail ? 'Close' : 'Show details'}
                     </button>
                 </div>
                  {showDetail && (
@@ -81,7 +81,7 @@ const DetailBondholder = () => {
                                 onClick={() => handleCurrencyChange('CELO')}>CELO</span>
                             
                                 <button className="buton-hideshow" onClick={toggleDetail}>
-                                    {showDetail ? 'Close' : 'Show detail'}
+                                    {showDetail ? 'Close' : 'Show details'}
                                 </button>
                         </div>    
                                                  
@@ -120,5 +120,5 @@ const DetailBondholder = () => {
         </>
     );
 };
- export default DetailBondholder;
+ export default ShowDetailsPieChart;
 

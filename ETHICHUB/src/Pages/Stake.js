@@ -3,11 +3,11 @@ import ChartStake1 from "../Components/ComponentsStake/ChartStake1";
 import ChartStake1B from "../Components/ComponentsStake/ChartStake1B";
 import ChartStake1C from "../Components/ComponentsStake/ChartStake1C";
 import ChartStake1D from "../Components/ComponentsStake/ChartStake1D";
+import PieChartStake from "../Components/ComponentsStake/PieChartStake";
 import ChartStake2 from "../Components/ComponentsStake/ChartStake2";
-import ChartStake3 from "../Components/ComponentsStake/ChartStake3";
 import ImageStake from "../Components/ComponentsStake/ImageStake";
-import DetailHoldersStake from "../Components/ComponentsStake/ShowDetailHoldersStake";
-import DetailHoldersStakeTotal from "../Components/ComponentsStake/ShowDetailHoldersStakeTotal";
+import ShowDetailsChartsStake from "../Components/ComponentsStake/ShowDetailsChartsStake";
+import ShowDetailsPieChart from "../Components/ComponentsStake/ShowDetailsPieChart";
 import "../Css/Stake.css"; 
 
 const Stake = () => {
@@ -26,14 +26,14 @@ const Stake = () => {
       <h3 className="title">Stake Holders per day </h3>
       <div className="stake-row1">
         <div className="chart-container">
-          <ChartStake1D />
+          <ChartStake1C />
         </div>
         <div className="chart-container">
-          <ChartStake1C />
+        <ChartStake1D />
         </div>
       </div>
       <div className="detail-ethix">
-        <DetailHoldersStake />
+        <ShowDetailsChartsStake />
       </div>
       <div className="stake-row2">
         <div className="image-container">
@@ -41,17 +41,17 @@ const Stake = () => {
         </div>
         <div className="chart-container-total">
         <h3 className="title">Stake holders total</h3>
-          <ChartStake2 />
+          <PieChartStake />
         </div>
       </div>
       <div className="detail-ethix">
-      <DetailHoldersStakeTotal />
+      <ShowDetailsPieChart />
       </div>
       </div>
       <div className="stake-row3">
         <div className="chart-container-combined">
         <h3 className="title">Total staked per contract</h3>
-          <ChartStake3 />
+          <ChartStake2 />
         </div>
       </div>
       </div>

@@ -6,7 +6,7 @@ const ImageEthix = () => {
     <div >
       <img className='image-ethix'
         src="https://i.postimg.cc/4N1bWCKV/New-Project-1.jpg"
-        alt="Description of the image"
+        alt="EthixHub illustration"
         style={{ maxWidth: '100%', height: 'auto' }}
       />
     </div>

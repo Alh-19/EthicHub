@@ -5,7 +5,7 @@ import Big from "big.js";
 import { startOfMonth, endOfMonth, subMonths, isAfter, isBefore } from 'date-fns';
 
 
-const DetailHoldersStake = () => {
+const ShowDetailsChartsStake = () => {
     const { loading, error, data } = useContext(DataContext);
     const stakeHoldersEth = data.query9Data?.stakeEthixHolders || [];
     const stakeHoldersCelo = data.query10Data?.stakeEthixHolders || [];
@@ -150,7 +150,7 @@ const DetailHoldersStake = () => {
 
             <div className='btshow'>
                 <button className="butonshow1" onClick={toggleDetail}>
-                    {showDetail ? 'Close' : 'Show detail'}
+                    {showDetail ? 'Close' : 'Show details'}
                 </button>
             </div>
 
@@ -167,7 +167,7 @@ const DetailHoldersStake = () => {
                             onClick={() => handleCurrencyChange('CELO')}>CELO</span>
 
                         <button className="buton-hideshow" onClick={toggleDetail}>
-                            {showDetail ? 'Close' : 'Show detail'}
+                            {showDetail ? 'Close' : 'Show details'}
                         </button>
                     </div>
 
@@ -213,7 +213,7 @@ const DetailHoldersStake = () => {
     );
 };
 
-export default DetailHoldersStake;
+export default ShowDetailsChartsStake;
 
 
 

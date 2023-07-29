@@ -108,7 +108,7 @@ const ChartEthix2 = () => {
       allData.data = [ethCount + celoCount];
 
       chart.data.labels = [
-        selectedDate.toLocaleString('default', {
+        selectedDate.toLocaleString('en-US', {
           month: 'long',
           year: 'numeric',
         }),

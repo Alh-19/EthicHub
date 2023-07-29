@@ -4,7 +4,7 @@ import { Chart } from 'chart.js/auto';
 import '../../Css/Bonds.css';
 
 
-const CombinedChart = () => {
+const Chart1 = () => {
   const { loading, error, data } = useContext(DataContext);
   const chartRef = useRef(null);
   const chartInstanceRef = useRef(null);
@@ -146,4 +146,4 @@ const CombinedChart = () => {
   );
 };
 
-export default CombinedChart;
+export default Chart1;

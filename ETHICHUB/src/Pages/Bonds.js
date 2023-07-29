@@ -1,5 +1,5 @@
-import CombinedChart from "../Components/ComponentsBonds/CombinedChart";
-import CombinedChart2 from "../Components/ComponentsBonds/CombinedChart2";
+import Chart1 from "../Components/ComponentsBonds/Chart1";
+import Chart2 from "../Components/ComponentsBonds/Chart2";
 import Chart5 from "../Components/ComponentsBonds/PieChart";
 import Box1 from "../Components/ComponentsBonds/Box1";
 import Box2 from "../Components/ComponentsBonds/Box2";
@@ -7,8 +7,8 @@ import Box3 from "../Components/ComponentsBonds/Box3";
 import Box4 from "../Components/ComponentsBonds/Box4";
 import Box5 from "../Components/ComponentsBonds/Box5";
 import '../Css/Bonds.css'
-import DetailBondholder from "../Components/ComponentsBonds/ShowDetailPieChart";
-import DetailBonds from "../Components/ComponentsBonds/ShowDetailChart";
+import ShowDetailsPieChart from "../Components/ComponentsBonds/ShowDetailsPieChart";
+import ShowDetailsChart1 from "../Components/ComponentsBonds/ShowDetailsChart1";
 
 
 const Bonds = () => {
@@ -33,15 +33,15 @@ const Bonds = () => {
       <div className="container">
         <div className="bonds-minted">
           <h3>Bonds minted by month</h3>
-          <CombinedChart />
+          <Chart1 />
         </div>
         <div className="detail-ethix">
-              <DetailBonds />
+              <ShowDetailsChart1 />
         </div>
         <div className="container2">
           <div className="deposited-principal">
             <h3>Total deposited by bond size</h3>
-              <CombinedChart2 />
+              <Chart2 />
           </div>
           <div className="bond-holders">
             <h3>Bond holders total</h3>
@@ -49,7 +49,7 @@ const Bonds = () => {
           </div>
         </div>
         <div className="detail-ethix">
-           <DetailBondholder/>
+           <ShowDetailsPieChart/>
         </div>
       </div>
     </div>

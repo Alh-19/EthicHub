@@ -10,11 +10,9 @@ const ChartEthix4= () => {
   const [chart, setChart] = useState(null);
   const { data } = useContext(DataContext);
   const { query5Data, query6Data } = data;
-  
+
   const today = new Date();
-  const yesterday = new Date(today);
-  yesterday.setDate(yesterday.getDate() - 1);
-  const [selectedDate, setSelectedDate] = useState(yesterday);
+  const [selectedDate, setSelectedDate] = useState(today); 
 
   useEffect(() => {
     if (chartRef.current && query5Data && query6Data && !chart) {
@@ -79,7 +77,11 @@ const ChartEthix4= () => {
           itemDate.getFullYear() === selectedYear &&
           itemDate.getMonth() === selectedMonth &&
           itemDate.getDate() === selectedDay
+
+          
         );
+        
+  
       });
 
       const ethCount = ethixHoldersData.length > 0 ? parseFloat(ethixHoldersData[0].count) : 0;
@@ -94,7 +96,7 @@ const ChartEthix4= () => {
       allData.data = [ethCount + celoCount];
 
       chart.data.labels = [
-        selectedDate.toLocaleString('default', { month: 'long', year: 'numeric', day: 'numeric' }),
+        selectedDate.toLocaleString('en-US', { month: 'long', year: 'numeric', day: 'numeric' }),
       ];
       chart.update();
     }

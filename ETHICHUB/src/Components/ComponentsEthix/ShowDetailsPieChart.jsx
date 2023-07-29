@@ -6,7 +6,7 @@ import '../../Css/Bonds.css';
 import Big from "big.js";
 import { startOfMonth, endOfMonth, subMonths } from 'date-fns';
 
-const DetailBondHoldersEthixTotal = () => {
+const ShowDetailsPieChart = () => {
     const { loading, error, data } = useContext(DataContext);
     const [showDetail, setShowDetail] = useState(false);
     const [showEth, setShowEth] = useState(true);
@@ -91,7 +91,7 @@ const DetailBondHoldersEthixTotal = () => {
 
             <div className='btshow'>
                 <button className="butonshow1" onClick={toggleDetail}>
-                    {showDetail ? 'Close' : 'Show detail'}
+                    {showDetail ? 'Close' : 'Show details'}
                 </button>
             </div>
 
@@ -109,7 +109,7 @@ const DetailBondHoldersEthixTotal = () => {
                             onClick={() => handleCurrencyChange('CELO')}>CELO</span>
 
                         <button className="buton-hideshow" onClick={toggleDetail}>
-                            {showDetail ? 'Close' : 'Show detail'}
+                            {showDetail ? 'Close' : 'Show details'}
                         </button>
                     </div>
 
@@ -145,5 +145,5 @@ const DetailBondHoldersEthixTotal = () => {
     );
 };
 
-export default DetailBondHoldersEthixTotal;
+export default ShowDetailsPieChart;
 

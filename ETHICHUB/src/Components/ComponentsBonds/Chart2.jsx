@@ -8,7 +8,7 @@ import mediumImage from '../../img/medium.png';
 import largeImage from '../../img/large.png';
 
 
-const CombinedChart2 = () => {
+const Chart2 = () => {
   const canvasRef = useRef(null);
   const { loading, error, data } = useContext(DataContext);
   const [chart, setChart] = useState(null);
@@ -192,4 +192,4 @@ const CombinedChart2 = () => {
   );
 };
 
-export default CombinedChart2;
+export default Chart2;

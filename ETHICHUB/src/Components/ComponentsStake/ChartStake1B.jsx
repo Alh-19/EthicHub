@@ -93,7 +93,7 @@ const ChartStake1B = () => {
       celoData.data = [celoCountAccumulated];
       allData.data = [allCountAccumulated];
 
-      chart.data.labels = [selectedDate.toLocaleString('default', { month: 'long', year: 'numeric' })];
+      chart.data.labels = [selectedDate.toLocaleString('en-US', { month: 'long', year: 'numeric' })];
       chart.update();
     }
   };

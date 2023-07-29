@@ -4,7 +4,7 @@ import { DataContext } from '../../Data/DataContextProvider';
 import '../../Css/Bonds.css';
 import Big from "big.js";
 
-const DetailBonds = () => {
+const ShowDetailsChart1 = () => {
     const { loading, error, data } = useContext(DataContext);
     const bondsEth = data.query1Data?.bonds || [];
     const bondsCelo = data.query2Data?.bonds || [];
@@ -161,7 +161,7 @@ const DetailBonds = () => {
         <div>
             <div className='btshow'>
                 <button className="butonshow1" onClick={toggleDetail}>
-                    {showDetail ? 'Hide detail' : 'Show detail'}
+                    {showDetail ? 'Hide detail' : 'Show details'}
                 </button>
             </div>
             {showDetail && (
@@ -177,7 +177,7 @@ const DetailBonds = () => {
                             onClick={() => handleCurrencyChange('CELO')}>CELO</span>
 
                         <button className="buton-hideshow" onClick={toggleDetail}>
-                            {showDetail ? 'Close' : 'Show detail'}
+                            {showDetail ? 'Close' : 'Show details'}
                         </button>
                     </div>
                     <div className='general-minted'>
@@ -412,6 +412,6 @@ const DetailBonds = () => {
     );
 };
 
-export default DetailBonds;
+export default ShowDetailsChart1;
 
 

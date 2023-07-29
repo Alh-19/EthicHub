@@ -1,3 +1,5 @@
+//THIS CODE ISN'T WORKING NOR IMPORTED IN PAGE
+
 import React, { useEffect, useContext, useState } from 'react';
 import { DataContext } from '../../Data/DataContextProvider.js';
 import '../../Css/Bonds.css';
@@ -5,7 +7,7 @@ import Big from "big.js";
 import { startOfMonth, endOfMonth, subMonths, isAfter, isBefore } from 'date-fns';
 
 
-const DetailBondHoldersEthix = () => {
+const ShowDetailsEthixChart = () => {
     const { loading, error, data } = useContext(DataContext);
     const dataHoldersEth = data.query11Data?.ethixHolders || [];
     const dataHoldersCelo = data.query12Data?.ethixHolders || [];
@@ -114,7 +116,7 @@ const DetailBondHoldersEthix = () => {
 
             <div className='btshow'>
                 <button className="butonshow1" onClick={toggleDetail}>
-                {showDetail ? 'Hide detail' : 'Show detail'}
+                {showDetail ? 'Hide detail' : 'Show details'}
                 </button>
             </div>
 
@@ -122,7 +124,7 @@ const DetailBondHoldersEthix = () => {
                 <div className="detailbh">
 
                     <button className="butonshow2" onClick={toggleDetail}>
-                        {showDetail ? 'Hide detail' : 'Show detail'}
+                        {showDetail ? 'Hide detail' : 'Show details'}
                     </button>
 
                     <div className='btshow'>
@@ -147,7 +149,7 @@ const DetailBondHoldersEthix = () => {
     );
 };
 
-export default DetailBondHoldersEthix;
+export default ShowDetailsEthixChart;
 
 
 
