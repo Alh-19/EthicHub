@@ -14,7 +14,7 @@ const Stake = () => {
   return (
     <div>
     <div className="stake-container">
-    <h3>Stake Holders per month </h3>
+    <h3 className="title">Stake Holders per month </h3>
       <div className="stake-row1">
         <div className="chart-container">
           <ChartStake1 />
@@ -23,7 +23,7 @@ const Stake = () => {
           <ChartStake1B />
         </div>
       </div>
-      <h3>Stake Holders per day </h3>
+      <h3 className="title">Stake Holders per day </h3>
       <div className="stake-row1">
         <div className="chart-container">
           <ChartStake1D />
@@ -40,7 +40,7 @@ const Stake = () => {
           <ImageStake />
         </div>
         <div className="chart-container-total">
-        <h3>Stake holders total</h3>
+        <h3 className="title">Stake holders total</h3>
           <ChartStake2 />
         </div>
       </div>
@@ -50,7 +50,7 @@ const Stake = () => {
       </div>
       <div className="stake-row3">
         <div className="chart-container-combined">
-        <h3>Total staked per contract</h3>
+        <h3 className="title">Total staked per contract</h3>
           <ChartStake3 />
         </div>
       </div>

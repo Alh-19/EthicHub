@@ -3,7 +3,7 @@ import { DataContext } from '../Data/DataContextProvider.js';
 import { Chart } from 'chart.js/auto';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import '../Css/DatePicke.css'
+import '../Css/DatePicker.css'
 
 const ChartEthix1 = () => {
   const chartRef = useRef(null);

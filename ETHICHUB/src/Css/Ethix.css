@@ -148,3 +148,13 @@
   text-align: center;
   justify-content: center;
   }
+
+
+
+
+  @media (max-width: 768px) {
+    .ethix-row {
+      flex-direction: column;
+    }
+  
+  }

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useContext } from 'react';
 import { Chart } from 'chart.js/auto';
 import { DataContext } from '../Data/DataContextProvider';
+import '../Css/DatePicker.css'
 
 const ChartEthix3 = () => {
   const canvasRef = useRef(null);

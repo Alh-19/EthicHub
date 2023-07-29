@@ -230,3 +230,58 @@
   color: #74d7dc;
   font-weight: bolder;
 }
+
+
+
+
+@media (max-width: 768px) {
+  .title {
+      display: block;
+      font-size: 14px;
+  }
+
+  .stake-row1 {
+    flex-direction: column;
+}
+
+.image-container {
+  display: none;
+}
+
+.chart-container-combined {
+  width: 460px;
+  height: 300px;
+}
+
+.chartflags {
+  width: 460px;
+  height: 300px;
+}
+
+.flag-icons {
+  margin-left: 140px;
+}
+
+.brazil-flag{
+  width: 20px;
+  height: 20px;
+  margin-left: 30px;
+}
+
+.mexico-flag{
+  margin-left: 30px;
+}
+
+.mexico-flagcori{
+  margin-left: 30px;
+}
+
+.ecuador-flag{
+  margin-left: 30px;
+}
+
+.peru-flag{
+  margin-left: 30px;
+}
+
+}
