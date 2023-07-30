@@ -94,7 +94,6 @@ const ShowDetailsEthixChart = () => {
 
     const previousMonthDateDetails = getPreviousMonthDate();
 
-
     const moveToTop = () => {
         window.scrollTo({
             top: 0,
@@ -141,19 +140,13 @@ const ShowDetailsEthixChart = () => {
                     </div>
 
                 </div>
-
             )}
-
 
         </div>
     );
 };
 
 export default ShowDetailsEthixChart;
-
-
-
-
 
 
 

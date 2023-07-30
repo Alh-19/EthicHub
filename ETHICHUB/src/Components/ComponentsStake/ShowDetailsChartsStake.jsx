@@ -157,7 +157,7 @@ const ShowDetailsChartsStake = () => {
             {showDetail && (
                 <div className="detailbh">
                     <div className="el-switch" style={{ overflowX: 'hidden' }}>
-                    <button className="buton-hideshow" onClick={toggleDetail}>
+                        <button className="buton-hideshow" onClick={toggleDetail}>
                             {showDetail ? 'Close' : 'Show details'}
                         </button>
                         <span className={activeCurrency === 'ETH' ? 'active' : ''}
@@ -176,41 +176,33 @@ const ShowDetailsChartsStake = () => {
                         <h3 className='infocards-stake'>+{newHoldersStake} holders </h3>
                     </div>
 
-
                     <div>
 
                         <div className='infocard2-stk'>
                             <h3 className='infocards-stake'> Total addresses joined - {newHoldersStake} </h3>
                             <h3 className='infocards-stake'> {totalAmountStake} stk ethix</h3>
-
                         </div>
 
+                        <thead  className='stake-table'>
+                            <tr>
+                                <th className='stake-headt'>Address</th>
+                                <th className='stake-headt'>Stake Ethix</th>
+                            </tr>
+                        </thead>
+                            
                         {newHoldersStakeData.map((stakeEthixHolders, index) => {
 
                             return (
-
                                 <div>
-                                    <thead  className='stake-table'>
-                                        <tr>
-                                            <th className='stake-headt'>Address</th>
-                                            <th className='stake-headt'>Stake Ethix</th>
-                                        </tr>
-                                    </thead>
-
-                                <tbody className='stake-table' key={index}>
-
-                                    <td className='stake-bodyt'>{stakeEthixHolders.id}</td>
-                                    <td className='stake-bodyt'>{stakeEthixHolders.totalAmount} stk ethix</td>
-
-                                </tbody>
-
+                                    <tbody className='stake-table' key={index}>
+                                        <td className='stake-bodyt'>{stakeEthixHolders.id}</td>
+                                        <td className='stake-bodyt'>{stakeEthixHolders.totalAmount} stk ethix</td>
+                                    </tbody>
                                 </div>
-
                             )
                         })}
 
                     </div>
-
 
                 </div>
             )}

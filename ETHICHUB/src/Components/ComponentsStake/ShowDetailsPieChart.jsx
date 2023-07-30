@@ -93,7 +93,7 @@ const ShowDetailsPieChart = () => {
             {showDetail && (
                 <div className="detailbh">
                     <div className="el-switch" style={{ overflowX: 'hidden' }}>
-                    <button className="buton-hideshow" onClick={toggleDetail}>
+                        <button className="buton-hideshow" onClick={toggleDetail}>
                             {showDetail ? 'Close' : 'Show details'}
                         </button>
                         <span className={activeCurrency === 'ETH' ? 'active' : ''}
@@ -111,7 +111,6 @@ const ShowDetailsPieChart = () => {
                         <h3 className='stake-cards'>Total Holders {showEth ? 'Eth' : 'Celo'} {activeHoldersThismonth.length} holders </h3>
                     </div>
 
-
                     <thead>
                         <tr>
                             <th className='staketb-head'>Rank</th>
@@ -121,9 +120,7 @@ const ShowDetailsPieChart = () => {
                         </tr>
                     </thead>
 
-
                     <tbody>
-
                         {activeHoldersThismonth.map((stakeEthixHolders, index) => {
                             const allTypes = stakeEthixHolders.type.join(', ');
                             return (
@@ -139,9 +136,6 @@ const ShowDetailsPieChart = () => {
                     </tbody>
 
                 </div>
-
-
-
             )}
 
         </div>

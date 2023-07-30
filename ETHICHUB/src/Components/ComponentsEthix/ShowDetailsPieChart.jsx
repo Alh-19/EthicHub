@@ -98,8 +98,9 @@ const ShowDetailsPieChart = () => {
             {showDetail && (
 
                 <div className="detailbh">
+                    
                     <div className="el-switch" style={{ overflowX: 'hidden' }}>
-                    <button className="buton-hideshow" onClick={toggleDetail}>
+                        <button className="buton-hideshow" onClick={toggleDetail}>
                             {showDetail ? 'Close' : 'Show details'}
                         </button>
                         <span className={activeCurrency === 'ETH' ? 'active' : ''}
@@ -110,8 +111,6 @@ const ShowDetailsPieChart = () => {
                         </label>
                         <span className={activeCurrency === 'CELO' ? 'active' : ''}
                             onClick={() => handleCurrencyChange('CELO')}>CELO</span>
-
-                        
                     </div>
 
                     <div className='infocards-ethix'>

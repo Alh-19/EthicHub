@@ -159,6 +159,20 @@
   flex-direction: row;
   justify-content: center;
 }
+
+.stake-headt{
+  font-size: medium;
+  text-transform: uppercase;
+  background-color: #c8cbd1;
+  padding: 5px 40px;
+  width: 400px;
+}
+
+.th,
+td {
+  padding: 5px 40px;
+}
+
 /*************Stake Cards********/
 .stakeinfo-cards{
     display: flex;
