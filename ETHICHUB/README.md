@@ -54,6 +54,10 @@ Dentro de la carpeta ETHICHUB
 Este comando abre el proyecto en modo desarrollador 
 Por defecto el proyecto se abre en [http://localhost:3000](http://localhost:3000) para verlo en tu navedador.
 
+## Deploy
+
+[Proyecto EthicHub](https://ethic-hub.vercel.app/)
+
 ## Repositorio del proyecto 
 
 [Proyecto](https://github.com/Alh-19/EthixHub)
