@@ -189,6 +189,13 @@ const ShowDetailsChartsStake = () => {
 
                             return (
 
+                                <div>
+                                    <thead  className='stake-table'>
+                                        <tr>
+                                            <th className='stake-headt'>Address</th>
+                                            <th className='stake-headt'>Stake Ethix</th>
+                                        </tr>
+                                    </thead>
 
                                 <tbody className='stake-table' key={index}>
 
@@ -197,7 +204,7 @@ const ShowDetailsChartsStake = () => {
 
                                 </tbody>
 
-
+                                </div>
 
                             )
                         })}
