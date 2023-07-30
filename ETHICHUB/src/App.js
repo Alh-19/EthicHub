@@ -30,7 +30,7 @@ const App = () => {
         <Route exact path="/bonds" element={<Bonds />} />
         <Route exact path="/ethix" element={<Ethix />} />
         <Route exact path="/stake" element={<Stake />} />
-        <Route exact path="/" element={<Bonds />} />
+        <Route exact path="/" element={<Ethix />} />
       </Routes>
       <Footer />
     </Router>

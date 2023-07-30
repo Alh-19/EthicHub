@@ -7,7 +7,6 @@ import PieChartEthix from "../Components/ComponentsEthix/PieChartEthix";
 import ImageEthix from "../Components/ComponentsEthix/ImageEthix";
 import "../Css/Ethix.css"; 
 import ShowDetailsPieChart from "../Components/ComponentsEthix/ShowDetailsPieChart.jsx";
-import ShowDetailsEthixChart from "../Components/ComponentsEthix/ShowDetailsEthixChart";
 
 const Chart3 = () => {
   return (
@@ -22,8 +21,7 @@ const Chart3 = () => {
           <ChartEthix2 />
         </div>
       </div>
-      
-      <h3 className="title">Ethix Holders per month </h3>
+      <h3 className="title">Ethix Holders per day </h3>
       <div className="ethix-row">
         <div className="chart-container">
           <ChartEthix3 />

@@ -28,7 +28,7 @@ const Header = () => {
       <div className='navbar'>
         <ul>
           <Link to="/Ethix" onClick={() => handlePageChange('Ethix')}>
-            <li className={currentPage === 'Ethix' ? 'active selected' : ''}>Ethix</li>
+          <li className={currentPage === 'Ethix' || currentPage === '' ? 'active selected' : ''}>Ethix</li>
           </Link>
           <Link to="/Stake" onClick={() => handlePageChange('Stake')}>
             <li className={currentPage === 'Stake' ? 'active selected' : ''}>Stake</li>
