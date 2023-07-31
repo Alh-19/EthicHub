@@ -51,6 +51,10 @@ Inside the ETHICHUB folder:
 
 This command opens the project in developer mode. By default, the project can be accessed at [http://localhost:3000](http://localhost:3000) on your web browser.
 
+## Deploy
+
+[EthicHub Project](https://ethic-hub.vercel.app/)
+
 ## Project Repository 
 
 [Project Repository EthicHub](https://github.com/Alh-19/EthixHub)
