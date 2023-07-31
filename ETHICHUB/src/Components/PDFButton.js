@@ -4,12 +4,12 @@ import jsPDF from 'jspdf';
 const PDFButton = ({ chartRef }) => {
   const handleGeneratePDF = () => {
     const canvas = chartRef.current;
-    const dataURL = canvas.toDataURL('image/jpeg', 1.0); // Higher quality image
+    const dataURL = canvas.toDataURL('image/jpeg', 1.0);
 
     const pdf = new jsPDF('landscape', 'mm', 'a4');
-    const pdfWidth = 280; // PDF width in mm
-    const pdfHeight = 150; // PDF height in mm
-    const imageWidth = pdfWidth * 0.8; // Scale down image to fit in the PDF
+    const pdfWidth = 280; 
+    const pdfHeight = 150; 
+    const imageWidth = pdfWidth * 0.8; 
     const imageHeight = (pdfHeight * imageWidth) / pdfWidth;
     const marginLeft = (pdfWidth - imageWidth) / 2;
     const marginTop = (pdfHeight - imageHeight) / 2;
